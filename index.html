@@ -1,0 +1,13 @@
+<h1>Real Time</h1>
+<title>Socket.IO chat</title>
+<script src="/socket.io/socket.io.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script type="text/javascript">
+    var socket = io.connect('http://54.200.3.119:3000');
+    socket.on('connect',function(){
+        socket.on('mqtt',function(msg){
+            console.log(msg.topic+' '+msg.payload);
+        });
+        socket.emit('subscribe',{topic: 'manufacturer/Sony'});
+    });
+</script>
