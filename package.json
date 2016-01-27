@@ -1,0 +1,13 @@
+{
+  "name": "blankapp",
+  "description": "",
+  "version": "0.0.0",
+  "main": "main.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "dependencies": {
+    "express": "^4.13.4",
+    "mqtt": "^1.7.0"
+  }
+}
