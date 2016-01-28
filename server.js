@@ -23,6 +23,7 @@ io.sockets.on('connection',function(socket){
 io.sockets.on('connection',function(socket){
     socket.on('mqtt',function(data){
         console.log(data.payload);
+    });
 });
 
 io.on('connection', function(socket){
