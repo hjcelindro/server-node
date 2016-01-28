@@ -11,7 +11,7 @@ http.listen(3000, function(){
     console.log('listening to port 3000');
 });
 
-var client = mqtt.connect('mqtt://54.200.3.119:1883','socket');
+var client = mqtt.connect('mqtt://54.200.3.119:1883');
 
 io.sockets.on('connection',function(socket){
     socket.on('mqtt',function(data){
