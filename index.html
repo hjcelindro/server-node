@@ -1,23 +1,38 @@
-<h1>Real Time</h1>
-<title>Testing...</title>
-<script src="/socket.io/socket.io.js"></script>
-<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-<body>
-    <script type="text/javascript">
+<head>
+        <h1>Real Time</h1>
+        <title>Testing...</title>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 
-        var socket = io.connect('http://54.200.3.119:3000');
+        <script type="text/javascript">
 
-        socket.on('connect',function(){
-            
-            socket.on('subscribe',function(msg){
-                console.log("socket:"+msg);     
-                $('#msg').append('<p>'+msg.payload+'</p>');
+            var socket = io.connect('http://54.200.3.119:3000');
+
+            socket.on('connection',function(){
+
+                socket.on('subscribe',function(msg){
+                    console.log("socket:"+msg);     
+                    addMessage(msg);
+                });
+                socket.emit('subscribe',{topic: 'manufacturer/Sony'});
             });
             socket.on('mqtt',function(msg){
                 console.log("testing"+msg.payload);
-                $('#msg').append('<p>'+msg.payload+'</p>');
+                addMessage(msg);
+
             });
-            socket.emit('subscribe',{topic: 'manufacturer/Sony'});
-        });
-    </script>
-</body>
+
+            function addMessage(message){
+                var text = document.createTextNode(message),
+                    el = document.createElement('li'),
+                    messages = document.getElementById('messages');
+
+                el.appendChild(text);
+                messages.appendChild(el);
+            }
+        </script>
+    </head>
+    <body>
+        <ul id = 'messages'></ul>
+    </body>
+</html>
