@@ -5,7 +5,7 @@
 <script type="text/javascript">
     var socket = io.connect('http://54.200.3.119:3000');
     socket.on('connect',function(){
-        socket.on('mqtt',function(msg){
+        socket.on('subscribe',function(msg){
             console.log(msg.topic+' '+msg.payload);
         });
         socket.emit('subscribe',{topic: 'manufacturer/Sony'});
