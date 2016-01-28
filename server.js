@@ -17,7 +17,6 @@ io.sockets.on('connection',function(socket){
     socket.on('subscribe',function(data){
         console.log('Subscribing to :'+data.topic);
         client.subscribe(data.topic);
-        socket.join(data.topic);
     });
 });
     
@@ -32,6 +31,6 @@ io.sockets.on('connection', function(socket){
 });
 
 client.on('message',function(topic,message){
-    //console.log(String(message)+ " "+String(topic));
+    console.log(String(message)+ " "+String(topic));
     io.sockets.in(topic).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
 });
