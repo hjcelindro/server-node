@@ -9,13 +9,13 @@
 
         socket.on('connect',function(){
             
-            socket.on('subscribe',function(msg){
+            /*socket.on('subscribe',function(msg){
                 console.log("socket:"+msg);     
-                $('#msg').append('<p>'+msg.payload+'</p>');
             });
+            
             socket.on('mqtt',function(msg){
                 console.log("testing"+msg.payload);
-            });
+            });*/
             socket.emit('subscribe',{topic: 'manufacturer/Sony'});
         });
     </script>
