@@ -20,7 +20,7 @@ io.sockets.on('connection',function(socket){
         client.subscribe(data.topic);
     });
     socket.on('mqtt',function(data){
-        console.log("mqttjs: "+data.payload);
+        //console.log("mqttjs: "+data.payload);
     });
 });
     
