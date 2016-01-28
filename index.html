@@ -5,18 +5,29 @@
 <body>
     <script type="text/javascript">
 
-        var wb = io.connect('http://54.200.3.119:3000');
+        var socket = io.connect('http://54.200.3.119:3000');
 
-        wb.on('connection',function(socket){
+        socket.on('connection',function(){
             
             socket.on('subscribe',function(msg){
                 console.log("socket:"+msg);     
-            });
-            
-            socket.on('mqtt',function(msg){
-                console.log("testing"+msg.payload);
+                addMessage(msg);
             });
             socket.emit('subscribe',{topic: 'manufacturer/Sony'});
         });
+        socket.on('mqtt',function(msg){
+            console.log("testing"+msg.payload);
+            addMessage(msg);
+
+        });
+        
+        function addMessage(message){
+            var text = document.createTextNode(message),
+                el = document.createElement('li'),
+                messages = document.getElementById('messages');
+            
+            el.appendChild(text);
+            messages.appendChild(el);
+        }
     </script>
 </body>
