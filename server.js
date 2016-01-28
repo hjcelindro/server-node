@@ -31,7 +31,7 @@ io.on('connection', function(socket){
 });
 
 client.on('message',function(topic,message){
-    console.log(String(message)+String(topic));
+    console.log(String(topic)+" "+String(message));
     io.sockets.emit('mqtt',{'topic':String(topic), 'payload':String(message)});
 });
 
