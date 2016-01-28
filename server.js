@@ -3,8 +3,7 @@
 <script src="/socket.io/socket.io.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 <body>
-    <script type="text/javascript">
-
+<script type="text/javascript">
     var socket = io.connect('http://54.200.3.119:3000');
 
     socket.on('connect',function(){
@@ -29,6 +28,5 @@
         messages.appendChild(el);
     }
 </script>
-
     <ul id = 'messages'></ul>
 </body>
