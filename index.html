@@ -6,7 +6,7 @@
     var socket = io.connect('http://54.200.3.119:3000');
     socket.on('connect',function(){
         socket.on('subscribe',function(msg){
-            console.log(msg.topic+' '+msg.payload);
+            console.log("socket:"+msg.topic+' '+msg.payload);
         });
         socket.on('mqtt',function(msg){
             console.log("socket test:"+msg.topic+' '+msg.payload);
