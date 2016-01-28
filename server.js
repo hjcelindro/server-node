@@ -14,7 +14,7 @@ http.listen(3000, function(){
 var client = mqtt.connect('mqtt://54.200.3.119:1883');
 
 io.sockets.on('connection',function(socket){
-    socket.on('mqtt',function(data){
+    socket.on('subscribe',function(data){
         console.log('Subscribing to :'+data.topic);
         client.subscribe(data.topic);
     });
