@@ -1,9 +1,7 @@
-<head>
-    <h1>Real Time</h1>
-    <title>Testing...</title>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-</head>
+<h1>Real Time</h1>
+<title>Testing...</title>
+<script src="/socket.io/socket.io.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 <body>
     <script type="text/javascript">
 
