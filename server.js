@@ -15,13 +15,13 @@ http.listen(3000, function(){
 var client = mqtt.connect('mqtt://54.200.3.119:1883');
 
 io.sockets.on('connection',function(socket){
-    
     socket.on('subscribe',function(data){
         console.log('Subscribing to :'+data.topic);
         client.subscribe(data.topic);
     });
     socket.on('mqtt',function(data){
         console.log("mqttjs: "+data.payload);
+        io.sockets.emit('mqtt',{'topic':String(data.topic), 'payload':String(data.payload)});
     });
 });
     
