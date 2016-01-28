@@ -28,7 +28,7 @@ io.sockets.on('connection', function(socket){
     });
 });
 
-io.sockets.on('mqtt',function(data){
+io.sockets.on('connection',function(data){
         console.log("mqttjs"+data.payload);
 });
 
