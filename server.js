@@ -19,6 +19,9 @@ io.sockets.on('connection',function(socket){
         console.log('Subscribing to :'+data.topic);
         client.subscribe(data.topic);
     });
+    socket.on('connection',function(data){
+        console.log("mqttjs"+data.payload);
+    });
 });
     
 io.sockets.on('connection', function(socket){
@@ -32,7 +35,4 @@ client.on('message',function(topic,message){
     console.log("Client.on"+String(message)+ " "+String(topic));
     io.sockets.emit('mqtt',{'topic':String(topic), 'payload':String(message)});
     
-    io.sockets.on('connection',function(data){
-        console.log("mqttjs"+data.payload);
-    });
 });
