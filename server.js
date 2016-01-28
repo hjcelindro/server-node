@@ -35,7 +35,7 @@ client.on('message',function(topic,message){
     //console.log("Client.on"+String(message)+ " "+String(topic));
     app.get('/', function(req, res){
         res.sendFile(__dirname + '/index.html');
-        res.send(msg);
+        res.send(message);
     });
     io.sockets.emit('mqtt',{'topic':String(topic), 'payload':String(message)});
 });
