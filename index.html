@@ -14,7 +14,7 @@
             });
             socket.emit('subscribe',{topic: 'manufacturer/Sony'});
 
-            socket.onmessage = function(msg){
+            socket.on('mqtt',function(msg){
                 $('#msg').append('<p>'+msg.payload+'</p>');
             };
         });
