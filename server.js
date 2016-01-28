@@ -32,7 +32,7 @@ io.on('connection', function(socket){
 
 client.on('message',function(topic,message){
     console.log(String(message)+String(topic));
-    io.sockets.emit('mqtt',{'topic':String(topic), 'payload':String(payload)});
+    io.sockets.emit('mqtt',{'topic':String(topic), 'payload':String(message)});
 });
 
 client.addListener('mqttData',function(topic,payload){
