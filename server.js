@@ -36,3 +36,4 @@
         <ul id = 'messages'></ul>
     </body>
 </html>
+ 
