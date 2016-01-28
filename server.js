@@ -27,7 +27,7 @@ io.sockets.on('connection', function(socket){
             console.log('user disconnected');
     });
     socket.on('mqtt',function(data){
-        console.log(data.payload);
+        console.log("mqttjs"+data.payload);
     });
 });
 
