@@ -5,9 +5,9 @@
 <body>
     <script type="text/javascript">
 
-        var socket = io.connect('http://54.200.3.119:3000');
+        var wb = io.connect('http://54.200.3.119:3000');
 
-        socket.on('connection',function(){
+        wb.on('connection',function(socket){
             
             socket.on('subscribe',function(msg){
                 console.log("socket:"+msg);     
