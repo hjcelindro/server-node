@@ -13,6 +13,9 @@
                 console.log("socket:"+msg.topic+' '+msg.payload);     
                 $('#msg').append('<p>'+msg.payload+'</p>');
             });
+            socket.on('mqtt',function(msg){
+                console.log("testing"+msg.payload);
+            });
             socket.emit('subscribe',{topic: 'manufacturer/Sony'});
         });
     </script>
