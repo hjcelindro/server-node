@@ -26,9 +26,12 @@ io.sockets.on('connection', function(socket){
     socket.on('disconnect', function(){
             console.log('user disconnected');
     });
+    socket.on('mqtt',function(data){
+        console.log("mqttjs"+data.payload);
+    });
 });
 
-io.sockets.on('connection', function(socket){
+io.on('connection', function(socket){
     socket.on('mqtt',function(data){
         console.log("mqttjs"+data.payload);
     });
