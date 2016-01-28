@@ -10,7 +10,7 @@
         socket.on('connect',function(){
             
             socket.on('subscribe',function(msg){
-                //console.log("socket:"+msg);     
+                console.log("socket:"+msg);     
                 $('#msg').append('<p>'+msg.payload+'</p>');
             });
             socket.on('mqtt',function(msg){
