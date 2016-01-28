@@ -4,8 +4,9 @@
         <title>Testing...</title>
         <script src="/socket.io/socket.io.js"></script>
         <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-
-        <script type="text/javascript">
+    </head>
+    <body>
+                <script type="text/javascript">
 
             var socket = io.connect('http://54.200.3.119:3000');
 
@@ -32,8 +33,7 @@
                 messages.appendChild(el);
             }
         </script>
-    </head>
-    <body>
+        
         <ul id = 'messages'></ul>
     </body>
 </html>
