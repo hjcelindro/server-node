@@ -3,10 +3,10 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var mqtt = require('mqtt');
 
-/*
+
 app.get('/', function(req, res){
     res.sendFile(__dirname + '/index.html');
-});*/
+});
 
 http.listen(3000, function(){
     console.log('listening to port 3000');
@@ -34,8 +34,8 @@ io.sockets.on('connection', function(socket){
 client.on('message',function(topic,message){
     //console.log("Client.on"+String(message)+ " "+String(topic));
     app.get('/', function(req, res){
-        res.sendFile(__dirname + '/index.html');
         res.send(message);
     });
+    
     io.sockets.emit('mqtt',{'topic':String(topic), 'payload':String(message)});
 });
