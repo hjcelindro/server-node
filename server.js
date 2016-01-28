@@ -19,7 +19,7 @@ io.sockets.on('connection',function(socket){
         client.subscribe(data.topic);
     });
     socket.on('mqtt',function(data){
-        console.log("js "+data.topic+" "+data.payload);
+        //console.log("js "+data.topic+" "+data.payload);
         io.sockets.emit('mqtt',{'topic':String(data.topic), 'payload':String(data.payload)});
     });
 });
@@ -35,6 +35,6 @@ io.sockets.on('connection', function(socket){
 });
 
 client.on('message',function(topic,message){
-    console.log(String(message)+ " "+String(topic));
+    //console.log(String(message)+ " "+String(topic));
     io.sockets.emit('mqtt',{'topic':String(topic), 'payload':String(message)});
 });
