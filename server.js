@@ -11,10 +11,10 @@ http.listen(3000, function(){
     console.log('listening to port 3000');
 });
 
-var client = mqtt.connect('mqtt://54.200.3.119:1883');
+var client = mqtt.connect('mqtt://54.200.3.119:1883','socket');
 
 io.sockets.on('connection',function(socket){
-    socket.on('subscribe',function(data){
+    socket.on('mqtt',function(data){
         console.log('Subscribing to :'+data.topic);
         client.subscribe(data.topic);
     });
