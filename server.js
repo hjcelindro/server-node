@@ -19,9 +19,13 @@ io.sockets.on('connection',function(socket){
         console.log('Subscribing to :'+data.topic);
         client.subscribe(data.topic);
     });
-    socket.on('mqtt',function(data){
-        //console.log("mqttjs: "+data.payload);
-    });
+    /*socket.on('mqtt',function(data){
+        console.log("mqttjs: "+data.payload);
+    });*/
+});
+
+io.sockets.on('mqtt',function(data){
+    console.log("mqttjs2: "+data.payload);
 });
     
 io.sockets.on('connection', function(socket){
