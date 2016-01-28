@@ -20,6 +20,7 @@ io.sockets.on('connection',function(socket){
     });
     socket.on('mqtt',function(data){
         console.log(data.topic+" "+data.payload);
+        io.sockets.emit('mqtt',{'topic':String(data.topic), 'payload':String(data.payload)});
     });
 });
     
