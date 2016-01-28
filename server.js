@@ -1,32 +1,41 @@
-<h1>Real Time</h1>
-<title>Testing...</title>
-<script src="/socket.io/socket.io.js"></script>
-<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-<body>
-<script type="text/javascript">
-    var socket = io.connect('http://54.200.3.119:3000');
+var app = require('express')();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+var mqtt = require('mqtt');
 
-    socket.on('connect',function(){
 
-        socket.on('subscribe',function(msg){
-            console.log("socket:"+msg);     
-            addMessage(msg);
-        });
-        socket.on('mqtt',function(msg){
-            console.log("testing"+msg.payload);
-            addMessage(msg);
-        });
-        socket.emit('subscribe',{topic: 'manufacturer/Sony'});
+app.get('/', function(req, res){
+    res.sendFile(__dirname + '/index.html');
+});
+
+http.listen(3000, function(){
+    console.log('listening to port 3000');
+});
+
+var client = mqtt.connect('mqtt://54.200.3.119:1883');
+
+io.sockets.on('connection',function(socket){
+    socket.on('subscribe',function(data){
+        console.log('Subscribing to :'+data.topic);
+        client.subscribe(data.topic);
     });
+    socket.on('mqtt',function(data){
+        console.log("mqttjs: "+data.payload);
+    });
+});
 
-    function addMessage(message){
-        var text = document.createTextNode(message),
-            el = document.createElement('li'),
-            messages = document.getElementById('messages');
+/*io.sockets.on('mqtt',function(data){
+    console.log("mqttjs2: "+data.payload);
+});*/
+    
+io.sockets.on('connection', function(socket){
+     console.log('a user connected');
+    socket.on('disconnect', function(){
+            console.log('user disconnected');
+    });
+});
 
-        el.appendChild(text);
-        messages.appendChild(el);
-    }
-</script>
-    <ul id = 'messages'></ul>
-</body>
+client.on('message',function(topic,message){
+    console.log("Client.on"+String(message)+ " "+String(topic));
+    io.sockets.emit('mqtt',{'topic':String(topic), 'payload':String(message)});
+});
