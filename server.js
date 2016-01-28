@@ -28,11 +28,11 @@ io.sockets.on('connection', function(socket){
     });
 });
 
-io.sockets.on('connection',function(data){
-        console.log("mqttjs"+data.payload);
-});
-
 client.on('message',function(topic,message){
     console.log("Client.on"+String(message)+ " "+String(topic));
     io.sockets.emit('mqtt',{'topic':String(topic), 'payload':String(message)});
+    
+    io.sockets.on('connection',function(data){
+        console.log("mqttjs"+data.payload);
+    });
 });
