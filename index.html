@@ -22,7 +22,7 @@
         });
         
         function addMessage(message){
-                var text = document.createTextNode(message),
+                var text = document.createTextNode(message.payload),
                     el = document.createElement('li'),
                     messages = document.getElementById('messages');
 
