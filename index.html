@@ -8,6 +8,9 @@
         socket.on('subscribe',function(msg){
             console.log(msg.topic+' '+msg.payload);
         });
+        socket.on('mqtt',function(msg){
+            console.log("socket test:"+msg.topic+' '+msg.payload);
+        });
         socket.emit('subscribe',{topic: 'manufacturer/Sony'});
         
     });
