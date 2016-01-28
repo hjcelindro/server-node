@@ -17,10 +17,7 @@ io.sockets.on('connection',function(socket){
     socket.on('subscribe',function(data){
         console.log('Subscribing to :'+data.topic);
         client.subscribe(data.topic);
-        client.addListener('mqttData',function(topic,payload){
-            console.log(topic +" : "+payload);
-            io.sockets.emit('mqtt',{'topic':String(topic), 'payload':String(payload)});
-        });
+        console.log(data.payload);
     });
 });
 
