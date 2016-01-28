@@ -17,10 +17,6 @@ io.sockets.on('connection',function(socket){
     socket.on('subscribe',function(data){
         console.log('Subscribing to :'+data.topic);
         client.subscribe(data.topic);
-        
-        socket.on('mqtt',function(data){
-            console.log(data.payload);
-        });
     });
 });
 
@@ -28,6 +24,9 @@ io.on('connection', function(socket){
      console.log('a user connected');
     socket.on('disconnect', function(){
             console.log('user disconnected');
+    });
+    socket.on('mqtt',function(data){
+        console.log(data.payload);
     });
 });
 
