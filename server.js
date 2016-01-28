@@ -26,16 +26,11 @@ io.sockets.on('connection', function(socket){
     socket.on('disconnect', function(){
             console.log('user disconnected');
     });
-    socket.on('mqtt',function(data){
+    socket.in(topic).on('mqtt',function(data){
         console.log("mqttjs"+data.payload);
     });
 });
 
-io.on('connection', function(socket){
-    socket.on('mqtt',function(data){
-        console.log("mqttjs"+data.payload);
-    });
-});
 
 client.on('message',function(topic,message){
     console.log("Client.on"+String(message)+ " "+String(topic));
