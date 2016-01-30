@@ -34,7 +34,15 @@
         </script>
         <script type="text/javascript">
             
-            
+            function subscribeToTopic(){
+                var textbox = document.getElementById("textbox");
+                var output = document.getElementById("output");
+                var name = textbox.value;
+                var manufacturer = name.substr(0,1).toUpperCase() + name.substr(1);
+                output.value = "You are Subscribed, "+manufacturer;
+                
+                var subscribe = 'manufacucturer/'+manufacturer;
+            }
     
         </script>
     </head>
