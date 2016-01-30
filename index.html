@@ -7,7 +7,6 @@
         <script type="text/javascript">
 
             var socket = io.connect('http://54.200.3.119:3000');
-            var id;
 
             socket.on('connection',function(){
 
@@ -31,32 +30,9 @@
                 el.appendChild(text);
                 messages.appendChild(el);
             }
-            
-            function subscribeToTopic(){
-                var textbox = document.getElementById("textbox");
-                var output = document.getElementById("output");
-                var name = textbox.value;
-                var manufacturer = name.substr(0,1).toUpperCase() + name.substr(1);
-                output.value = "You are Subscribed, "+manufacturer;
-                
-                var subscribe = 'manufacucturer/'+manufacturer;
-                
-                socket.emit('subscribe',{topic: subscribe});
-            }
-            
         </script>
     </head>
     <body>
-        
-<!--        <form action=" ">
-            <fieldset>
-                <label>Type your Company name: </label>
-                <input name="topic" id="textbox" type= "text" align="right" size="30"/></br>
-                <input type="button" value="Subscribe" onclick = "subscribeToTopic()"/>
-                <input type="text" id="output"  size = "50"/>
-            </fieldset>
-        </form>-->
-        
         <ul id = 'messages'></ul>
     </body>
 </html>
