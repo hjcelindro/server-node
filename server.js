@@ -39,7 +39,7 @@ io.sockets.on('connection', function(socket){
         console.log(clients[socket.id]);
         clients.push(socket.id);
         for(i=0;i<clients.length;i++){
-            console.log('clients:'+clients[i][[socket.id]]);
+            console.log('clients:'+clients[i][socket.id]);
         }
     });
      console.log('a user connected'+socket.id);
