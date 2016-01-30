@@ -6,7 +6,7 @@ var mqtt = require('mqtt');
 var manufacturer;
 
 
-app.get('/'+manufacturer, function(req, res){
+app.get(manufacturer, function(req, res){
     res.sendFile(__dirname + '/index.html');
 });
 
@@ -25,7 +25,7 @@ io.sockets.on('connection',function(socket){
         console.log("mqttjs: "+data.payload);
         io.sockets.emit('mqtt',{'topic':String(data.topic), 'payload':String(data.payload)});
         var thetopic = data.topic;
-        manufacturer = thetopic.split("/",2)
+        manufacturer = "/"+thetopic.split("/",2)
         console.log(manufacturer);
     });
 });
