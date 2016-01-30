@@ -37,7 +37,7 @@
                 var manufacturer = name.substr(0,1).toUpperCase() + name.substr(1);
                 output.value = "You are Subscribed, "+manufacturer;
                 
-                var subscribe = 'manufacucturer/'+manufacturer;
+                var subscribe = 'manufacturer/'+manufacturer;
                 socket.emit('subscribe',{topic: subscribe});
             }
     
