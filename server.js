@@ -12,6 +12,9 @@ app.get('/Sony', function(req, res){
 app.get('/Samsung', function(req, res){
     res.sendFile(__dirname + '/index.html');
 });
+app.get('/', function(req, res){
+    res.sendFile(__dirname + '/index.html');
+});
 
 http.listen(3000, function(){
     console.log('listening to port 3000');
