@@ -6,9 +6,15 @@
 
         <script type="text/javascript">
 
-            var socket = io.connect('http://54.200.3.119:3000');
+            //var socket = io.connect('http://54.200.3.119:3000');
+            var socket;
+            var id;
+            
+            if (id == "Sony"){
+                socket = io.connect('http://54.200.3.119:3000');
+            }
 
-            /*socket.on('connection',function(){
+            socket.on('connection',function(){
 
                 socket.on('subscribe',function(msg){
                     console.log("socket:"+msg);     
@@ -20,7 +26,7 @@
                 console.log("testing"+msg.payload);
                 addMessage(msg);
 
-            });*/
+            });
 
             function addMessage(message){
                 var text = document.createTextNode(message.payload),
@@ -38,23 +44,9 @@
                 var manufacturer = name.substr(0,1).toUpperCase() + name.substr(1);
                 output.value = "You are Subscribed, "+manufacturer;
                 
-                socket.on('connection',function(){
-
-                socket.on('subscribe',function(msg){
-                    console.log("socket:"+msg);     
-                    addMessage(msg);
-                });
-                    var subscribe = 'manufacucturer/'+manufacturer;
-                    socket.emit('subscribe',{topic: subscribe});
-                //socket.emit('subscribe',{topic: 'manufacturer/Sony'});
-            });
-            socket.on('mqtt',function(msg){
-                console.log("testing"+msg.payload);
-                addMessage(msg);
-
-            });*
-                //var subscribe = 'manufacucturer/'+manufacturer;
-                //socket.emit('subscribe',{topic: subscribe});
+                var subscribe = 'manufacucturer/'+manufacturer;
+                id=manufacturer;
+                socket.emit('subscribe',{topic: subscribe});
             }
             
         </script>
