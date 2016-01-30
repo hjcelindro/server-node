@@ -28,8 +28,6 @@ io.sockets.on('connection',function(socket){
     });
     socket.on('mqtt',function(data){
         console.log("mqttjs: "+data.payload);
-        //io.sockets.emit('mqtt',{'topic':String(data.topic), 'payload':String(data.payload)});
-        //io.sockets.socket(clients[0]).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
     });
     
 });
@@ -37,6 +35,7 @@ io.sockets.on('connection',function(socket){
 io.sockets.on('connection', function(socket){
     
     socket.on('register',function(name){
+        console.log("name = "+name);
         client[socket.id] = name;
         console.log(socket.id);
     });
