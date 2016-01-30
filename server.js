@@ -4,7 +4,7 @@ var io = require('socket.io')(http);
 var mqtt = require('mqtt');
 
 var manufacturer;
-var clients=[];
+var clients={};
 
 
 app.get('/:manufacturer', function(req, res){
@@ -38,7 +38,7 @@ io.sockets.on('connection', function(socket){
         clients[socket.id] = name.name;
         console.log(clients[socket.id]);
         clients.push(socket.id);
-        console.log('clients:'+clients[socket.id]);
+        console.log('clients:'+clients);
     });
      console.log('a user connected'+socket.id);
     socket.on('disconnect', function(){
