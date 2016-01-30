@@ -4,7 +4,7 @@ var io = require('socket.io')(http);
 var mqtt = require('mqtt');
 
 var manufacturer;
-var clients[];
+var clients=[];
 
 
 app.get('/:manufacturer', function(req, res){
