@@ -38,7 +38,7 @@ io.sockets.on('connection', function(socket){
         clients[socket.id] = name.name;
         console.log(clients[socket.id]);
         clients.push(socket.id);
-        for(i=0;i<clients.size();i++){
+        for(i=0;i<clients.length;i++){
             console.log('clients:'+clients[socket.id]);
         }
     });
