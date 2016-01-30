@@ -50,7 +50,7 @@ client.on('message',function(topic,message){
     manufacturer = split[1];
     //io.sockets.emit('mqtt',{'topic':String(topic), 'payload':String(message)});
     if(manufacturer==clients[socket.id]){
-        io.sockets.connected[clients[socket.id].emit('mqtt_sub',{'topic':String(topic), 'payload':String(message)});
+        io.sockets.connected[clients[socket.id]].emit('mqtt_sub',{'topic':String(topic), 'payload':String(message)});
     }
     //io.sockets.socket(clients[0]).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
     console.log(manufacturer);
