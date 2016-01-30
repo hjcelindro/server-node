@@ -4,7 +4,7 @@ var io = require('socket.io')(http);
 var mqtt = require('mqtt');
 
 
-app.get('/', function(req, res){
+app.get('/Sony', function(req, res){
     res.sendFile(__dirname + '/index.html');
 });
 
