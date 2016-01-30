@@ -35,7 +35,7 @@ io.sockets.on('connection',function(socket){
 io.sockets.on('connection', function(socket){
     
     socket.on('register',function(name){
-        console.log("name = "+name);
+        console.log("name = "+String(name));
         client[socket.id] = name;
         console.log(socket.id);
     });
