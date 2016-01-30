@@ -1,27 +1,28 @@
-<h1>Real Time</h1>
-<title>Testing...</title>
-<script src="/socket.io/socket.io.js"></script>
-<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-<body>
-    <script type="text/javascript">
+<head>
+        <h1>Real Time</h1>
+        <title>Testing...</title>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 
-        var socket = io.connect('http://54.200.3.119:3000');
+        <script type="text/javascript">
 
-        socket.on('connect',function(){
-            
-            socket.on('subscribe',function(msg){
-                console.log("socket:"+msg);     
-                $('#msg').append('<p>'+msg.payload+'</p>');
+            var socket = io.connect('http://54.200.3.119:3000');
+
+            socket.on('connection',function(){
+
+                socket.on('subscribe',function(msg){
+                    console.log("socket:"+msg);     
+                    addMessage(msg);
+                });
+                //socket.emit('subscribe',{topic: 'manufacturer/Sony'});
             });
             socket.on('mqtt',function(msg){
                 console.log("testing"+msg.payload);
                 addMessage(msg);
-                $('#msg').append('<p>'+msg.payload+'</p>');
+
             });
-            socket.emit('subscribe',{topic: 'manufacturer/Sony'});
-        });
-        
-        function addMessage(message){
+
+            function addMessage(message){
                 var text = document.createTextNode(message.payload),
                     el = document.createElement('li'),
                     messages = document.getElementById('messages');
@@ -29,6 +30,30 @@
                 el.appendChild(text);
                 messages.appendChild(el);
             }
-    </script>
-    <ul id = 'messages'></ul>
-</body>
+            
+            function subscribeToTopic(){
+                var textbox = document.getElementById("textbox");
+                var output = document.getElementById("output");
+                var name = textbox.value;
+                var manufacturer = name.substr(0,1).toUpperCase() + name.substr(1);
+                output.value = "You are Subscribed, "+manufacturer;
+                
+                var subscribe = 'manufacucturer/'+manufacturer;
+                socket.emit('subscribe',{topic: subscribe});
+            }
+            
+        </script>
+    </head>
+    <body>
+        <form action=" ">
+            <fieldset>
+                <label>Type your Company name: </label>
+                <input name="topic" id="textbox" type= "text" align="right" size="30"/></br>
+                <input type="button" value="Subscribe" onclick = "subscribeToTopic()"/>
+                <input type="text" id="output"  size = "50"/>
+            </fieldset>
+        </form>
+        
+        <ul id = 'messages'></ul>
+    </body>
+</html>
