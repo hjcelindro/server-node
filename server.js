@@ -46,8 +46,12 @@ io.sockets.on('connection', function(socket){
 
 client.on('message',function(topic,message){
     console.log("Client.on"+String(message)+ " "+String(topic));
-    io.sockets.emit('mqtt',{'topic':String(topic), 'payload':String(message)});
-    io.sockets.connected[manufacturer].emit('mqtt_sub',{'topic':String(topic), 'payload':String(message)});
+    var split = topic.split('/');
+    manufacturer = split[1];
+    //io.sockets.emit('mqtt',{'topic':String(topic), 'payload':String(message)});
+    if(manufacturer==clients[socket.id]){
+        io.sockets.connected[clients.socketid].emit('mqtt_sub',{'topic':String(topic), 'payload':String(message)});
+    }
     //io.sockets.socket(clients[0]).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
     console.log(manufacturer);
 });
