@@ -6,13 +6,8 @@
 
         <script type="text/javascript">
 
-            //var socket = io.connect('http://54.200.3.119:3000');
-            var socket;
+            var socket = io.connect('http://54.200.3.119:3000');
             var id;
-            
-            if (id == "Sony"){
-                socket = io.connect('http://54.200.3.119:3000');
-            }
 
             socket.on('connection',function(){
 
@@ -20,7 +15,7 @@
                     console.log("socket:"+msg);     
                     addMessage(msg);
                 });
-                //socket.emit('subscribe',{topic: 'manufacturer/Sony'});
+                socket.emit('subscribe',{topic: 'manufacturer/Sony'});
             });
             socket.on('mqtt',function(msg){
                 console.log("testing"+msg.payload);
@@ -45,21 +40,22 @@
                 output.value = "You are Subscribed, "+manufacturer;
                 
                 var subscribe = 'manufacucturer/'+manufacturer;
-                id=manufacturer;
+                
                 socket.emit('subscribe',{topic: subscribe});
             }
             
         </script>
     </head>
     <body>
-        <form action=" ">
+        
+<!--        <form action=" ">
             <fieldset>
                 <label>Type your Company name: </label>
                 <input name="topic" id="textbox" type= "text" align="right" size="30"/></br>
                 <input type="button" value="Subscribe" onclick = "subscribeToTopic()"/>
                 <input type="text" id="output"  size = "50"/>
             </fieldset>
-        </form>
+        </form>-->
         
         <ul id = 'messages'></ul>
     </body>
