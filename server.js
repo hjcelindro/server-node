@@ -37,6 +37,8 @@ io.sockets.on('connection', function(socket){
     socket.on('register',function(name){
         clients[socket.id] = name.name;
         console.log(clients[socket.id]);
+        clients.push(socket.id);
+        console.log('clients:'+clients[socket.id]);
     });
      console.log('a user connected'+socket.id);
     socket.on('disconnect', function(){
