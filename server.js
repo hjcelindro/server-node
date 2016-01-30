@@ -4,14 +4,12 @@ var io = require('socket.io')(http);
 var mqtt = require('mqtt');
 
 var manufacturer;
+var clients[];
 
 
 app.get('/:manufacturer', function(req, res){
     res.sendFile(__dirname + '/index.html');
 });
-//app.get('/', function(req, res){
-  //  res.sendFile(__dirname + '/index.html');
-//});
 
 http.listen(3000, function(){
     console.log('listening to port 3000');
@@ -34,7 +32,8 @@ io.sockets.on('connection',function(socket){
 });
     
 io.sockets.on('connection', function(socket){
-     console.log('a user connected');
+    clients.push(socket.id);
+     console.log('a user connected'+socket.id);
     socket.on('disconnect', function(){
             console.log('user disconnected');
     });
