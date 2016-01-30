@@ -11,11 +11,13 @@
             socket.on('connection',function(){
 
                 socket.on('subscribe',function(msg){
-                    //addMessage(msg);
                 });
             });
             socket.on('mqtt',function(msg){
                 addMessage(msg);
+
+            });
+            socket.on('register',function(name){
 
             });
             //socket.emit('subscribe',{topic: 'manufacturer/Sony'});
