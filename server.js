@@ -38,6 +38,19 @@ io.sockets.on('connection', function(socket){
         clients[socket.id] = name.name;
         console.log(clients[socket.id]);
         console.log('clients:'+clients);
+        
+        client.on('message',function(topic,message){
+    console.log("Client.on"+String(message)+ " "+String(topic));
+    var split = topic.split('/');
+    manufacturer = split[1];
+    //io.sockets.emit('mqtt',{'topic':String(topic), 'payload':String(message)});
+    if(manufacturer==clients[socket.id]){
+        io.sockets.connected[clients[socket.id]].emit('mqtt_sub',{'topic':String(topic), 'payload':String(message)});
+    }
+    //io.sockets.socket(clients[0]).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
+    console.log(manufacturer);
+});
+        
     });
      console.log('a user connected'+socket.id);
     socket.on('disconnect', function(){
