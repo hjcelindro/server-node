@@ -26,6 +26,9 @@ io.sockets.on('connection',function(socket){
     socket.on('subscribe',function(data){
         console.log('Subscribing to :'+data.topic);
         client.subscribe(data.topic);
+        var topic =data.topic;
+        var split = topic.split('/');
+        manufacturer = split[1];
     });
     socket.on('mqtt',function(data){
         console.log("mqttjs: "+data.payload);
