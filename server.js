@@ -35,7 +35,11 @@ io.sockets.on('connection',function(socket){
 });
     
 io.sockets.on('connection', function(socket){
-    clients.push(socket.id);
+    
+    socket.on('register',function(name){
+        client[socket.id] = name;
+        console.log(socket.id);
+    });
      console.log('a user connected'+socket.id);
     socket.on('disconnect', function(){
             console.log('user disconnected');
@@ -44,7 +48,7 @@ io.sockets.on('connection', function(socket){
 
 client.on('message',function(topic,message){
     console.log("Client.on"+String(message)+ " "+String(topic));
-    //io.sockets.emit('mqtt',{'topic':String(topic), 'payload':String(message)});
-    io.sockets.socket(clients[0]).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
+    io.sockets.emit('mqtt',{'topic':String(topic), 'payload':String(message)});
+    //io.sockets.socket(clients[0]).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
     console.log(manufacturer);
 });
