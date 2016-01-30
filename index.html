@@ -17,9 +17,7 @@
                 addMessage(msg);
 
             });
-            socket.on('register',function(name){
-
-            });
+            
             //socket.emit('subscribe',{topic: 'manufacturer/Sony'});
 
             function addMessage(message){
@@ -39,6 +37,7 @@
                 
                 var subscribe = 'manufacturer/'+manufacturer;
                 socket.emit('subscribe',{topic: subscribe});
+                socket.emit('register',{name:manufacturer});
             }
     
         </script>
