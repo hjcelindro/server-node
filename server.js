@@ -43,5 +43,5 @@ io.sockets.on('connection', function(socket){
 client.on('message',function(topic,message){
     console.log("Client.on"+String(message)+ " "+String(topic));
     io.sockets.emit('mqtt',{'topic':String(topic), 'payload':String(message)});
-    console.llog(manufacturer);
+    console.log(manufacturer);
 });
