@@ -6,7 +6,7 @@ var mqtt = require('mqtt');
 var manufacturer;
 
 
-app.get(manufacturer, function(req, res){
+app.get("/", function(req, res){
     res.sendFile(__dirname + '/index.html');
 });
 
