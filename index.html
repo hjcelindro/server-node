@@ -14,13 +14,14 @@
                     console.log("socket:"+msg);     
                     addMessage(msg);
                 });
-                socket.emit('subscribe',{topic: 'manufacturer/Sony'});
+                //socket.emit('subscribe',{topic: 'manufacturer/Sony'});
             });
             socket.on('mqtt',function(msg){
                 console.log("testing"+msg.payload);
                 addMessage(msg);
 
             });
+            socket.emit('subscribe',{topic: 'manufacturer/Sony'});
 
             function addMessage(message){
                 var text = document.createTextNode(message.payload),
