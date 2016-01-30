@@ -6,10 +6,7 @@ var mqtt = require('mqtt');
 var manufacturer;
 
 
-app.get('/Sony', function(req, res){
-    res.sendFile(__dirname + '/index.html');
-});
-app.get('/Samsung', function(req, res){
+app.get('/:manufacturer', function(req, res){
     res.sendFile(__dirname + '/index.html');
 });
 app.get('/', function(req, res){
