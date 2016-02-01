@@ -31,7 +31,7 @@ io.sockets.on('connection',function(socket){
     socket.on('mqtt',function(data){
         var manufacturerID = checkID(manufacturer);
         console.log("manufacturerID: "+checkID(manufacturer));
-        io.to(checkID(manufacturer)).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
+        io.sockets(checkID(manufacturer)).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
     });
     
     socket.on('register',function(name){
