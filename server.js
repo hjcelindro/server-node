@@ -66,6 +66,7 @@ function checkID(client){
         console.log('key: '+key);
         if (clients[key] == client)
             value = key;
+            console.log("IF Key: "+value);
     }
     console.log("Key: "+value);
     return value;
