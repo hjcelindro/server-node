@@ -51,7 +51,7 @@ client.on('message',function(topic,message){
     console.log("Client.on"+String(message)+ " "+String(topic));
     var split = topic.split('/');
     manufacturer = split[1];
-    
+    console.log("manu"+manufacturer);
     var manufacturerID = checkID(manufacturer);
     console.log(manufacturerID);
     
