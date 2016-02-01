@@ -17,7 +17,6 @@
                 addMessage(msg);
             });
             socket.on('update_clients',function(name){
-                console.log(name);
                 updateClients(name);
             });
             
@@ -33,7 +32,7 @@
             }
             
             function updateClients(username){
-                var text = document.createTextNode(username.payload),
+                var text = document.createTextNode(username),
                     el = document.createElement('li'),
                     clients = document.getElementById('clients');
 
