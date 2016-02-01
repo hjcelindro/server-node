@@ -33,13 +33,9 @@ io.sockets.on('connection',function(socket){
     });
     
     socket.on('register',function(name){
-        if(addedClient) return;
-            
-        socket.username = name;
-        addedClient = true;
-        clients[name] = socket.id;
+
         socket.emit('update_clients',name);
-        socket.join(name);
+        socket.join(name); //join room for the manufacturer
             
     });
      console.log('a user connected'+socket.id);
@@ -53,23 +49,5 @@ client.on('message',function(topic,message){
     console.log("Client.on"+String(message)+ " "+String(topic));
     var split = topic.split('/');
     manufacturer = split[1];
-    console.log("manu: "+manufacturer);
-    var manufacturerID = checkID(manufacturer);
-    console.log("manufacturerID: "+manufacturerID);
-    //io.sockets.to(checkID(manufacturer)).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
-    //io.sockets.emit('mqtt',{'topic':String(topic), 'payload':String(message)});
     io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
 });
-
-function checkID(client){
-    var value = "null";
-    console.log('client: '+client);
-    for(var key in clients){
-        console.log('key: '+key);
-        if (clients[key] == client)
-            value = key;
-            console.log("IF Key: "+value);
-    }
-    console.log("Key: "+value);
-    return value;
-}
