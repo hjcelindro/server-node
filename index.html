@@ -16,9 +16,8 @@
             socket.on('mqtt',function(msg){
                 addMessage(msg);
             });
-            
-            socket.on('mqtt_sub',function(msg){
-                addMessage(msg);
+            socket.on('update_clients',function(name){
+                updateClients(name);
             });
             
             //socket.emit('subscribe',{topic: 'manufacturer/Sony'});
@@ -31,6 +30,16 @@
                 el.appendChild(text);
                 messages.appendChild(el);
             }
+            
+            function updateClient(username){
+                var text = document.createTextNode(message.payload),
+                    el = document.createElement('li'),
+                    messages = document.getElementById('clients');
+
+                el.appendChild(text);
+                messages.appendChild(el);
+            }
+            
             function subscribeToTopic(){
                 var textbox = document.getElementById("textbox");
                 var output = document.getElementById("output");
@@ -56,6 +65,7 @@
         </form>
         <div>
             <ul id = 'messages'></ul>
+            <ul id = 'clients'>Clients</ul>
         </div>
     </body>
 </html>
