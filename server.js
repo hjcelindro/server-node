@@ -36,7 +36,7 @@ io.sockets.on('connection',function(socket){
             
         socket.username = name;
         addedClient = true;
-        console.log(name);
+        console.log('name is'+name);
         clients[name] = socket.id;
         io.sockets.emit('update_clients',name);
             
