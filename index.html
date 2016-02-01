@@ -17,7 +17,8 @@
                 addMessage(msg);
             });
             socket.on('update_clients',function(name){
-                updateClients(name);
+                //updateClients(name);
+                window.alert(name);
             });
             
             function addMessage(message){
@@ -48,7 +49,6 @@
                 var subscribe = 'manufacturer/'+manufacturer;
                 socket.emit('subscribe',{topic: subscribe});
                 socket.emit('register',manufacturer);
-                socket.emit('mqtt',manufacturer);
                 
                 $('div').show('clients');
             }
