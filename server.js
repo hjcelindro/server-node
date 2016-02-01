@@ -53,7 +53,7 @@ client.on('message',function(topic,message){
     manufacturer = split[1];
     console.log("manu: "+manufacturer);
     //var manufacturerID = checkID(manufacturer);
-    console.log("manufacturerID: "+checkID(manufacturer));
+    //console.log("manufacturerID: "+checkID(manufacturer));
     io.sockets.to(checkID(manufacturer)).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
 });
 
