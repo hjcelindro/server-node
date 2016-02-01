@@ -54,7 +54,8 @@ client.on('message',function(topic,message){
     
     var manufacturerID = checkID(manufacturer);
     console.log(manufacturerID);
-    io.sockets.socket(manufacturerID).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
+    
+    //io.sockets.socket(manufacturerID).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
 });
 
 function checkID(client){
