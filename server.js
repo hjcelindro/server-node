@@ -56,7 +56,7 @@ io.sockets.on('connection',function(socket){
     //var manufacturerID = checkID(manufacturer);
     //console.log("manufacturerID: "+checkID(manufacturer));
     //io.sockets.to(checkID(manufacturer)).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
-    io.sockets.socket(checkID(manufacturer)).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
+    io.sockets.to(checkID(manufacturer)).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
 });
     
 });
