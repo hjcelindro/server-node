@@ -28,6 +28,7 @@ io.sockets.on('connection',function(socket){
         var split = topic.split('/');
         manufacturer = split[1];
     });
+    
     socket.on('mqtt',function(data){
     });
     
@@ -57,6 +58,12 @@ client.on('message',function(topic,message){
     //io.sockets.to(checkID(manufacturer)).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
     io.sockets.emit('mqtt',{'topic':String(topic), 'payload':String(message)});
     //io.sockets.to(checkID(manufacturer)).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
+    
+    io.on('connection',function(socket){
+        socket.on('mqtt_sub',function(id,msg){
+            socket.broadcast.to(id).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
+        });
+    });
 });
 
 function checkID(client){
