@@ -32,12 +32,12 @@
             }
             
             function updateClient(username){
-                var text = document.createTextNode(message.payload),
+                var text = document.createTextNode(username.payload),
                     el = document.createElement('li'),
-                    messages = document.getElementById('clients');
+                    clients = document.getElementById('clients');
 
                 el.appendChild(text);
-                messages.appendChild(el);
+                clients.appendChild(el);
             }
             
             function subscribeToTopic(){
@@ -64,7 +64,7 @@
             </fieldset>
         </form>
         <div>
-            <ul id = 'messages'></ul>
+            <ul id = 'messages'>Messages</ul>
             <ul id = 'clients'>Clients</ul>
         </div>
     </body>
