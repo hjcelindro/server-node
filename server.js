@@ -68,7 +68,7 @@ function checkID(client){
             value = key;
     }*/
     for(var i=0;i<clients.length;i++){
-        if(client==(clients[i]){
+        if(client==(clients[i])){
            value = client[i];
            console.log(clients[i]);
         }
