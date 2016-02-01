@@ -48,8 +48,19 @@ io.sockets.on('connection',function(socket){
             console.log('user disconnected');
     });
     
+    client.on('message',function(topic,message){
+    console.log("Client.on"+String(message)+ " "+String(topic));
+    var split = topic.split('/');
+    manufacturer = split[1];
+    console.log("manu: "+manufacturer);
+    //var manufacturerID = checkID(manufacturer);
+    //console.log("manufacturerID: "+checkID(manufacturer));
+    //io.sockets.to(checkID(manufacturer)).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
+    io.sockets.socket(checkID(manufacturer)).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
 });
- 
+    
+});
+ /*
 client.on('message',function(topic,message){
     console.log("Client.on"+String(message)+ " "+String(topic));
     var split = topic.split('/');
@@ -59,7 +70,7 @@ client.on('message',function(topic,message){
     //console.log("manufacturerID: "+checkID(manufacturer));
     //io.sockets.to(checkID(manufacturer)).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
     io.sockets.to(checkID(manufacturer)).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
-});
+});*/
 
 function checkID(client){
     var value = "";
