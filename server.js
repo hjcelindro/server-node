@@ -39,6 +39,7 @@ io.sockets.on('connection',function(socket){
         addedClient = true;
         clients[name] = socket.id;
         socket.emit('update_clients',name);
+        socket.join(name);
             
     });
      console.log('a user connected'+socket.id);
@@ -56,14 +57,8 @@ client.on('message',function(topic,message){
     var manufacturerID = checkID(manufacturer);
     console.log("manufacturerID: "+manufacturerID);
     //io.sockets.to(checkID(manufacturer)).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
-    io.sockets.emit('mqtt',{'topic':String(topic), 'payload':String(message)});
-    //io.sockets.to(checkID(manufacturer)).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
-    
-    io.on('connection',function(socket){
-        socket.on('mqtt_sub',function(id,msg){
-            socket.broadcast.to(id).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
-        });
-    });
+    //io.sockets.emit('mqtt',{'topic':String(topic), 'payload':String(message)});
+    io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
 });
 
 function checkID(client){
