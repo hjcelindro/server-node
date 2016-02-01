@@ -32,20 +32,15 @@ io.sockets.on('connection',function(socket){
         console.log("mqttjs: "+data.payload);
     });
     
-        socket.on('register',function(name){
-            if(addedClient) return;
+    socket.on('register',function(name){
+        if(addedClient) return;
             
-            socket.username = name;
-            addedClient = true;
-            console.log(socket.username);
+        socket.username = name;
+        addedClient = true;
+        console.log(socket.username);
+        clients[username] = socket.id;
+        socket.emit('update_clients',name);
             
-            //clients[socket.id] = name.name;
-            //console.log(clients[socket.id]);
-            //clients.push(socket.id);
-            //for(i=0;i<clients.length;i++){
-            //  var client=clients[i];
-            //    console.log('clients:'+client[socket.id]);
-            //}
     });
      console.log('a user connected'+socket.id);
     socket.on('disconnect', function(){
