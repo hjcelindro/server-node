@@ -17,6 +17,7 @@
                 addMessage(msg);
             });
             socket.on('update_clients',function(name){
+                console.log(name);
                 updateClients(name);
             });
             
