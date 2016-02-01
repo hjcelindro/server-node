@@ -63,6 +63,7 @@ function checkID(client){
     for(var key in clients){
         console.log('key: '+key);
         if (clients[key] == client)
+            console.log("CLIENTS: "+clients[key]);
             value = key;
     }
     console.log("Key: "+value);
