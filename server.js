@@ -52,9 +52,8 @@ client.on('message',function(topic,message){
     var split = topic.split('/');
     manufacturer = split[1];
     console.log("manu"+manufacturer);
-    var manufacturerID = checkID(manufacturer);
-    console.log(manufacturerID);
-    
+    //var manufacturerID = checkID(manufacturer);
+    console.log(checkID(manufacturer));
     //io.sockets.socket(manufacturerID).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
 });
 
