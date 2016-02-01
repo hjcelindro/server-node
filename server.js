@@ -29,6 +29,9 @@ io.sockets.on('connection',function(socket){
         manufacturer = split[1];
     });
     socket.on('mqtt',function(data){
+        var manufacturerID = checkID(manufacturer);
+        console.log("manufacturerID: "+checkID(manufacturer));
+        io.sockets.to(checkID(manufacturer)).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
     });
     
     socket.on('register',function(name){
@@ -54,7 +57,8 @@ client.on('message',function(topic,message){
     console.log("manu: "+manufacturer);
     //var manufacturerID = checkID(manufacturer);
     //console.log("manufacturerID: "+checkID(manufacturer));
-    io.sockets.to(checkID(manufacturer)).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
+    //io.sockets.to(checkID(manufacturer)).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
+    socket.emit('mqtt',{'topic':String(topic), 'payload':String(message)});
 });
 
 function checkID(client){
@@ -63,7 +67,6 @@ function checkID(client){
     for(var key in clients){
         console.log('key: '+key);
         if (clients[key] == client)
-            console.log("CLIENTS: "+clients[key]);
             value = key;
     }
     console.log("Key: "+value);
