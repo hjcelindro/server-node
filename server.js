@@ -29,9 +29,9 @@ io.sockets.on('connection',function(socket){
         manufacturer = split[1];
     });
     socket.on('mqtt',function(data){
-        var manufacturerID = checkID(manufacturer);
-        console.log("manufacturerID: "+checkID(manufacturer));
-        io.sockets(checkID(manufacturer)).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
+        //var manufacturerID = checkID(manufacturer);
+        //console.log("manufacturerID: "+checkID(manufacturer));
+        //io.sockets(checkID(manufacturer)).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
     });
     
     socket.on('register',function(name){
@@ -56,7 +56,7 @@ io.sockets.on('connection',function(socket){
     //var manufacturerID = checkID(manufacturer);
     //console.log("manufacturerID: "+checkID(manufacturer));
     //io.sockets.to(checkID(manufacturer)).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
-    io.to(checkID(manufacturer)).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
+    io.sockets.emit('mqtt',{'topic':String(topic), 'payload':String(message)});
 });
     
 });
