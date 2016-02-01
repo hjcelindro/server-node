@@ -20,6 +20,9 @@
                 //updateClients(name);
                 window.alert("Welcome "+name+'!');
             });
+            socket.on('mqtt_sub',function(id,msg){
+                addMessage(msg);
+            });
             
             function addMessage(message){
                 var text = document.createTextNode(message.payload),
