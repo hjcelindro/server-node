@@ -29,7 +29,6 @@ io.sockets.on('connection',function(socket){
         manufacturer = split[1];
     });
     socket.on('mqtt',function(data){
-        console.log("mqttjs: "+data.payload);
     });
     
     socket.on('register',function(name){
@@ -39,7 +38,7 @@ io.sockets.on('connection',function(socket){
         addedClient = true;
         console.log(socket.username);
         clients[name] = socket.id;
-        socket.emit('update_clients',name);
+        io.sockets.emit('update_clients',name);
             
     });
      console.log('a user connected'+socket.id);
