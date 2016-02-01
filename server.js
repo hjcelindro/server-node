@@ -36,9 +36,8 @@ io.sockets.on('connection',function(socket){
             
         socket.username = name;
         addedClient = true;
-        console.log('name is'+name);
         clients[name] = socket.id;
-        io.sockets.emit('update_clients',name);
+        socket.emit('update_clients',name);
             
     });
      console.log('a user connected'+socket.id);
@@ -48,27 +47,22 @@ io.sockets.on('connection',function(socket){
     
 });
  
-/*
-io.sockets.on('connection', function(socket){
-    
-    socket.on('register',function(name){
-        clients[socket.id] = name.name;
-        console.log(clients[socket.id]);
-        clients.push(socket.id);
-        //for(i=0;i<clients.length;i++){
-          //  var client=clients[i];
-        //    console.log('clients:'+client[socket.id]);
-        //}
-    });
-     console.log('a user connected'+socket.id);
-    socket.on('disconnect', function(){
-            console.log('user disconnected');
-    });
-});
-*/
 client.on('message',function(topic,message){
     console.log("Client.on"+String(message)+ " "+String(topic));
     var split = topic.split('/');
     manufacturer = split[1];
-    io.sockets.emit('mqtt',{'topic':String(topic), 'payload':String(message)});
+    
+    var manufacturerID = checkID(manufacturer);
+    
+    io.sockets.socket(clients[manufacturerID]).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
 });
+
+function checkID(client){
+    var value = "";
+    
+    for(var key in clients){
+        if (clients[key] == client)
+            value = key;
+    }
+    return value;
+}
