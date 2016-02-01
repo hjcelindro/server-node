@@ -59,9 +59,9 @@ client.on('message',function(topic,message){
 
 function checkID(client){
     var value = "";
-    
+    console.log('client: '+client);
     for(var key in clients){
-        console.log('key'+key);
+        console.log('key: '+key);
         if (clients[key] == client)
             value = key;
     }
