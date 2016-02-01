@@ -62,10 +62,16 @@ client.on('message',function(topic,message){
 function checkID(client){
     var value = "";
     console.log('client: '+client);
-    for(var key in clients){
+    /*for(var key in clients){
         console.log('key: '+key);
         if (clients[key] == client)
             value = key;
+    }*/
+    for(var i=0;i<clients.length;i++){
+        if(client==(clients[i]){
+           value = client[i];
+           console.log(clients[i]);
+        }
     }
     console.log("Key: "+value);
     return value;
