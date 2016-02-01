@@ -20,8 +20,6 @@
                 updateClients(name);
             });
             
-            //socket.emit('subscribe',{topic: 'manufacturer/Sony'});
-
             function addMessage(message){
                 var text = document.createTextNode(message.payload),
                     el = document.createElement('li'),
@@ -50,6 +48,7 @@
                 var subscribe = 'manufacturer/'+manufacturer;
                 socket.emit('subscribe',{topic: subscribe});
                 socket.emit('register',manufacturer);
+                socket.emit('mqtt',manufacturer);
                 
                 $('div').show('clients');
             }
