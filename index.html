@@ -30,15 +30,6 @@
                 messages.appendChild(el);
             }
             
-            function updateClients(username){
-                var text = document.createTextNode(username),
-                    el = document.createElement('li'),
-                    clients = document.getElementById('clients');
-
-                el.appendChild(text);
-                clients.appendChild(el);
-            }
-            
             function subscribeToTopic(){
                 var textbox = document.getElementById("textbox");
                 var output = document.getElementById("output");
@@ -65,8 +56,8 @@
             </fieldset>
         </form>
         <div>
-            <ul id = 'messages'>Messages</ul>
             <div id = 'clients' style="display:none">Welcome Client!</div>
+            <ul id = 'messages'>Messages</ul>
         </div>
     </body>
 </html>
