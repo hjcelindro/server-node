@@ -60,7 +60,7 @@ client.on('message',function(topic,message){
 });
 
 function checkID(client){
-    var value = "";
+    var value = "null";
     console.log('client: '+client);
     for(var key in clients){
         console.log('key: '+key);
