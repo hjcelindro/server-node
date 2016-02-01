@@ -37,7 +37,7 @@
                     clients = document.getElementById('clients');
 
                 el.appendChild(text);
-                clients.appendChild(el);
+                clients.appendChild("Welcome Client: "+el);
             }
             
             function subscribeToTopic(){
@@ -65,7 +65,7 @@
         </form>
         <div>
             <ul id = 'messages'>Messages</ul>
-            <div id = 'clients'>Welcome Client!</div>
+            <div id = 'clients'></div>
         </div>
     </body>
 </html>
