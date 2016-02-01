@@ -12,8 +12,6 @@
 
                 socket.on('subscribe',function(msg){
                 });
-                socket.on('register',{name:manufacturer});
-                });
             });
             socket.on('mqtt',function(msg){
                 addMessage(msg);
@@ -42,7 +40,7 @@
                 
                 var subscribe = 'manufacturer/'+manufacturer;
                 socket.emit('subscribe',{topic: subscribe});
-                //socket.emit('register',{name:manufacturer});
+                socket.emit('register',{name:manufacturer});
             }
     
         </script>
