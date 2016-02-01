@@ -37,7 +37,7 @@
                     clients = document.getElementById('clients');
 
                 el.appendChild(text);
-                clients.appendChild("Welcome Client: "+el);
+                clients.appendChild(el);
             }
             
             function subscribeToTopic(){
@@ -50,6 +50,8 @@
                 var subscribe = 'manufacturer/'+manufacturer;
                 socket.emit('subscribe',{topic: subscribe});
                 socket.emit('register',manufacturer);
+                
+                $('div').show('clients');
             }
     
         </script>
