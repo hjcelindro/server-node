@@ -19,6 +19,8 @@ var client = mqtt.connect('mqtt://54.200.3.119:1883');
 
 io.sockets.on('connection',function(socket){
     
+    var addedClient = false;
+    
     socket.on('subscribe',function(data){
         console.log('Subscribing to :'+data.topic);
         client.subscribe(data.topic);
@@ -31,13 +33,19 @@ io.sockets.on('connection',function(socket){
     });
     
         socket.on('register',function(name){
-        clients[socket.id] = name.name;
-        console.log(clients[socket.id]);
-        clients.push(socket.id);
-        //for(i=0;i<clients.length;i++){
-          //  var client=clients[i];
-        //    console.log('clients:'+client[socket.id]);
-        //}
+            if(addedClient) return;
+            
+            socket.username = name;
+            addedClient = true;
+            console.log(socket.username);
+            
+            //clients[socket.id] = name.name;
+            //console.log(clients[socket.id]);
+            //clients.push(socket.id);
+            //for(i=0;i<clients.length;i++){
+            //  var client=clients[i];
+            //    console.log('clients:'+client[socket.id]);
+            //}
     });
      console.log('a user connected'+socket.id);
     socket.on('disconnect', function(){
