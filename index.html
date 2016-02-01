@@ -12,6 +12,8 @@
 
                 socket.on('subscribe',function(msg){
                 });
+                socket.on('register',{name:manufacturer});
+                });
             });
             socket.on('mqtt',function(msg){
                 addMessage(msg);
