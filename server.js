@@ -30,8 +30,23 @@ io.sockets.on('connection',function(socket){
         console.log("mqttjs: "+data.payload);
     });
     
-});
+        socket.on('register',function(name){
+        clients[socket.id] = name.name;
+        console.log(clients[socket.id]);
+        clients.push(socket.id);
+        //for(i=0;i<clients.length;i++){
+          //  var client=clients[i];
+        //    console.log('clients:'+client[socket.id]);
+        //}
+    });
+     console.log('a user connected'+socket.id);
+    socket.on('disconnect', function(){
+            console.log('user disconnected');
+    });
     
+});
+ 
+/*
 io.sockets.on('connection', function(socket){
     
     socket.on('register',function(name){
@@ -48,15 +63,10 @@ io.sockets.on('connection', function(socket){
             console.log('user disconnected');
     });
 });
-
+*/
 client.on('message',function(topic,message){
     console.log("Client.on"+String(message)+ " "+String(topic));
     var split = topic.split('/');
     manufacturer = split[1];
     io.sockets.emit('mqtt',{'topic':String(topic), 'payload':String(message)});
-    //if(manufacturer==clients[socket.id]){
-    //    io.sockets.connected[clients[socket.id]].emit('mqtt_sub',{'topic':String(topic), 'payload':String(message)});
-    //}
-    //io.sockets.socket(clients[0]).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
-    //console.log(manufacturer);
 });
