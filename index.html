@@ -1,6 +1,15 @@
-<head>
+    <head>
         <h1>Real Time</h1>
         <title>Testing...</title>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: :collapse;
+            }
+            th, td {
+                padding: 10px;
+            }
+        </style>
         <script src="/socket.io/socket.io.js"></script>
         <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 
@@ -42,6 +51,8 @@
                 socket.emit('register',manufacturer);
                 
                 $('div').show('clients');
+                $('div').show('table');
+                
             }
     
         </script>
@@ -58,6 +69,14 @@
         <div>
             <div id = 'clients' style="display:none"><h2>Welcome Client!</h2></div>
             <ul id = 'messages'><h3>Messages</h3></ul>
+        </div>
+        <div id='table'>
+            <table id = "t1" style='width:60%' >
+                <tr>
+                    <th>Tag ID</th>
+                    <th>Location</th>
+                </tr>
+            </table>
         </div>
     </body>
 </html>
