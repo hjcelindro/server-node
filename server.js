@@ -72,6 +72,7 @@ client.on('message',function(topic,message){
     var split = topic.split('/');
     manufacturer = split[1];
     io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
+    searchDatabase;
 });
 
 
