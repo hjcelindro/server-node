@@ -64,6 +64,8 @@ io.sockets.on('connection',function(socket){
     socket.on('disconnect', function(){
             console.log('user disconnected');
     });
+    searchDatabase();
+
     
 });
  
@@ -72,14 +74,13 @@ client.on('message',function(topic,message){
     var split = topic.split('/');
     manufacturer = split[1];
     io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
-    searchDatabase;
+    searchDatabase();
 });
 
 
 //search Database
 
 function searchDatabase(){
-    var string_id = JSON.stringify(manufacturer).substr(1,10); //RFID data from arduino is an object, so to extract data, convert data to string
     console.log("Manufacturer: "+manufacturer);
 
     //-----this is a query function that gets rfid data from the online database and compares with reader values
