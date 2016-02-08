@@ -82,7 +82,7 @@ function searchDatabase(){
     console.log("Manufacturer: "+manufacturer);
 
     //-----this is a query function that gets rfid data from the online database and compares with reader values
-    connection.query('select item_rfid, item_manufacturer from ' +rfid+' where item_manufacturer = '+manufacturer+"'",
+    connection.query('select item_rfid, item_manufacturer from rfid where item_manufacturer = '+manufacturer+"'",
     function(err,result,fields){
         if(err) throw err;
         else {
