@@ -81,22 +81,8 @@ client.on('message',function(topic,message){
 function searchDatabase(){
     console.log("Manufacturer: "+manufacturer);
 
-    //-----this is a query function that gets rfid data from the online database and compares with reader values
-    connection.query('select item_rfid, item_manufacturer from rfid where item_manufacturer = '+manufacturer+"'",
-    function(err,result,fields){
-        if(err) throw err;
-        else {
-            console.log('Items with manufacturer '+manufacturer);
-            console.log('----------------------------------------');
-            for(var i in result){
-                var found = result[i];
-                console.log(found.item_rfid);
-            }
-        }
-    });
-        
-        
-    /*connection.query('SELECT * FROM rfid',function(err,rows){
+    //-----this is a query function that gets rfid data from the online database and compares with reader values                
+    connection.query('SELECT * FROM rfid',function(err,rows){
         if(err)throw err;
         else{
             console.log('Data receieved from database'); //display message that data has been acquired from the database
@@ -105,10 +91,10 @@ function searchDatabase(){
                 var tagid = rows[i].item_rfid; //to make coding easier
                 
                 if(DBmanufacturer===manufacturer){
-                    console.log(DBmanufacturer);
+                    console.log('items for manufacturer: '+DBmanufacturer);
                     console.log(tagid);
                 }
             }
         }//END ELSE STATEMENT
-    }); //END QUERY*/
+    }); //END QUERY
 } //END searchDatabase();
