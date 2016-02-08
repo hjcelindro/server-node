@@ -9,7 +9,7 @@ var items = [];
 var data = 
     {
         'id': '',
-        'location': '';
+        'location': ''
     };
 
 var mysql = require('mysql');
@@ -100,7 +100,7 @@ function searchDatabase(){
                     console.log('items for manufacturer: '+DBmanufacturer);
                     data = {
                         id:tagid,
-                        location:loc;
+                        location:loc
                     }
                     items.push(data);
                     //items.push(tagid);
