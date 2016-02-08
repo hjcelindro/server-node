@@ -6,11 +6,7 @@ var mqtt = require('mqtt');
 var manufacturer;
 var clients=[];
 var items = [];
-var data = 
-    {
-        'id': '',
-        'location': ''
-    };
+var data;
 
 var mysql = require('mysql');
 var connection = mysql.createConnection({
@@ -78,7 +74,7 @@ client.on('message',function(topic,message){
     var split = topic.split('/');
     manufacturer = split[1];
     //io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
-    io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':String(items)});
+    io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':String(data)});
     console.log(items);
     searchDatabase();
 });
@@ -100,12 +96,14 @@ function searchDatabase(){
                 var loc = rows[i].item_location;
                 if(DBmanufacturer===manufacturer){
                     console.log('items for manufacturer: '+DBmanufacturer);
-                    items.push({id:tagid,location:loc});
+                    data = {id:tagid,location:loc};
+                    items.push(data);
+                    //items.push({id:tagid,location:loc});
                 }
             }
-            for (var i=0;i<items.length;i++){
-                console.log(items);
-            }
+            //for (var i=0;i<items.length;i++){
+              //  console.log(items);
+            //}
         }//END ELSE STATEMENT
     }); //END QUERY
 } //END searchDatabase();
