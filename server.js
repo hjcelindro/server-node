@@ -51,6 +51,7 @@ io.sockets.on('connection',function(socket){
         var topic =data.topic;
         var split = topic.split('/');
         manufacturer = split[1];
+        searchDatabase();
     });
     
     socket.on('mqtt',function(data){
@@ -74,7 +75,6 @@ client.on('message',function(topic,message){
     var split = topic.split('/');
     manufacturer = split[1];
     //io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
-    searchDatabase();
     io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':String(data)});
     console.log(data.id);
 });
