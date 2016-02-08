@@ -25,6 +25,10 @@
             socket.on('mqtt',function(msg){
                 addMessage(msg);
             });
+            socket.on('mqtt',function(msg){
+                $('table').append('<td>'+msg.id+'</td>');
+                $('table').append('<td>'+msg.location+'</td>');
+            });
             socket.on('update_clients',function(name){
                 //updateClients(name);
                 window.alert("Welcome "+name+'!');
