@@ -99,8 +99,8 @@ function searchDatabase(){
                 if(DBmanufacturer===manufacturer){
                     console.log('items for manufacturer: '+DBmanufacturer);
                     data = {
-                        id:tagid,
-                        location:loc
+                        'id':tagid,
+                        'location':loc
                     }
                     items.push(data);
                     //items.push(tagid);
