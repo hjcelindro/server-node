@@ -9,7 +9,7 @@ var items = [
     {
         'tagid': '',
         'location:''
-    }
+    };
 ];
 
 var mysql = require('mysql');
