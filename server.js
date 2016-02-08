@@ -98,16 +98,12 @@ function searchDatabase(){
                 var loc = rows[i].location;
                 if(DBmanufacturer===manufacturer){
                     console.log('items for manufacturer: '+DBmanufacturer);
-                    data = {
-                        'id':tagid,
-                        'location':loc
-                    }
-                    items.push(data);
+                    items.push({id:tagid,location:loc});
                     //items.push(tagid);
                 }
             }
             for (var i=0;i<items.length;i++){
-                console.log(items.data);
+                console.log(items);
             }
         }//END ELSE STATEMENT
     }); //END QUERY
