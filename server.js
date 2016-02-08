@@ -86,6 +86,12 @@ function searchDatabase(){
         if(err)throw err;
         else{
             console.log('Data receieved from database'); //display message that data has been acquired from the database
+            for(var i=0; i<rows.length;i++){
+                var tagid = rows[i].item_rfid; //to make coding easier
+                var DBmanufacturer = rows[i].item_manufacturer;
+                
+                console.log(DBmanufacturer);
+            }
                /* for(var i=0;i<rows.length;i++){
 
                     var tagid = rows[i].item_rfid; //to make coding easier
