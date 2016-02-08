@@ -26,7 +26,8 @@
                 addMessage(msg);
             });
             socket.on('mqtt',function(msg){
-                $('table').append('<tr><td>'+JSON.stringify(msg.payload.id)+'</td><br><td>'+String(msg.payload.location)+'</td></tr>');
+                var id = msg.payload.id;
+                $('table').append('<tr><td>'+id+'</td><br><td>'+String(msg.payload.location)+'</td></tr>');
             });
             socket.on('update_clients',function(name){
                 //updateClients(name);
