@@ -77,7 +77,9 @@ client.on('message',function(topic,message){
     console.log("Client.on"+String(message)+ " "+String(topic));
     var split = topic.split('/');
     manufacturer = split[1];
-    io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
+    //io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
+    io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':String(items)});
+    console.log(items);
     searchDatabase();
 });
 
@@ -99,7 +101,6 @@ function searchDatabase(){
                 if(DBmanufacturer===manufacturer){
                     console.log('items for manufacturer: '+DBmanufacturer);
                     items.push({id:tagid,location:loc});
-                    //items.push(tagid);
                 }
             }
             for (var i=0;i<items.length;i++){
