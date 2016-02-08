@@ -5,6 +5,7 @@ var mqtt = require('mqtt');
 
 var manufacturer;
 var clients=[];
+var items = [];
 
 var mysql = require('mysql');
 var connection = mysql.createConnection({
@@ -89,11 +90,13 @@ function searchDatabase(){
             for(var i=0; i<rows.length;i++){
                 var DBmanufacturer = rows[i].item_manufacturer;
                 var tagid = rows[i].item_rfid; //to make coding easier
-                
                 if(DBmanufacturer===manufacturer){
                     console.log('items for manufacturer: '+DBmanufacturer);
-                    console.log(tagid);
+                    items.push(tagid);
                 }
+            }
+            for (var i=0;i<items.length;i++){
+                console.log(items[i]);
             }
         }//END ELSE STATEMENT
     }); //END QUERY
