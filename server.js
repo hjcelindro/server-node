@@ -5,12 +5,12 @@ var mqtt = require('mqtt');
 
 var manufacturer;
 var clients=[];
-var items = [
+var items = [];
+var data = 
     {
-        'tagid': '',
-        'location:'';
+        'id': '',
+        'location': '';
     };
-];
 
 var mysql = require('mysql');
 var connection = mysql.createConnection({
@@ -95,14 +95,19 @@ function searchDatabase(){
             for(var i=0; i<rows.length;i++){
                 var DBmanufacturer = rows[i].item_manufacturer;
                 var tagid = rows[i].item_rfid; //to make coding easier
+                var loc = rows[i].location;
                 if(DBmanufacturer===manufacturer){
                     console.log('items for manufacturer: '+DBmanufacturer);
-                    items.tagid.push(tagid);
+                    data = {
+                        id:tagid,
+                        location:loc;
+                    }
+                    items.push(data);
                     //items.push(tagid);
                 }
             }
             for (var i=0;i<items.length;i++){
-                console.log(items.tagid[i]);
+                console.log(items.data);
             }
         }//END ELSE STATEMENT
     }); //END QUERY
