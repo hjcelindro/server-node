@@ -75,7 +75,7 @@ client.on('message',function(topic,message){
     var split = topic.split('/');
     manufacturer = split[1];
     //io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
-    io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':String(data)});
+    io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});
     console.log(data.id);
 });
 
