@@ -8,7 +8,7 @@ var clients=[];
 var items = [
     {
         'tagid': '',
-        'location:''
+        'location:'';
     };
 ];
 
