@@ -95,7 +95,7 @@ function searchDatabase(){
             for(var i=0; i<rows.length;i++){
                 var DBmanufacturer = rows[i].item_manufacturer;
                 var tagid = rows[i].item_rfid; //to make coding easier
-                var loc = rows[i].location;
+                var loc = rows[i].item_location;
                 if(DBmanufacturer===manufacturer){
                     console.log('items for manufacturer: '+DBmanufacturer);
                     items.push({id:tagid,location:loc});
