@@ -76,7 +76,7 @@ client.on('message',function(topic,message){
     //io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
     searchDatabase();
     io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':String(data)});
-    console.log(items);
+    console.log(data.id);
 });
 
 
