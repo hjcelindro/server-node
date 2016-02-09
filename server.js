@@ -71,12 +71,12 @@ io.sockets.on('connection',function(socket){
         socket.join(name); //join room for the manufacturer
         
         var queryString = 'SELECT * FROM rfidtags.'+manufacturer+"'";
-        connection.query(queryString, function(err, rows, fields) {
+       /* connection.query(queryString, function(err, rows, fields) {
             if (err) {
                 createTable();
                 console.log('table created!');
             }
-        });
+        });*/
             
     });
     socket.on('disconnect', function(){
@@ -93,7 +93,7 @@ client.on('message',function(topic,message){
     manufacturer = split[1];
     //io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
     io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});
-    connection.query('Insert into rfid.'+manufacturer+'(item_rfid, item_location) VALUES (?,?)', data);
+    connection.query('Insert into rfidtags.'+manufacturer+'(item_rfid, item_location) VALUES (?,?)', data);
     console.log(data.id);
 });
 
