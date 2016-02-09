@@ -35,6 +35,9 @@
                 window.alert("Welcome "+name+'!');
             });
             
+            socket.on('users connected',function(data){
+                $('#usersConnected').html('Users connected: ' + data)
+            });
             /*function addMessage(message){
                 var text = document.createTextNode(message.payload),
                     el = document.createElement('li'),
@@ -73,6 +76,7 @@
         </form>
         <div>
             <div id = 'clients' style="display:none"><h2>Welcome Client!</h2></div>
+            <div id="usersConnected"></div>
             <ul id = 'messages'><h3>Messages</h3></ul>
         </div>
         <div id='table'>
