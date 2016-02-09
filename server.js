@@ -96,7 +96,7 @@ client.on('message',function(topic,message){
     //io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
     io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});
     //connection.query('Insert into rfidtags.'+manufacturer+'(item_rfid, item_location) VALUES ('+data.id+','+data.location+')');
-    console.log('query: '+data.id+' location: '+data.loc);
+    console.log('query: '+data.id+' location: '+data.location);
 });
 
 
