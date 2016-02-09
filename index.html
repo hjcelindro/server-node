@@ -22,9 +22,9 @@
                 socket.on('subscribe',function(msg){
                 });
             });
-            socket.on('mqtt',function(msg){
-                addMessage(msg);
-            });
+            //socket.on('mqtt',function(msg){
+              //  addMessage(msg);
+            //});
             socket.on('mqtt',function(msg){
                 var id = msg.payload.id;
                 $('table').append('<tr><td>'+id+'</td><br><td>'+String(msg.payload.location)+'</td></tr>');
@@ -34,14 +34,14 @@
                 window.alert("Welcome "+name+'!');
             });
             
-            function addMessage(message){
+            /*function addMessage(message){
                 var text = document.createTextNode(message.payload),
                     el = document.createElement('li'),
                     messages = document.getElementById('messages');
 
                 el.appendChild(text);
                 messages.appendChild(el);
-            }
+            }*/
             
             function subscribeToTopic(){
                 var textbox = document.getElementById("textbox");
