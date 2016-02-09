@@ -62,12 +62,22 @@ io.sockets.on('connection',function(socket){
     });
     
     socket.on('mqtt',function(data){
+        connection.query('Insert into rfid.'+manufacturer+'(item_rfid, item_location) VALUES (?,?)', data);
     });
     
     socket.on('register',function(name){
 
         socket.emit('update_clients',name);
         socket.join(name); //join room for the manufacturer
+        
+        var queryString = 'SELECT * FROM rfid.'+manufacturer+"'";
+ 
+        connection.query(queryString, function(err, rows, fields) {
+            if (err) {
+                createTable();
+                console.log('table created!');
+            }
+});
             
     });
     socket.on('disconnect', function(){
@@ -115,3 +125,20 @@ function searchDatabase(){
         }//END ELSE STATEMENT
     }); //END QUERY
 } //END searchDatabase();
+
+function getManufacturerTable(){
+    
+    connection.query('Create table rfid.'+manufacturer+' (' + 
+                     'item_rfid VARCHAR(10) NOT NULL, ' +
+                     'item_location VARCHAR(10) NOT NULL, PRIMARY KEY(item_rfid)'+
+                     ')');
+    connection.query('Insert into rfid.'+manufacturer+'(item_rfid, item_location) VALUES (?,?)', data);
+}
+
+function createTable(){
+    
+    connection.query('Create table rfid.'+manufacturer+' (' + 
+                     'item_rfid VARCHAR(10) NOT NULL, ' +
+                     'item_location VARCHAR(10) NOT NULL, PRIMARY KEY(item_rfid)'+
+                     ')');
+}
