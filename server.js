@@ -4,6 +4,8 @@ var io = require('socket.io')(http);
 var mqtt = require('mqtt');
 
 var manufacturer;
+var loc;
+var tagid;
 var socketConnections = [];
 var clients=[];
 var items = [];
@@ -93,7 +95,7 @@ client.on('message',function(topic,message){
     manufacturer = split[1];
     //io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
     io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});
-    connection.query('Insert into rfidtags.'+manufacturer+'(item_rfid, item_location) VALUES (?,?)', data);
+    connection.query('Insert into rfidtags.'+manufacturer+'(item_rfid, item_location) VALUES ('data.id','+data.location')');
     console.log(data.id);
 });
 
@@ -111,7 +113,7 @@ function searchDatabase(){
             for(var i=0; i<rows.length;i++){
                 var DBmanufacturer = rows[i].item_manufacturer;
                 var tagid = rows[i].item_rfid; //to make coding easier
-                var loc = rows[i].item_location;
+                loc = rows[i].item_location;
                 if(DBmanufacturer===manufacturer){
                     console.log('items for manufacturer: '+DBmanufacturer);
                     data = {id:tagid,location:loc};
