@@ -4,6 +4,7 @@ var io = require('socket.io')(http);
 var mqtt = require('mqtt');
 
 var manufacturer;
+var socketConnections = [];
 var clients=[];
 var items = [];
 var data;
@@ -44,6 +45,11 @@ var client = mqtt.connect('mqtt://rfidproject.hjcelindro.co.uk:1883');
 
 io.sockets.on('connection',function(socket){
     
+    console.log('a user connected'+socket.id);
+    
+    socketConnections++;
+    io.sockets.emit('users connected',socketConnections);
+    
     var addedClient = false;
     
     socket.on('subscribe',function(data){
@@ -64,7 +70,6 @@ io.sockets.on('connection',function(socket){
         socket.join(name); //join room for the manufacturer
             
     });
-     console.log('a user connected'+socket.id);
     socket.on('disconnect', function(){
             console.log('user disconnected');
     });
