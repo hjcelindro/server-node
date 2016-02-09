@@ -70,7 +70,7 @@ io.sockets.on('connection',function(socket){
         socket.emit('update_clients',name);
         socket.join(name); //join room for the manufacturer
         
-        var queryString = 'SELECT * FROM rfid.'+manufacturer+"'";
+        var queryString = 'SELECT * FROM rfidtags.'+manufacturer+"'";
         connection.query(queryString, function(err, rows, fields) {
             if (err) {
                 createTable();
@@ -128,7 +128,7 @@ function searchDatabase(){
 
 function getManufacturerTable(){
     
-    connection.query('Create table rfid.'+manufacturer+' (' + 
+    connection.query('Create table rfidtags.'+manufacturer+' (' + 
                      'item_rfid VARCHAR(10) NOT NULL, ' +
                      'item_location VARCHAR(10) NOT NULL, PRIMARY KEY(item_rfid)'+
                      ')');
@@ -137,7 +137,7 @@ function getManufacturerTable(){
 
 function createTable(){
     
-    connection.query('Create table rfid.'+manufacturer+' (' + 
+    connection.query('Create table rfidtags.'+manufacturer+' (' + 
                      'item_rfid VARCHAR(10) NOT NULL, ' +
                      'item_location VARCHAR(10) NOT NULL, PRIMARY KEY(item_rfid)'+
                      ')');
