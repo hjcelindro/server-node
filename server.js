@@ -112,7 +112,6 @@ function searchDatabase(){
         if(err)throw err;
         else{
             console.log('Data receieved from database'); //display message that data has been acquired from the database
-            var prev_items = items.length;
             for(var i=0; i<rows.length;i++){
                 var DBmanufacturer = rows[i].item_manufacturer;
                 var tagid = rows[i].item_rfid; //to make coding easier
@@ -121,12 +120,10 @@ function searchDatabase(){
                     console.log('items for manufacturer: '+DBmanufacturer);
                     data = {id:tagid,location:loc};
                     items.push(data);
-                    
+                    console.log(data);
+                    io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});
                     if(prev_items!==items.length){
                         io.to(manufacturer).emit('database change',items.length);
-                    }
-                    else{
-                        io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});
                     }
                         
                 }
