@@ -28,7 +28,7 @@
             //});
             socket.on('mqtt',function(msg){
                 var id = msg.payload.id;
-                $('table').append('<tr><td>'+id+'</td><br><td>'+String(msg.payload.location)+'</td></tr>');
+                $('table').append('<tr><td>'+id+'</td><br><td>'+String(msg.payload.location)+'</td><br><td>'+String(msg.payload.manufacturer)+'</td></tr>');
             });
             
             socket.on('data_change',function(msg){
@@ -89,6 +89,7 @@
                 <tr>
                     <th>Tag ID</th>
                     <th>Location</th>
+                    <th>Manufacturer</th>
                 </tr>
             </table>
         </div>
