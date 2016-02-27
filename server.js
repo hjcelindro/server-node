@@ -120,6 +120,7 @@ function searchDatabase(){
                     console.log('items for manufacturer: '+DBmanufacturer);
                     data = {id:tagid,location:loc};
                     items.push(data);
+                    console.log(data);
                     //items.push({id:tagid,location:loc});
                 }
             }
