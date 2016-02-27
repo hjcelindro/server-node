@@ -96,7 +96,7 @@ client.on('message',function(topic,message){
     
     manufacturer = split[1];
     //io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
-    io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});
+    //-io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});
     //connection.query('Insert into rfidtags.'+manufacturer+'(item_rfid, item_location) VALUES ('+String(data.id)+','+String(data.location)+')');
     console.log('query: '+data.id+' location: '+data.location);
 });
@@ -122,11 +122,11 @@ function searchDatabase(){
                     items.push(data);
                     //items.push({id:tagid,location:loc});
                 }
+            }
+            for (var i=0;i<items.length;i++){
+              //  console.log(items);
                 io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});
             }
-            //for (var i=0;i<items.length;i++){
-              //  console.log(items);
-            //}
         }//END ELSE STATEMENT
     }); //END QUERY
 } //END searchDatabase();
