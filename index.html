@@ -27,6 +27,7 @@
               //  addMessage(msg);
             //});
             socket.on('mqtt',function(msg){
+                $('table').remove();
                 var id = msg.payload.id;
                 $('table').append('<tr><td>'+id+'</td><br><td>'+String(msg.payload.location)+'</td></tr>');
             });
