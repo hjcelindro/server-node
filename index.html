@@ -38,6 +38,10 @@
             socket.on('users connected',function(data){
                 $('#usersConnected').html('Users connected: ' + data)
             });
+            
+            socket.on('database change',funciton(data){
+                      $('table').remove();
+            });
             /*function addMessage(message){
                 var text = document.createTextNode(message.payload),
                     el = document.createElement('li'),
