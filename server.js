@@ -112,10 +112,10 @@ function searchDatabase(){
                 var DBmanufacturer = rows[i].item_manufacturer;
                 var tagid = rows[i].item_rfid; //to make coding easier
                 loc = rows[i].item_location;
-                io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc}});
+                io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer}});
                 if(DBmanufacturer===manufacturer){
                     console.log('items for manufacturer: '+DBmanufacturer);
-                    data = {id:tagid,location:loc};
+                    data = {id:tagid,location:loc,manufacturer:DBmanufacturer};
                     items.push(data);
                     console.log(data);
                     io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});   
