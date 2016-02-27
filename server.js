@@ -112,7 +112,7 @@ function searchDatabase(){
         if(err)throw err;
         else{
             console.log('Data receieved from database'); //display message that data has been acquired from the database
-            var prev_items;
+            io.to(manufacturer).emit('database change',items.length);
             for(var i=0; i<rows.length;i++){
                 prev_items = rows.length;
                 var DBmanufacturer = rows[i].item_manufacturer;
@@ -123,10 +123,7 @@ function searchDatabase(){
                     data = {id:tagid,location:loc};
                     items.push(data);
                     console.log(data);
-                    io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});
-                    if(prev_items!==rows.length){
-                        io.to(manufacturer).emit('database change',items.length);
-                    }   
+                    io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});   
                 }
             }
         }//END ELSE STATEMENT
