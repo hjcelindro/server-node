@@ -93,7 +93,7 @@ io.sockets.on('connection',function(socket){
 client.on('message',function(topic,message){
     console.log("Client.on"+String(message)+ " "+String(topic));
     var split = topic.split('/');
-    
+    searchDatabase();
     manufacturer = split[1];
     //io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
     //-io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});
