@@ -121,14 +121,15 @@ function searchDatabase(){
                     data = {id:tagid,location:loc};
                     items.push(data);
                     console.log(data);
+                    io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});
                     //items.push({id:tagid,location:loc});
                 }
             }
-            for (var i=0;i<items.length;i++){
+/*            for (var i=0;i<items.length;i++){
               //  console.log(items);
                 console.log(items.length)
-                io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});
-            }
+                
+            }*/
         }//END ELSE STATEMENT
     }); //END QUERY
 } //END searchDatabase();
