@@ -68,6 +68,9 @@ io.sockets.on('connection',function(socket){
     socket.on('mqtt',function(data){
     });
     
+    socket.on('database change',function(data){
+    });
+    
     socket.on('register',function(name){
 
         socket.emit('update_clients',name);
