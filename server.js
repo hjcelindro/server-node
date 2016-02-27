@@ -99,9 +99,7 @@ client.on('message',function(topic,message){
     io.to(manufacturer).emit('data_change',{'topic':String(topic), 'payload':data});
     searchDatabase();
     manufacturer = split[1];
-    //io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
     //-io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});
-    //connection.query('Insert into rfidtags.'+manufacturer+'(item_rfid, item_location) VALUES ('+String(data.id)+','+String(data.location)+')');
     console.log('query: '+data.id+' location: '+data.location);
 });
 
@@ -133,19 +131,3 @@ function searchDatabase(){
     }); //END QUERY
 } //END searchDatabase();
 
-function getManufacturerTable(){
-    
-    connection.query('Create table rfidtags.'+manufacturer+' (' + 
-                     'item_rfid VARCHAR(10) NOT NULL, ' +
-                     'item_location VARCHAR(10) NOT NULL, PRIMARY KEY(item_rfid)'+
-                     ')');
-    connection.query('Insert into rfid.'+manufacturer+'(item_rfid, item_location) VALUES (?,?)', data);
-}
-
-function createTable(){
-    
-    connection.query('Create table rfidtags.'+manufacturer+' (' + 
-                     'item_rfid VARCHAR(10) NOT NULL, ' +
-                     'item_location VARCHAR(10) NOT NULL, PRIMARY KEY(item_rfid)'+
-                     ')');
-}
