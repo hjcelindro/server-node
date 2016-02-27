@@ -123,7 +123,7 @@ function searchDatabase(){
                     items.push(data);
                     
                     if(prev_items!==items.length){
-                        io.to(manufacturer).emit('database change',item.length);
+                        io.to(manufacturer).emit('database change',items.length);
                     }
                     else{
                         io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});
