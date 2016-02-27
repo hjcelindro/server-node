@@ -68,7 +68,7 @@ io.sockets.on('connection',function(socket){
     socket.on('mqtt',function(data){
     });
     
-    socket.on('database change',function(data){
+    socket.on('data_change',function(data){
     });
     
     socket.on('register',function(name){
@@ -96,6 +96,7 @@ io.sockets.on('connection',function(socket){
 client.on('message',function(topic,message){
     console.log("Client.on"+String(message)+ " "+String(topic));
     var split = topic.split('/');
+    io.to(manufacturer).emit('data_change',{'topic':String(topic), 'payload':data});
     searchDatabase();
     manufacturer = split[1];
     //io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':String(message)});
@@ -109,7 +110,6 @@ client.on('message',function(topic,message){
 
 function searchDatabase(){
     console.log("Manufacturer: "+manufacturer);
-
     //-----this is a query function that gets rfid data from the online database and compares with reader values                
     connection.query('SELECT * FROM rfid',function(err,rows){
         if(err)throw err;
