@@ -9,6 +9,7 @@ var tagid;
 var socketConnections = [];
 var clients=[];
 var items = [];
+var all =[];
 var data;
 var topic;
 
@@ -77,12 +78,6 @@ io.sockets.on('connection',function(socket){
         socket.join(name); //join room for the manufacturer
         
         var queryString = 'SELECT * FROM rfidtags.'+manufacturer+"'";
-       /* connection.query(queryString, function(err, rows, fields) {
-            if (err) {
-                createTable();
-                console.log('table created!');
-            }
-        });*/
             
     });
     socket.on('disconnect', function(){
@@ -99,7 +94,6 @@ client.on('message',function(topic,message){
     io.to(manufacturer).emit('data_change',{'topic':String(topic), 'payload':data});
     searchDatabase();
     manufacturer = split[1];
-    //-io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});
     console.log('query: '+data.id+' location: '+data.location);
 });
 
@@ -115,10 +109,10 @@ function searchDatabase(){
             console.log('Data receieved from database'); //display message that data has been acquired from the database
             io.to(manufacturer).emit('database change',items.length);
             for(var i=0; i<rows.length;i++){
-                prev_items = rows.length;
                 var DBmanufacturer = rows[i].item_manufacturer;
                 var tagid = rows[i].item_rfid; //to make coding easier
                 loc = rows[i].item_location;
+                io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc}});
                 if(DBmanufacturer===manufacturer){
                     console.log('items for manufacturer: '+DBmanufacturer);
                     data = {id:tagid,location:loc};
