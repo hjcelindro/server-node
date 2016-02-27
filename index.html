@@ -27,10 +27,18 @@
               //  addMessage(msg);
             //});
             socket.on('mqtt',function(msg){
-                $('table').remove();
                 var id = msg.payload.id;
                 $('table').append('<tr><td>'+id+'</td><br><td>'+String(msg.payload.location)+'</td></tr>');
             });
+            
+            socket.on('data_change',function(msg){
+                var table = document.getElementByID('table');
+                for( var i=table.rows.length - 1; i>0;i--)
+                {
+                    table.deleteRow(i);
+                }
+            });
+            
             socket.on('update_clients',function(name){
                 //updateClients(name);
                 window.alert("Welcome "+name+'!');
