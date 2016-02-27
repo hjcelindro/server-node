@@ -125,6 +125,7 @@ function searchDatabase(){
             }
             for (var i=0;i<items.length;i++){
               //  console.log(items);
+                console.log(items.length)
                 io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});
             }
         }//END ELSE STATEMENT
