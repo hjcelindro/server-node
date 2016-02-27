@@ -32,7 +32,7 @@
             });
             
             socket.on('data_change',function(msg){
-                $('table').empty();
+                $('table tr td').empty();
             });
             
             socket.on('update_clients',function(name){
@@ -64,7 +64,6 @@
                 socket.emit('register',manufacturer);
                 
                 $('div').show('clients');
-                $('div').show('tablehead');
                 $('div').show('table');
                 
             }
@@ -85,16 +84,12 @@
             <div id="usersConnected"></div>
             <ul id = 'messages'><h3>Messages</h3></ul>
         </div>
-        <div id='tablehead'>
+        <div id='table'>
             <table id = "t1" style='width:60%' >
                 <tr>
                     <th>Tag ID</th>
                     <th>Location</th>
                 </tr>
-            </table>
-        </div>
-        <div id='table'>
-            <table id = "t1" style='width:60%' >
             </table>
         </div>
     </body>
