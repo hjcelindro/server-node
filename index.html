@@ -32,7 +32,7 @@
             
             socket.on('data_change',function(msg){
                 //$('table tr td').remove();
-                $('#datarow').remove();
+                $('#datarow').deleteRow();
             });
             
             socket.on('update_clients',function(name){
