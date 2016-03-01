@@ -56,12 +56,13 @@ io.sockets.on('connection',function(socket){
     var addedClient = false;
     
     socket.on('subscribe',function(data){
-        console.log('Subscribing to :'+data.topic);
         if(data.topic=='manufacturer/All'){
             client.subscribe('manufacturer/')
+            console.log('Subscribing to: manufacturer/);
         }
         else{
             client.subscribe(data.topic);
+            console.log('Subscribing to :'+data.topic);
             topic =data.topic;
             var split = topic.split('/');
             manufacturer = split[1];
