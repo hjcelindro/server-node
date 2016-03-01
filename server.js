@@ -67,9 +67,6 @@ io.sockets.on('connection',function(socket){
     socket.on('mqtt',function(data){});
     
     socket.on('data_change',function(data){
-        var on_client = new Date().getTime();
-        var mqtt_time = (on_mqtt - on_client)/1000;
-        console.log("Time from mqtt to client: "+mqtt_time);
     });
     
     socket.on('register',function(name){
@@ -85,7 +82,6 @@ io.sockets.on('connection',function(socket){
  
 client.on('message',function(topic,message){
     on_mqtt = new Date().getTime();
-    console.log(on_mqtt);
     console.log("Client.on"+String(message)+ " "+String(topic));
     var split = topic.split('/');
     io.to(manufacturer).emit('data_change',{'topic':String(topic), 'payload':data});
@@ -124,5 +120,8 @@ function searchDatabase(){
             }
         }//END ELSE STATEMENT
     }); //END QUERY
+    var on_client = new Date().getTime();
+    var mqtt_time = (on_mqtt - on_client)/1000;
+    console.log("Time from mqtt to client: "+mqtt_time);
 } //END searchDatabase();
 
