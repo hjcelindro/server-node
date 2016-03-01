@@ -113,7 +113,7 @@ function searchDatabase(){
                 loc = rows[i].item_location;
                 io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer}});
                 if(DBmanufacturer===manufacturer){
-                    console.log('items for manufacturer: '+DBmanufacturer);
+                    //console.log('items for manufacturer: '+DBmanufacturer);
                     data = {id:tagid,location:loc,manufacturer:DBmanufacturer};
                     items.push(data);
                     //console.log(data);
