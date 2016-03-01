@@ -32,7 +32,7 @@
             socket.on('data_change',function(msg){
                 $('table tr td').remove();
                 var on_client = new Date().getTime();
-                io.emit('data_change'),on_client);
+                io.emit('data_change',on_client);
             });
             
             socket.on('update_clients',function(name){
