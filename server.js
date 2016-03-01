@@ -93,8 +93,6 @@ client.on('message',function(topic,message){
     console.log("Client.on"+String(message)+ " "+String(topic));
     var split = topic.split('/');
     manufacturer = split[1];
-    io.to(manufacturer).emit('data_change',{'topic':String(topic), 'payload':data});
-    io.to('All').emit('data_change',{'topic':String(topic), 'payload':data});
     searchDatabase();
     //console.log('query: '+data.id+' location: '+data.location);
 });
@@ -114,7 +112,9 @@ function searchDatabase(){
             console.log("database connection taken: "+duration);
             
             console.log('Data receieved from database'); //display message that data has been acquired from the database
-            io.to(manufacturer).emit('database change',items.length);
+            io.to(manufacturer).emit('data_change',{'topic':String(topic), 'payload':data});
+            io.to('All').emit('data_change',{'topic':String(topic), 'payload':data});
+            
             for(var i=0; i<rows.length;i++){
                 var DBmanufacturer = rows[i].item_manufacturer;
                 var tagid = rows[i].item_rfid; //to make coding easier
