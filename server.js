@@ -65,11 +65,7 @@ io.sockets.on('connection',function(socket){
     });
     
     socket.on('mqtt',function(data){});
-    
-    socket.on('data_change',function(data){
-        var mqtt_time = (on_mqtt - data)/1000;
-        console.log("Time from mqtt to client: "+mqtt_time);
-    });
+    socket.on('data_change',function(data){});
     
     socket.on('register',function(name){
         socket.emit('update_clients',name);
@@ -79,6 +75,10 @@ io.sockets.on('connection',function(socket){
         socketConnections--;
         io.sockets.emit('users connected',socketConnections);
         console.log('user disconnected');
+    });
+    socket.on('time taken',function(data){
+        var mqtt_time = (on_mqtt - data)/1000;
+        console.log("Time from mqtt to client: "+mqtt_time);
     });
 });
  
