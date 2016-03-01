@@ -87,6 +87,9 @@ client.on('message',function(topic,message){
     console.log("Client.on"+String(message)+ " "+String(topic));
     var split = topic.split('/');
     io.to(manufacturer).emit('data_change',{'topic':String(topic), 'payload':data});
+    on_client = new Date().getTime();
+    mqtt_time = (on_mqtt - on_client)/1000;
+    console.log("Time from mqtt to client: "+mqtt_time);
     searchDatabase();
     manufacturer = split[1];
     console.log('query: '+data.id+' location: '+data.location);
@@ -117,9 +120,6 @@ function searchDatabase(){
                     data = {id:tagid,location:loc,manufacturer:DBmanufacturer};
                     items.push(data);
                     //console.log(data);
-                    on_client = new Date().getTime();
-                    mqtt_time = (on_mqtt - on_client)/1000;
-                    console.log("Time from mqtt to client: "+mqtt_time);
                     io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});   
                 }
             }
