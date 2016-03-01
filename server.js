@@ -92,9 +92,9 @@ client.on('message',function(topic,message){
     on_mqtt = new Date().getTime();
     console.log("Client.on"+String(message)+ " "+String(topic));
     var split = topic.split('/');
+    manufacturer = split[1];
     io.to(manufacturer).emit('data_change',{'topic':String(topic), 'payload':data});
     searchDatabase();
-    manufacturer = split[1];
     //console.log('query: '+data.id+' location: '+data.location);
 });
 
