@@ -57,8 +57,8 @@ io.sockets.on('connection',function(socket){
     
     socket.on('subscribe',function(data){
         if(data.topic=='manufacturer/All'){
-            client.subscribe('manufacturer/')
-            console.log('Subscribing to: manufacturer/');
+            client.subscribe('manufacturer/#')
+            console.log('Subscribing to: manufacturer/#');
         }
         else{
             client.subscribe(data.topic);
