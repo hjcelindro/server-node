@@ -105,14 +105,17 @@ function searchDatabase(){
             var post_query = new Date().getTime();
             var duration = (post_query-pre_query)/1000;
             console.log("database connection taken: "+duration);
+            
             console.log('Data receieved from database'); //display message that data has been acquired from the database
             io.to(manufacturer).emit('database change',items.length);
             for(var i=0; i<rows.length;i++){
                 var DBmanufacturer = rows[i].item_manufacturer;
                 var tagid = rows[i].item_rfid; //to make coding easier
                 loc = rows[i].item_location;
-                io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer}});
-                if(DBmanufacturer===manufacturer){
+                if(manufacturer=="All"){
+                    io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer}});
+                }
+                else if(DBmanufacturer===manufacturer){
                     //console.log('items for manufacturer: '+DBmanufacturer);
                     data = {id:tagid,location:loc,manufacturer:DBmanufacturer};
                     items.push(data);
