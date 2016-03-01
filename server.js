@@ -13,6 +13,7 @@ var all =[];
 var data;
 var topic;
 var on_mqtt;
+var mqtt_manu;
 
 var mysql = require('mysql');
 var connection = mysql.createConnection({
@@ -96,13 +97,15 @@ client.on('message',function(topic,message){
     console.log("Client.on"+String(message)+ " "+String(topic));
     var split = topic.split('/');
     if(topic=='manufacturer/'){
-        manufacturer="All";
+        mqtt_manu="All";
     }
     else{
-        manufacturer = split[1];
+        mqtt_manu = split[1];
     }
-    io.emit('data_change',{'topic':String(topic), 'payload':data});
-    searchDatabase();
+    if(mqtt_manu==manufacturer||mqtt_manu=='All'){
+        io.emit('data_change',{'topic':String(topic), 'payload':data});
+        searchDatabase();
+    }
     //console.log('query: '+data.id+' location: '+data.location);
 });
 
