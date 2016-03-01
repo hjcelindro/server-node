@@ -94,6 +94,7 @@ client.on('message',function(topic,message){
     var split = topic.split('/');
     manufacturer = split[1];
     io.to(manufacturer).emit('data_change',{'topic':String(topic), 'payload':data});
+    io.to('All').emit('data_change',{'topic':String(topic), 'payload':data});
     searchDatabase();
     //console.log('query: '+data.id+' location: '+data.location);
 });
