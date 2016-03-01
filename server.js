@@ -95,12 +95,13 @@ client.on('message',function(topic,message){
     var split = topic.split('/');
     if(topic=='manufacturer/'){
         manufacturer="All";
-        io.to('All').emit('data_change',{'topic':String(topic), 'payload':data});
+        //io.to('All').emit('data_change',{'topic':String(topic), 'payload':data});
     }
     else{
         manufacturer = split[1];
-        io.to(manufacturer).emit('data_change',{'topic':String(topic), 'payload':data});
+        //io.to(manufacturer).emit('data_change',{'topic':String(topic), 'payload':data});
     }
+    io.emit('data_change',{'topic':String(topic), 'payload':data});
     searchDatabase();
     //console.log('query: '+data.id+' location: '+data.location);
 });
