@@ -57,8 +57,8 @@ io.sockets.on('connection',function(socket){
     
     socket.on('subscribe',function(data){
         if(data.topic=='manufacturer/All'){
-            client.subscribe('manufacturer/#')
-            console.log('Subscribing to: manufacturer/#');
+            client.subscribe('manufacturer/')
+            console.log('Subscribing to: manufacturer/');
         }
         else{
             client.subscribe(data.topic);
@@ -92,7 +92,12 @@ client.on('message',function(topic,message){
     on_mqtt = new Date().getTime();
     console.log("Client.on"+String(message)+ " "+String(topic));
     var split = topic.split('/');
-    manufacturer = split[1];
+    if(topic=='manufacturer/'){
+        manufacturer="All";
+    }
+    else(
+        manufacturer = split[1];
+    )
     searchDatabase();
     //console.log('query: '+data.id+' location: '+data.location);
 });
