@@ -26,13 +26,13 @@
 
             socket.on('mqtt',function(msg){
                 var id = msg.payload.id;
-                $('table').append('<tr id="datarow" ><td>'+id+'</td><br><td>'+String(msg.payload.location)+'</td><br>                        <td>'+String(msg.payload.manufacturer)+'</td></tr>');
+                $('table').append('<tr><td id="'+id+'">'+id+'</td><br><td>'+String(msg.payload.location)+'</td><br>                        <td>'+String(msg.payload.manufacturer)+'</td></tr>><br><td align="center"><form><input type=submit value="Collect" style="width:100%"></form></td>
+</tr>');
                 socket.emit('time taken',new Date().getTime());
             });
             
             socket.on('data_change',function(msg){
                 $('table tr td').remove();
-                //$('#datarow').deleteRow();
             });
             
             socket.on('update_clients',function(name){
@@ -82,6 +82,7 @@
                     <th>Tag ID</th>
                     <th>Location</th>
                     <th>Manufacturer</th>
+                    <th>Action</th>
                 </tr>
             </table>
         </div>
