@@ -95,9 +95,9 @@ client.on('message',function(topic,message){
     if(topic=='manufacturer/'){
         manufacturer="All";
     }
-    else(
+    else{
         manufacturer = split[1];
-    )
+    }
     searchDatabase();
     //console.log('query: '+data.id+' location: '+data.location);
 });
