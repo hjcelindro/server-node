@@ -118,7 +118,7 @@ function searchDatabase(){
                     console.log('items for manufacturer: '+DBmanufacturer);
                     data = {id:tagid,location:loc,manufacturer:DBmanufacturer};
                     items.push(data);
-                    console.log(data);
+                    //console.log(data);
                     io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});   
                 }
             }
