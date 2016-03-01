@@ -34,8 +34,6 @@ connection.connect(function(err){
 
 //----------------------------------
 
-
-
 app.get('/', function(req, res){
     res.sendFile(__dirname + '/index.html');
 });
@@ -63,29 +61,20 @@ io.sockets.on('connection',function(socket){
         var split = topic.split('/');
         manufacturer = split[1];
         searchDatabase();
-        
     });
     
-    socket.on('mqtt',function(data){
-    });
-    
-    socket.on('data_change',function(data){
-    });
+    socket.on('mqtt',function(data){});
+    socket.on('data_change',function(data){});
     
     socket.on('register',function(name){
-
         socket.emit('update_clients',name);
         socket.join(name); //join room for the manufacturer
-        
-        var queryString = 'SELECT * FROM rfidtags.'+manufacturer+"'";
-            
     });
     socket.on('disconnect', function(){
         socketConnections--;
         io.sockets.emit('users connected',socketConnections);
         console.log('user disconnected');
     });
-    
 });
  
 client.on('message',function(topic,message){
@@ -104,8 +93,12 @@ function searchDatabase(){
     console.log("Manufacturer: "+manufacturer);
     //-----this is a query function that gets rfid data from the online database and compares with reader values                
     connection.query('SELECT * FROM rfid',function(err,rows){
+        var pre_query = new Date().getTime();
         if(err)throw err;
         else{
+            var post_query = new Date().getTime();
+            var duration = (post_query-pre_query)/1000;
+            console.log("database connection taken: "+duration);
             console.log('Data receieved from database'); //display message that data has been acquired from the database
             io.to(manufacturer).emit('database change',items.length);
             for(var i=0; i<rows.length;i++){
