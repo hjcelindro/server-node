@@ -67,6 +67,8 @@ io.sockets.on('connection',function(socket){
     socket.on('mqtt',function(data){});
     
     socket.on('data_change',function(data){
+        var mqtt_time = (on_mqtt - data)/1000;
+        console.log("Time from mqtt to client: "+mqtt_time);
     });
     
     socket.on('register',function(name){
@@ -120,8 +122,5 @@ function searchDatabase(){
             }
         }//END ELSE STATEMENT
     }); //END QUERY
-    var on_client = new Date().getTime();
-    var mqtt_time = (on_mqtt - on_client)/1000;
-    console.log("Time from mqtt to client: "+mqtt_time);
 } //END searchDatabase();
 
