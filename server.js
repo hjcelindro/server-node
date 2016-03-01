@@ -63,11 +63,11 @@ io.sockets.on('connection',function(socket){
         else{
             client.subscribe(data.topic);
             console.log('Subscribing to :'+data.topic);
-            topic =data.topic;
-            var split = topic.split('/');
-            manufacturer = split[1];
-            searchDatabase();
         }
+        topic =data.topic;
+        var split = topic.split('/');
+        manufacturer = split[1];
+        searchDatabase();
     });
     
     socket.on('mqtt',function(data){});
