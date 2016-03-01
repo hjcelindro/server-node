@@ -26,14 +26,13 @@
 
             socket.on('mqtt',function(msg){
                 var id = msg.payload.id;
-                $('table2').append('<tr id="datarow" ><td>'+id+'</td><br><td>'+String(msg.payload.location)+'</td><br><td>'+String(msg.payload.manufacturer)+'</td></tr>');
+                $('table').append('<tr id="datarow" ><td>'+id+'</td><br><td>'+String(msg.payload.location)+'</td><br><td>'+String(msg.payload.manufacturer)+'</td></tr>');
                 socket.emit('time taken',new Date().getTime());
             });
             
             socket.on('data_change',function(msg){
                 //$('table tr td').remove();
-                //$('#datarow').deleteRow();
-                $('table2').delete();
+                $('#datarow').deleteRow();
             });
             
             socket.on('update_clients',function(name){
@@ -58,7 +57,6 @@
                 
                 $('div').show('clients');
                 $('div').show('table');
-                $('div').show('table2');
             }
     
         </script>
@@ -85,10 +83,6 @@
                     <th>Location</th>
                     <th>Manufacturer</th>
                 </tr>
-            </table>
-        </div>
-    <div id='table2'>
-            <table id = "t2" style='width:60%' >
             </table>
         </div>
     </body>
