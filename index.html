@@ -23,9 +23,7 @@
                 socket.on('subscribe',function(msg){
                 });
             });
-            //socket.on('mqtt',function(msg){
-              //  addMessage(msg);
-            //});
+
             socket.on('mqtt',function(msg){
                 var id = msg.payload.id;
                 $('table').append('<tr><td>'+id+'</td><br><td>'+String(msg.payload.location)+'</td><br><td>'+String(msg.payload.manufacturer)+'</td></tr>');
@@ -43,14 +41,6 @@
             socket.on('users connected',function(data){
                 $('#usersConnected').html('Users connected: ' + data)
             });
-            /*function addMessage(message){
-                var text = document.createTextNode(message.payload),
-                    el = document.createElement('li'),
-                    messages = document.getElementById('messages');
-
-                el.appendChild(text);
-                messages.appendChild(el);
-            }*/
             
             function subscribeToTopic(){
                 var textbox = document.getElementById("textbox");
@@ -65,7 +55,6 @@
                 
                 $('div').show('clients');
                 $('div').show('table');
-                
             }
     
         </script>
@@ -75,7 +64,7 @@
             <fieldset>
                 <label>Type your Company name: </label>
                 <input name="topic" id="textbox" type= "text" align="right" size="30"/></br>
-                <input type="button" value="Subscribe" onclick = "subscribeToTopic()"/>
+                <input type="button" value="Subscribe" onclick = "onClick=history.go(0);subscribeToTopic()"/>
                 <input type="text" id="output"  size = "50"/>
             </fieldset>
         </form>
