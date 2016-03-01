@@ -94,9 +94,11 @@ client.on('message',function(topic,message){
     var split = topic.split('/');
     if(topic=='manufacturer/'){
         manufacturer="All";
+        io.to('All').emit('data_change',{'topic':String(topic), 'payload':data});
     }
     else{
         manufacturer = split[1];
+        io.to(manufacturer).emit('data_change',{'topic':String(topic), 'payload':data});
     }
     searchDatabase();
     //console.log('query: '+data.id+' location: '+data.location);
@@ -117,8 +119,6 @@ function searchDatabase(){
             console.log("database connection taken: "+duration);
             
             console.log('Data receieved from database'); //display message that data has been acquired from the database
-            io.to(manufacturer).emit('data_change',{'topic':String(topic), 'payload':data});
-            io.to('All').emit('data_change',{'topic':String(topic), 'payload':data});
             
             for(var i=0; i<rows.length;i++){
                 var DBmanufacturer = rows[i].item_manufacturer;
