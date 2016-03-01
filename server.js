@@ -59,14 +59,15 @@ io.sockets.on('connection',function(socket){
         if(data.topic=='manufacturer/All'){
             client.subscribe('manufacturer/')
             console.log('Subscribing to: manufacturer/');
+            manfacturer="All";
         }
         else{
             client.subscribe(data.topic);
             console.log('Subscribing to :'+data.topic);
+            topic =data.topic;
+            var split = topic.split('/');
+            manufacturer = split[1];
         }
-        topic =data.topic;
-        var split = topic.split('/');
-        manufacturer = split[1];
         searchDatabase();
     });
     
