@@ -95,7 +95,7 @@ client.on('message',function(topic,message){
     io.to(manufacturer).emit('data_change',{'topic':String(topic), 'payload':data});
     searchDatabase();
     manufacturer = split[1];
-    console.log('query: '+data.id+' location: '+data.location);
+    //console.log('query: '+data.id+' location: '+data.location);
 });
 
 
