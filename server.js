@@ -57,11 +57,16 @@ io.sockets.on('connection',function(socket){
     
     socket.on('subscribe',function(data){
         console.log('Subscribing to :'+data.topic);
-        client.subscribe(data.topic);
-        topic =data.topic;
-        var split = topic.split('/');
-        manufacturer = split[1];
-        searchDatabase();
+        if(data.topic=='All'){
+            client.subscribe('manufacturer/')
+        }
+        else{
+            client.subscribe(data.topic);
+            topic =data.topic;
+            var split = topic.split('/');
+            manufacturer = split[1];
+            searchDatabase();
+        }
     });
     
     socket.on('mqtt',function(data){});
