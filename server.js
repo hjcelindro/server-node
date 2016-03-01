@@ -13,8 +13,6 @@ var all =[];
 var data;
 var topic;
 var on_mqtt;
-var on_client;
-var mqtt_time;
 
 var mysql = require('mysql');
 var connection = mysql.createConnection({
@@ -66,12 +64,13 @@ io.sockets.on('connection',function(socket){
         searchDatabase();
     });
     
-    socket.on('mqtt',function(data){
-        on_client = new Date().getTime();
-        mqtt_time = (on_mqtt - on_client)/1000;
+    socket.on('mqtt',function(data){});
+    
+    socket.on('data_change',function(data){
+        var on_client = new Date().getTime();
+        var mqtt_time = (on_mqtt - on_client)/1000;
         console.log("Time from mqtt to client: "+mqtt_time);
     });
-    socket.on('data_change',function(data){});
     
     socket.on('register',function(name){
         socket.emit('update_clients',name);
