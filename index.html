@@ -27,12 +27,12 @@
             socket.on('mqtt',function(msg){
                 var id = msg.payload.id;
                 $('table').append('<tr><td>'+id+'</td><br><td>'+String(msg.payload.location)+'</td><br><td>'+String(msg.payload.manufacturer)+'</td></tr>');
+                var on_client = new Date().getTime();
+                socket.emit('data_change',on_client);
             });
             
             socket.on('data_change',function(msg){
                 $('table tr td').remove();
-                var on_client = new Date().getTime();
-                socket.emit('data_change',on_client);
             });
             
             socket.on('update_clients',function(name){
