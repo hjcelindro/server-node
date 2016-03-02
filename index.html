@@ -59,14 +59,11 @@
             }
             
             function getItem(){
-                var rowID = $(this).closest('tr').attr('id');
-                window.alert(rowID);
-                socket.emit('client response',rowID);
-                /*$('input[type=button]').click(function(){
+                $('input[type=button]').click(function(){
                     var rowID = $(this).closest('tr').attr('id');
-                    
+                    window.alert(rowID);
                     socket.emit('client response',rowID);
-                });*/
+                });
             }
     
         </script>
