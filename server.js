@@ -90,6 +90,10 @@ io.sockets.on('connection',function(socket){
         mqtt_time=0;
         on_mqtt=0;
     });
+    
+    socket.on('client response',function(data){
+        console.log(data);
+    });
 });
  
 client.on('message',function(topic,message){
