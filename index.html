@@ -60,7 +60,7 @@
             
             function getItem(){
                 //$('input[type=button]').click(function(){
-                    var rowID = $('#collect').closest('tr').attr('id');
+                    var rowID = $('tr #collect').closest('tr').attr('id');
                     window.alert(rowID);
                     socket.emit('client response',rowID);
                 //});
