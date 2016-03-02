@@ -95,8 +95,7 @@ io.sockets.on('connection',function(socket){
     
     socket.on('client response',function(data){
         client_res=data;
-        searchDatabase();
-        //console.log(client_res);
+        console.log(client_res);
     });
 });
  
@@ -121,7 +120,6 @@ client.on('message',function(topic,message){
 
 function searchDatabase(){
     console.log("Manufacturer: "+manufacturer);
-    console.log(client_res);
     var pre_query = new Date().getTime();
     //-----this is a query function that gets rfid data from the online database and compares with reader values                
     connection.query('SELECT * FROM rfid',function(err,rows){
