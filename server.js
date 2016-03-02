@@ -15,6 +15,8 @@ var topic;
 var on_mqtt;
 var mqtt_manu;
 
+var client_res;
+
 var mysql = require('mysql');
 var connection = mysql.createConnection({
     host: 'br-cdbr-azure-south-a.cloudapp.net', //using microsoft azure mySQL
@@ -92,7 +94,7 @@ io.sockets.on('connection',function(socket){
     });
     
     socket.on('client response',function(data){
-        console.log(data);
+        client_res=data;
     });
 });
  
@@ -113,7 +115,7 @@ client.on('message',function(topic,message){
     //console.log('query: '+data.id+' location: '+data.location);
 });
 
-
+console.log(client_res);
 //search Database
 
 function searchDatabase(){
