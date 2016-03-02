@@ -95,6 +95,7 @@ io.sockets.on('connection',function(socket){
     
     socket.on('client response',function(data){
         client_res=data;
+        console.log(client_res);
     });
 });
  
@@ -115,7 +116,6 @@ client.on('message',function(topic,message){
     //console.log('query: '+data.id+' location: '+data.location);
 });
 
-console.log(client_res);
 //search Database
 
 function searchDatabase(){
