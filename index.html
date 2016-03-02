@@ -60,9 +60,13 @@
             
             function getItem(){
                 //$('input[type=button]').click(function(){
-                    var rowID = $('tr #collect').closest('tr').attr('id');
-                    window.alert(rowID);
-                    socket.emit('client response',rowID);
+                    
+                    $("#collect").live('click',function(){
+                        var rowID = $(this).closest('tr').attr('id');
+                        alert($(this).closest('tr').attr('id'));
+                        window.alert(rowID);
+                        socket.emit('client response',rowID);
+                    });
                 //});
             }
     
