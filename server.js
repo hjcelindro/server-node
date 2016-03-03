@@ -181,6 +181,7 @@ function searchRFIDDatabase(){
                     //io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});
                     console.log(topic);
                     client.publish(topic,tagid);
+                }
             }
         }//END ELSE STATEMENT
     }); //END QUERY
