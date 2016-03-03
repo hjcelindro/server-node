@@ -55,6 +55,8 @@ http.listen(3000, function(){
 //var client = mqtt.connect('mqtt://54.200.3.119:1883');
 var client = mqtt.connect('mqtt://rfidproject.hjcelindro.co.uk:1883');
 
+//--------------------------------------------------
+
 io.sockets.on('connection',function(socket){
     
     console.log('a user connected'+socket.id);
@@ -77,7 +79,7 @@ io.sockets.on('connection',function(socket){
             var split = topic.split('/');
             manufacturer = split[1];
         }
-        searchDatabase();
+        searchManufacturerDatabase();
     });
     
     socket.on('mqtt',function(data){});
@@ -99,7 +101,7 @@ io.sockets.on('connection',function(socket){
     
     socket.on('client response',function(data){
         client_res=data;
-        console.log(client_res);
+        searchRFIDDatabase();
     });
 });
  
@@ -115,14 +117,14 @@ client.on('message',function(topic,message){
     }
     if(mqtt_manu==manufacturer||mqtt_manu=='All'){
         io.emit('data_change',{'topic':String(topic), 'payload':data});
-        searchDatabase();
+        searchManufacturerDatabase();
     }
     //console.log('query: '+data.id+' location: '+data.location);
 });
 
-//search Database
 
-function searchDatabase(){
+//search Database for manufacturer
+function searchManufacturerDatabase(){
     console.log("Manufacturer: "+manufacturer);
     var pre_query = new Date().getTime();
     //-----this is a query function that gets rfid data from the online database and compares with reader values                
@@ -150,5 +152,36 @@ function searchDatabase(){
             }
         }//END ELSE STATEMENT
     }); //END QUERY
-} //END searchDatabase();
+} //END searchManufacturerDatabase();
 
+//search Database for manufacturer
+function searchRFIDDatabase(){
+    console.log("RFID Client Response: "+client_res);
+    var pre_query = new Date().getTime();
+    //-----this is a query function that gets rfid data from the online database               
+    connection.query('SELECT * FROM rfid',function(err,rows){
+        if(err)throw err;
+        else{
+            var post_query = new Date().getTime();
+            var duration = (post_query-pre_query)/1000;
+            
+            console.log("database connection taken: "+duration);
+            console.log('Data receieved from database'); //display message that data has been acquired from the database
+            
+            for(var i=0; i<rows.length;i++){
+                var DBmanufacturer = rows[i].item_manufacturer;
+                var tagid = rows[i].item_rfid; //to make coding easier
+                loc = rows[i].item_location;
+                io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer}});
+                if(client_res===tagid){
+                    //console.log('items for manufacturer: '+DBmanufacturer);
+                    data = {id:tagid,location:loc,manufacturer:DBmanufacturer};
+                    //items.push(data);
+                    //console.log(data);
+                    //io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});
+                    console.log(topic);
+                    client.publish(topic,tagid);
+            }
+        }//END ELSE STATEMENT
+    }); //END QUERY
+} //END searchManufacturerDatabase();
