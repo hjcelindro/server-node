@@ -18,11 +18,17 @@ var mqtt_manu;
 var client_res;
 
 var mysql = require('mysql');
-var connection = mysql.createConnection({
+/*var connection = mysql.createConnection({
     host: 'br-cdbr-azure-south-a.cloudapp.net', //using microsoft azure mySQL
     user: 'bbbfe6f5303166',
     password: '6a070d81',
     database: 'RFIDtags'
+});*/
+var connection = mysql.createConnection({
+    host: 'iotproject.c0hpcx3lq7af.us-west-2.rds.amazonaws.com:3306', //using microsoft azure mySQL
+    user: 'hjcelindro',
+    password: 'Hannah0914',
+    database: 'rfidtags'
 });
 
 //-----------------DATABASE CONNECTIONS-------
