@@ -95,7 +95,7 @@ io.sockets.on('connection',function(socket){
         console.log('user disconnected');
     });
     socket.on('time taken',function(data){
-        var mqtt_time = (on_mqtt - data)/1000;
+        var mqtt_time = (data - on_mqtt)/1000;
         console.log("Time from mqtt to client: "+mqtt_time);
     });
     
@@ -134,7 +134,6 @@ function searchManufacturerDatabase(){
             var post_query = new Date().getTime();
             var duration = (post_query-pre_query)/1000;
             console.log("database connection taken: "+duration);
-            
             console.log('Data receieved from database'); //display message that data has been acquired from the database
             
             for(var i=0; i<rows.length;i++){
