@@ -48,6 +48,9 @@ app.get('/', function(req, res){
     res.sendFile(__dirname + '/index.html');
 });
 
+app.get('/loaderio-41e810be3dcd045326017c299ff7a803', function(req, res){
+    res.sendFile(__dirname + '/loaderio-41e810be3dcd045326017c299ff7a803.txt');
+});
 http.listen(3000, function(){
     console.log('listening to port 3000');
 });
@@ -142,10 +145,8 @@ function searchManufacturerDatabase(){
                 loc = rows[i].item_location;
                 io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer}});
                 if(DBmanufacturer===manufacturer){
-                    //console.log('items for manufacturer: '+DBmanufacturer);
                     data = {id:tagid,location:loc,manufacturer:DBmanufacturer};
                     items.push(data);
-                    //console.log(data);
                     io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});   
                 }
             }
