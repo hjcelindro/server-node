@@ -173,6 +173,7 @@ function searchSensorDatabase(data){
             for(var i=0; i<rows.length;i++){
                 var sensordata = rows[i].Temperature;
                 var area = rows[i].location;
+                console.log("location: "+area);
                 if(data===area){
                     var message = "This item has been exposed to temperatures "+sensordata;
                     items.push(data);
