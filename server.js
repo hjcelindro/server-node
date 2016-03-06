@@ -171,8 +171,6 @@ function searchSensorDatabase(data){
             console.log('Data receieved from database'); //display message that data has been acquired from the database
             console.log("-----------------------------------------");
             for(var i=0; i<rows.length;i++){
-                var id = rows[i].item_rfid; //to make coding easier
-                loc = rows[i].item_location;
                 var sensordata = rows[i].Temperature;
                 if(data===loc){
                     var message = "This item has been exposed to temperatures "+sensordata;
