@@ -131,7 +131,7 @@ client.on('message',function(topic,message){
 });
 
 //search Database for manufacturer
-function searchDatabase(){
+function searchManufacturerDatabase(){
     console.log("Left Join Table");
     var pre_query = new Date().getTime();
     //-----this is a query function that gets rfid data from the online database and compares with reader values                
