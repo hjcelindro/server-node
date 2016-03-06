@@ -151,7 +151,6 @@ function searchManufacturerDatabase(){
                     data = {id:tagid,location:loc,manufacturer:DBmanufacturer,message:message};
                     items.push(data);
                     io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});   
-                    message="";
                 }
             }
         }//END ELSE STATEMENT
