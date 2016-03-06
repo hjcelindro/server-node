@@ -173,7 +173,7 @@ function searchSensorDatabase(data){
             for(var i=0; i<rows.length;i++){
                 var id = rows[i].item_rfid; //to make coding easier
                 loc = rows[i].item_location;
-                var sensordata = rows[i].temperature;
+                var sensordata = rows[i].Temperature;
                 if(data===loc){
                     var message = "This item has been exposed to temperatures "+sensordata;
                     items.push(data);
