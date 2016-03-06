@@ -168,14 +168,14 @@ function searchSensorDatabase(data){
             var duration = (post_query-pre_query)/1000;
             
             console.log("sensor database connection taken: "+duration);
-            console.log('Data receieved from database'+data); //display message that data has been acquired from the database
+            console.log('Data receieved from database'); //display message that data has been acquired from the database
             console.log("-----------------------------------------");
             for(var i=0; i<rows.length;i++){
                 var sensordata = rows[i].Temperature;
                 var area = rows[i].location;
-                console.log("location: "+area);
+                console.log("location: "+area+" Sensor data: "+sensordata);
                 if(data===area){
-                    var message = "This item has been exposed to temperatures "+sensordata;
+                    var message = "This item has been exposed to temperature: "+sensordata;
                     items.push(data);
                 }
             }
