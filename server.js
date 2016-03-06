@@ -175,7 +175,7 @@ function searchSensorDatabase(data){
                 var area = rows[i].location;
                 console.log("loc: "+loc+" location: "+area+" Sensor data: "+sensordata);
                 if(data===area){
-                    var message = "This item has been exposed to temperature: "+sensordata;
+                    message = "This item has been exposed to temperature: "+sensordata;
                     items.push(data);
                 }
             }
