@@ -14,7 +14,7 @@ var data;
 var topic;
 var on_mqtt;
 var mqtt_manu;
-var message = "none";
+var message;
 
 var client_res;
 
