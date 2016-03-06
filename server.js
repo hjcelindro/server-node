@@ -14,7 +14,7 @@ var data;
 var topic;
 var on_mqtt;
 var mqtt_manu;
-var message;
+var message = "none";
 
 var client_res;
 
@@ -177,6 +177,7 @@ function searchSensorDatabase(data){
                 if(data===area){
                     message = "This item has been exposed to temperature: "+sensordata;
                     items.push(data);
+                    message="";
                 }
             }
         }//END ELSE STATEMENT
