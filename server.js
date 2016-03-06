@@ -154,6 +154,7 @@ function searchManufacturerDatabase(){
             }
         }//END ELSE STATEMENT
     }); //END QUERY
+    message="";
 } //END searchManufacturerDatabase();
 
 //search Database for manufacturer
@@ -178,7 +179,6 @@ function searchSensorDatabase(data){
                     message = "This item has been exposed to temperature: "+sensordata;
                     items.push(data);
                 }
-                message="";
             }
         }//END ELSE STATEMENT
     }); //END QUERY
