@@ -150,11 +150,11 @@ function searchManufacturerDatabase(){
                 loc = rows[i].item_location;
                 searchSensorDatabase(loc);
                 io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:message}});
-                /*if(DBmanufacturer===manufacturer){
+                if(DBmanufacturer===manufacturer){
                     data = {id:tagid,location:loc,manufacturer:DBmanufacturer,message:message};
                     items.push(data);
                     io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});   
-                }*/
+                }
             }
         }//END ELSE STATEMENT
     }); //END QUERY
@@ -181,9 +181,8 @@ function searchSensorDatabase(location){
                 if(location===area){
                     message = "This item has been exposed to temperature: "+sensordata;
                     console.log(message);
-                    data = {id:tagid,location:loc,manufacturer:DBmanufacturer,message:message};
                     items.push(data);
-                    io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});
+                    io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':message});
                 }
                 else{
                     message="none";
