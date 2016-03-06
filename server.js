@@ -130,8 +130,37 @@ client.on('message',function(topic,message){
     }
 });
 
-
 //search Database for manufacturer
+function searchDatabase(){
+    console.log("Left Join Table");
+    var pre_query = new Date().getTime();
+    //-----this is a query function that gets rfid data from the online database and compares with reader values                
+    connection.query('SELECT * FROM rfid LEFT JOIN * Sensor ON rfid.item_location=Sensor.location',function(err,rows){
+        if(err)throw err;
+        else{
+            var post_query = new Date().getTime();
+            var duration = (post_query-pre_query)/1000;
+            console.log("database connection taken: "+duration);
+            console.log('Data receieved from database'); //display message that data has been acquired from the database
+            
+            for(var i=0; i<rows.length;i++){
+                DBmanufacturer = rows[i].item_manufacturer;
+                tagid = rows[i].item_rfid; //to make coding easier
+                loc = rows[i].item_location;
+                var sensorData = rows[i].Temperature;
+                io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData}});
+                if(DBmanufacturer===manufacturer){
+                    data = {id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData};
+                    items.push(data);
+                    io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});  
+                }
+            }
+        }//END ELSE STATEMENT
+    }); //END QUERY
+} //END searchManufacturerDatabase();
+
+
+/* //search Database for manufacturer
 function searchManufacturerDatabase(){
     console.log("Manufacturer: "+manufacturer);
     var pre_query = new Date().getTime();
@@ -153,7 +182,6 @@ function searchManufacturerDatabase(){
                     data = {id:tagid,location:loc,manufacturer:DBmanufacturer,message:message};
                     items.push(data);
                     io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});  
-                    searchSensorDatabase(loc);
                 }
             }
         }//END ELSE STATEMENT
@@ -181,8 +209,6 @@ function searchSensorDatabase(location){
                 if(location===area){
                     message = "This item has been exposed to temperature: "+sensordata;
                     console.log(message);
-                    items.push(data);
-                    io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':message});
                 }
                 else{
                     message="none";
@@ -190,4 +216,4 @@ function searchSensorDatabase(location){
             }
         }//END ELSE STATEMENT
     }); //END QUERY
-} //END searchManufacturerDatabase();
+} //END searchManufacturerDatabase();*/
