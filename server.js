@@ -145,9 +145,9 @@ function searchManufacturerDatabase(){
                 var DBmanufacturer = rows[i].item_manufacturer;
                 var tagid = rows[i].item_rfid; //to make coding easier
                 loc = rows[i].item_location;
+                searchSensorDatabase(loc);
                 io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:message}});
                 if(DBmanufacturer===manufacturer){
-                    searchSensorDatabase(loc);
                     data = {id:tagid,location:loc,manufacturer:DBmanufacturer,message:message};
                     items.push(data);
                     io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});   
@@ -178,7 +178,9 @@ function searchSensorDatabase(location){
                 if(location===area){
                     message = "This item has been exposed to temperature: "+sensordata;
                     console.log(message);
+                    data = {id:tagid,location:loc,manufacturer:DBmanufacturer,message:message};
                     items.push(data);
+                    io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});
                 }
                 else{
                     message="none";
