@@ -158,7 +158,7 @@ function searchManufacturerDatabase(){
 } //END searchManufacturerDatabase();
 
 //search Database for manufacturer
-function searchSensorDatabase(data){
+function searchSensorDatabase(location){
     console.log("Sensor Database Loading");
     var pre_query = new Date().getTime();
     //-----this is a query function that gets rfid data from the online database               
@@ -174,8 +174,8 @@ function searchSensorDatabase(data){
             for(var i=0; i<rows.length;i++){
                 var sensordata = rows[i].Temperature;
                 var area = rows[i].location;
-                console.log("loc: "+loc+" location: "+area+" Sensor data: "+sensordata);
-                if(data===area){
+                console.log("loc: "+location+" location: "+area+" Sensor data: "+sensordata);
+                if(location===area){
                     message = "This item has been exposed to temperature: "+sensordata;
                     console.log(message);
                     items.push(data);
