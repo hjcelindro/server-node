@@ -177,8 +177,8 @@ function searchSensorDatabase(data){
                 if(data===area){
                     message = "This item has been exposed to temperature: "+sensordata;
                     items.push(data);
-                    message="";
                 }
+                message="";
             }
         }//END ELSE STATEMENT
     }); //END QUERY
