@@ -16,6 +16,9 @@ var on_mqtt;
 var mqtt_manu;
 var message;
 
+var DBmanufacturer;
+var tagid;
+
 var client_res;
 
 var mysql = require('mysql');
@@ -142,8 +145,8 @@ function searchManufacturerDatabase(){
             console.log('Data receieved from database'); //display message that data has been acquired from the database
             
             for(var i=0; i<rows.length;i++){
-                var DBmanufacturer = rows[i].item_manufacturer;
-                var tagid = rows[i].item_rfid; //to make coding easier
+                DBmanufacturer = rows[i].item_manufacturer;
+                tagid = rows[i].item_rfid; //to make coding easier
                 loc = rows[i].item_location;
                 searchSensorDatabase(loc);
                 io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:message}});
