@@ -181,6 +181,9 @@ function searchSensorDatabase(data){
                     console.log(message);
                     items.push(data);
                 }
+                else{
+                    message="none";
+                }
             }
         }//END ELSE STATEMENT
     }); //END QUERY
