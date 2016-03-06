@@ -85,7 +85,7 @@ io.sockets.on('connection',function(socket){
             manufacturer = split[1];
         }
         searchManufacturerDatabase();
-        message="";
+        //message="";
     });
     
     socket.on('mqtt',function(data){});
@@ -177,6 +177,7 @@ function searchSensorDatabase(data){
                 console.log("loc: "+loc+" location: "+area+" Sensor data: "+sensordata);
                 if(data===area){
                     message = "This item has been exposed to temperature: "+sensordata;
+                    console.log(message);
                     items.push(data);
                 }
             }
