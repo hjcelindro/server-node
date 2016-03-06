@@ -85,6 +85,7 @@ io.sockets.on('connection',function(socket){
             manufacturer = split[1];
         }
         searchManufacturerDatabase();
+        message="";
     });
     
     socket.on('mqtt',function(data){});
@@ -154,7 +155,6 @@ function searchManufacturerDatabase(){
             }
         }//END ELSE STATEMENT
     }); //END QUERY
-    message="";
 } //END searchManufacturerDatabase();
 
 //search Database for manufacturer
