@@ -157,7 +157,7 @@ function searchManufacturerDatabase(){
 
 //search Database for manufacturer
 function searchSensorDatabase(data){
-    console.log("Sensor Database Loading);
+    console.log("Sensor Database Loading");
     var pre_query = new Date().getTime();
     //-----this is a query function that gets rfid data from the online database               
     connection.query('SELECT * FROM Sensor',function(err,rows){
