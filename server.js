@@ -135,7 +135,7 @@ function searchManufacturerDatabase(){
     console.log("Left Join Table");
     var pre_query = new Date().getTime();
     //-----this is a query function that gets rfid data from the online database and compares with reader values                
-    connection.query('SELECT rfid.item_rfid,rfid.item_manufacturer,rfid.item_location, Sensor.location, Sensor.Temperature FROM rfid LEFT JOIN * Sensor ON rfid.item_location=Sensor.location',function(err,rows){
+    connection.query('SELECT rfid.item_rfid,rfid.item_manufacturer,rfid.item_location, Sensor.location, Sensor.Temperature FROM rfid LEFT JOIN Sensor ON rfid.item_location=Sensor.location',function(err,rows){
         if(err)throw err;
         else{
             var post_query = new Date().getTime();
