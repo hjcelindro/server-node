@@ -110,7 +110,7 @@ io.sockets.on('connection',function(socket){
     
     socket.on('client response',function(data){
         client_res=data;
-        searchManufacturerDatabase();
+        //searchManufacturerDatabase();
     });
 });
  
