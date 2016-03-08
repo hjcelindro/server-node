@@ -1,0 +1,97 @@
+    <head>
+        <h1>Real Time</h1>
+        <title>Testing...</title>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: :collapse;
+            }
+            th, td {
+                padding: 10px;
+            }
+        </style>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+
+        <script type="text/javascript">
+
+            //var socket = io.connect('http://54.200.3.119:3000');
+            var socket = io.connect('http://rfidproject.hjcelindro.co.uk:3000');
+
+            socket.on('connection',function(){
+
+                socket.on('subscribe',function(msg){
+                });
+            });
+
+            socket.on('mqtt',function(msg){
+                var id = msg.payload.id;
+                $('table').append('<tr id="'+id+'" ><td>'+id+'</td><br><td>'+String(msg.payload.location)+'</td><br><td>'+String(msg.payload.manufacturer)+'</td><br><td>'+String(msg.payload.message)+'</td><br><td>'+String(msg.payload.response)+'</td></tr>');
+                socket.emit('time taken',new Date().getTime());
+            });
+            
+            socket.on('data_change',function(msg){
+                $('table tr td').remove();
+            });
+            
+            socket.on('update_clients',function(name){
+                //updateClients(name);
+                //window.alert("Welcome "+name+'!');
+            });
+            
+            socket.on('users connected',function(data){
+                $('#usersConnected').html('Users connected: ' + data)
+            });
+            
+            function subscribeToTopic(){
+                var textbox = document.getElementById("textbox");
+                var output = document.getElementById("output");
+                var name = textbox.value;
+                var manufacturer = name.substr(0,1).toUpperCase() + name.substr(1);
+                output.value = "You are Subscribed, "+manufacturer;
+                
+                var subscribe = 'manufacturer/'+manufacturer;
+                socket.emit('subscribe',{topic: subscribe});
+                socket.emit('register',manufacturer);
+                
+                $('div').show('clients');
+                $('div').show('table');
+            }
+            
+            function getItem(){
+                $('input[type=button]').click(function(){
+                    var rowID = $(this).closest('tr').attr('id');
+                    socket.emit('client response',rowID);
+                });
+            }
+    
+        </script>
+    </head>
+    <body>
+        <form action=" ">
+            <fieldset>
+                <label>Type your Company name: </label>
+                <input name="topic" id="textbox" type= "text" align="right" size="30"/></br>
+                <input type="button" value="Subscribe" onclick = "subscribeToTopic()"/>
+                <input type="reset" value="Logout" onclick="history.go(0)"/>
+                <input type="text" id="output"  size = "50"/>
+            </fieldset>
+        </form>
+        <div>
+            <div id = 'clients' style="display:none"><h2>Welcome Recycling Centre!</h2></div>
+            <div id="usersConnected"></div>
+            <ul id = 'messages'><h3>Messages</h3></ul>
+        </div>
+        <div id='table'>
+            <table id = "t1" style='width:60%' >
+                <tr>
+                    <th>Tag ID</th>
+                    <th>Location</th>
+                    <th>Manufacturer</th>
+                    <th>Other Information</th>
+                    <th>Client Response</th>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
