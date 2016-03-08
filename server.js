@@ -51,6 +51,9 @@ connection.connect(function(err){
 app.get('/', function(req, res){
     res.sendFile(__dirname + '/index.html');
 });
+app.get('/All', function(req, res){
+    res.sendFile(__dirname + '/indexAll.html');
+});
 
 //app.get('/loaderio-41e810be3dcd045326017c299ff7a803', function(req, res){
 //    res.sendFile(__dirname + '/loaderio-41e810be3dcd045326017c299ff7a803.txt');
@@ -61,7 +64,8 @@ http.listen(3000, function(){
 });
 
 //var client = mqtt.connect('mqtt://54.200.3.119:1883');
-var client = mqtt.connect('mqtt://rfidproject.hjcelindro.co.uk:1883');
+//var client = mqtt.connect('mqtt://rfidproject.hjcelindro.co.uk:1883');
+var client = mqtt.connect('mqtt://rfidproject.hjcelindro.co.uk:1883',
 
 //--------------------------------------------------
 
@@ -110,7 +114,6 @@ io.sockets.on('connection',function(socket){
     
     socket.on('client response',function(data){
         client_res=data;
-        searchRFIDDatabase();
     });
 });
  
@@ -142,13 +145,16 @@ function searchManufacturerDatabase(){
             var duration = (post_query-pre_query)/1000;
             console.log("database connection taken: "+duration);
             console.log('Data receieved from database'); //display message that data has been acquired from the database
+            console.log('------------------------------');
             
             for(var i=0; i<rows.length;i++){
                 DBmanufacturer = rows[i].item_manufacturer;
                 tagid = rows[i].item_rfid; //to make coding easier
                 loc = rows[i].item_location;
-                var sensorData = rows[i].Temperature+" degrees Celsius";
-                io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData}});
+                var sensorData = rows[i].Temperature;
+                
+                io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData},response:"Manufacturer will collect item"});
+                
                 if(DBmanufacturer===manufacturer){
                     data = {id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData};
                     items.push(data);
@@ -158,62 +164,3 @@ function searchManufacturerDatabase(){
         }//END ELSE STATEMENT
     }); //END QUERY
 } //END searchManufacturerDatabase();
-
-
-/* //search Database for manufacturer
-function searchManufacturerDatabase(){
-    console.log("Manufacturer: "+manufacturer);
-    var pre_query = new Date().getTime();
-    //-----this is a query function that gets rfid data from the online database and compares with reader values                
-    connection.query('SELECT * FROM rfid',function(err,rows){
-        if(err)throw err;
-        else{
-            var post_query = new Date().getTime();
-            var duration = (post_query-pre_query)/1000;
-            console.log("database connection taken: "+duration);
-            console.log('Data receieved from database'); //display message that data has been acquired from the database
-            
-            for(var i=0; i<rows.length;i++){
-                DBmanufacturer = rows[i].item_manufacturer;
-                tagid = rows[i].item_rfid; //to make coding easier
-                loc = rows[i].item_location;
-                io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:message}});
-                if(DBmanufacturer===manufacturer){
-                    data = {id:tagid,location:loc,manufacturer:DBmanufacturer,message:message};
-                    items.push(data);
-                    io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});  
-                }
-            }
-        }//END ELSE STATEMENT
-    }); //END QUERY
-} //END searchManufacturerDatabase();
-
-//search Database for manufacturer
-function searchSensorDatabase(location){
-    console.log("Sensor Database Loading");
-    var pre_query = new Date().getTime();
-    //-----this is a query function that gets rfid data from the online database               
-    connection.query('SELECT * FROM Sensor',function(err,rows){
-        if(err)throw err;
-        else{
-            var post_query = new Date().getTime();
-            var duration = (post_query-pre_query)/1000;
-            
-            console.log("sensor database connection taken: "+duration);
-            console.log('Data receieved from database'); //display message that data has been acquired from the database
-            console.log("-----------------------------------------");
-            for(var i=0; i<rows.length;i++){
-                var sensordata = rows[i].Temperature;
-                var area = rows[i].location;
-                console.log("loc: "+location+" location: "+area+" Sensor data: "+sensordata);
-                if(location===area){
-                    message = "This item has been exposed to temperature: "+sensordata;
-                    console.log(message);
-                }
-                else{
-                    message="none";
-                }
-            }
-        }//END ELSE STATEMENT
-    }); //END QUERY
-} //END searchManufacturerDatabase();*/
