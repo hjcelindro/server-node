@@ -148,7 +148,7 @@ function searchManufacturerDatabase(){
                 DBmanufacturer = rows[i].item_manufacturer;
                 tagid = rows[i].item_rfid; //to make coding easier
                 loc = rows[i].item_location;
-                var sensorData = rows[i].Temperature;
+                var sensorData = rows[i].dataReadings;
                 var response_message=DBmanufacturer+" will collect item";
                 
                 io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData},response:response_message});
