@@ -180,12 +180,11 @@ function searchItemCollectDatabase(){
                 tagid = rows[i].item_rfid; //to make coding easier
                 loc = rows[i].item_location;
                 var sensorData = rows[i].Temperature;
-                
+                io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData},response:"Manufacturer will collect item"});
                 if(DBmanufacturer===manufacturer){
                     data = {id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData};
                     items.push(data);
-                    io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data}); 
-                    io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData},response:"Manufacturer will collect item"});  
+                    io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});   
                 }
             }
         }//END ELSE STATEMENT
