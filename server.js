@@ -184,6 +184,7 @@ function searchItemCollectDatabase(){
                 if(DBmanufacturer===manufacturer){
                     data = {id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData};
                     items.push(data);
+                    io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data}); 
                     io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData},response:"Manufacturer will collect item"});  
                 }
             }
