@@ -105,7 +105,7 @@ io.sockets.on('connection',function(socket){
     });
     socket.on('time taken',function(data){
         var mqtt_time = (data - on_mqtt)/1000;
-        console.log("Time from mqtt to client: "+mqtt_time);
+        //console.log("Time from mqtt to client: "+mqtt_time);
     });
     
     socket.on('client response',function(data){
@@ -117,7 +117,7 @@ io.sockets.on('connection',function(socket){
  
 client.on('message',function(topic,message){
     on_mqtt = new Date().getTime();
-    console.log("Client.on"+String(message)+ " "+String(topic));
+    console.log("Client.on "+String(message)+ " "+String(topic));
     var split = topic.split('/');
     if(topic=='manufacturer/'){
         mqtt_manu="All";
