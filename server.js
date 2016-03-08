@@ -110,7 +110,8 @@ io.sockets.on('connection',function(socket){
     
     socket.on('client response',function(data){
         client_res=data;
-        //searchManufacturerDatabase();
+        io.emit('data_change',{'topic':String(topic), 'payload':data});
+        searchManufacturerDatabase();
     });
 });
  
