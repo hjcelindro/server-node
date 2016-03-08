@@ -135,6 +135,10 @@ client.on('message',function(topic,message){
     }
 });
 
+server.on('message',function(topic,message){
+    console.log("client responded!");
+});
+
 //search Database for manufacturer
 function searchManufacturerDatabase(){
     console.log("Left Join Table");
