@@ -55,10 +55,6 @@ app.get('/All', function(req, res){
     res.sendFile(__dirname + '/indexAll.html');
 });
 
-//app.get('/loaderio-41e810be3dcd045326017c299ff7a803', function(req, res){
-//    res.sendFile(__dirname + '/loaderio-41e810be3dcd045326017c299ff7a803.txt');
-//});
-
 http.listen(3000, function(){
     console.log('listening to port 3000');
 });
@@ -114,6 +110,7 @@ io.sockets.on('connection',function(socket){
     
     socket.on('client response',function(data){
         client_res=data;
+        searchManufacturerDatabase();
     });
 });
  
