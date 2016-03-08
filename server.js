@@ -65,7 +65,7 @@ http.listen(3000, function(){
 
 //var client = mqtt.connect('mqtt://54.200.3.119:1883');
 //var client = mqtt.connect('mqtt://rfidproject.hjcelindro.co.uk:1883');
-var client = mqtt.connect('mqtt://rfidproject.hjcelindro.co.uk:1883',
+var client = mqtt.connect('mqtt://rfidproject.hjcelindro.co.uk:1883');
 
 //--------------------------------------------------
 
@@ -80,7 +80,7 @@ io.sockets.on('connection',function(socket){
     
     socket.on('subscribe',function(data){
         if(data.topic=='manufacturer/All'){
-            client.subscribe('manufacturer/')
+            client.subscribe('manufacturer/');
             console.log('Subscribing to: manufacturer/');
             manfacturer="All";
         }
