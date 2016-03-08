@@ -151,8 +151,7 @@ function searchManufacturerDatabase(){
                 loc = rows[i].item_location;
                 var sensorData = rows[i].dataReading;
                 var time = rows[i].time;
-                var response_message=DBmanufacturer+" will collect item";
-                console.log(response_message);                
+                var response_message=DBmanufacturer+" will collect item";                
                 io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData},response:response_message});
                 
                 if(DBmanufacturer===manufacturer){
@@ -161,7 +160,8 @@ function searchManufacturerDatabase(){
                     io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});  
                 }
                 if(client_res===tagid){
-                    io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData},response:"Manufacturer will collect item"});
+                    console.log(response_message);
+                    io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData},response:"Manufacturer will collect item: "+tagid});
                 }
             }
         }//END ELSE STATEMENT
