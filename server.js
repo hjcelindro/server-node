@@ -63,11 +63,11 @@ http.listen(3000, function(){
 //var client = mqtt.connect('mqtt://rfidproject.hjcelindro.co.uk:1883');
 var client = mqtt.connect('mqtt://rfidproject.hjcelindro.co.uk:1883');
 var server = mqtt.connect('mqtt://rfidproject.hjcelindro.co.uk:1883');
-server.subscribe('response/manufacturer');
 
 //--------------------------------------------------
 
 io.sockets.on('connection',function(socket){
+    server.subscribe('response/manufacturer');
     
     console.log('a user connected'+socket.id);
     
