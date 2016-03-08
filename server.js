@@ -110,7 +110,7 @@ io.sockets.on('connection',function(socket){
     
     socket.on('client response',function(data){
         client_res=data;
-        searchManufacturerDatabase();
+        searchItemCollectDatabase();
     });
 });
  
@@ -180,8 +180,11 @@ function searchItemCollectDatabase(){
                 loc = rows[i].item_location;
                 var sensorData = rows[i].Temperature;
                 
-                io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData},response:"Manufacturer will collect item"});
-            
+                if(DBmanufacturer===manufacturer){
+                    data = {id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData};
+                    items.push(data);
+                    io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData},response:"Manufacturer will collect item"});  
+                }
             }
         }//END ELSE STATEMENT
     }); //END QUERY
