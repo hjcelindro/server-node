@@ -62,6 +62,8 @@ http.listen(3000, function(){
 //var client = mqtt.connect('mqtt://54.200.3.119:1883');
 //var client = mqtt.connect('mqtt://rfidproject.hjcelindro.co.uk:1883');
 var client = mqtt.connect('mqtt://rfidproject.hjcelindro.co.uk:1883');
+var server = mqtt.connect('mqtt://rfidproject.hjcelindro.co.uk:1883');
+server.subscribe('response/manufacturer');
 
 //--------------------------------------------------
 
@@ -123,6 +125,7 @@ client.on('message',function(topic,message){
     if(topic=='manufacturer/'){
         mqtt_manu="All";
     }
+    else if(
     else{
         mqtt_manu = split[1];
     }
