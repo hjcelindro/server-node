@@ -161,3 +161,28 @@ function searchManufacturerDatabase(){
         }//END ELSE STATEMENT
     }); //END QUERY
 } //END searchManufacturerDatabase();
+
+function searchItemCollectDatabase(){
+    var pre_query = new Date().getTime();
+    //-----this is a query function that gets rfid data from the online database and compares with reader values                
+    connection.query('SELECT * FROM rfid',function(err,rows){
+        if(err)throw err;
+        else{
+            var post_query = new Date().getTime();
+            var duration = (post_query-pre_query)/1000;
+            console.log("database connection taken: "+duration);
+            console.log('Data receieved from database'); //display message that data has been acquired from the database
+            console.log('------------------------------');
+            
+            for(var i=0; i<rows.length;i++){
+                DBmanufacturer = rows[i].item_manufacturer;
+                tagid = rows[i].item_rfid; //to make coding easier
+                loc = rows[i].item_location;
+                var sensorData = rows[i].Temperature;
+                
+                io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData},response:"Manufacturer will collect item"});
+            
+            }
+        }//END ELSE STATEMENT
+    }); //END QUERY
+} //END searchManufacturerDatabase();
