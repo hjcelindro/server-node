@@ -161,6 +161,7 @@ function searchManufacturerDatabase(){
                 }
                 if(client_res===tagid){
                     console.log(response_message);
+                    console.log(client_res);
                     io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData},response:"Manufacturer will collect item: "+tagid});
                 }
             }
