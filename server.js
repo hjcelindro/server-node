@@ -125,7 +125,6 @@ client.on('message',function(topic,message){
     if(topic=='manufacturer/'){
         mqtt_manu="All";
     }
-    else if(
     else{
         mqtt_manu = split[1];
     }
