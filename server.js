@@ -149,8 +149,9 @@ function searchManufacturerDatabase(){
                 tagid = rows[i].item_rfid; //to make coding easier
                 loc = rows[i].item_location;
                 var sensorData = rows[i].Temperature;
+                var response_message=DBmanufacturer+" will collect item";
                 
-                io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData},response:"Manufacturer will collect item"});
+                io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData},response:response_message});
                 
                 if(DBmanufacturer===manufacturer){
                     data = {id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData};
