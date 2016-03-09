@@ -105,6 +105,7 @@ io.sockets.on('connection',function(socket){
     socket.on('register',function(name){
         socket.emit('update_clients',name);
         socket.join(name); //join room for the manufacturer
+        io.emit('data_change',{'topic':String(topic), 'payload':data});
     });
     socket.on('disconnect', function(){
         socketConnections--;
