@@ -20,6 +20,7 @@ var DBmanufacturer;
 var tagid;
 
 var client_res;
+var database_res;
 
 var mysql = require('mysql');
 /*var connection = mysql.createConnection({
@@ -184,6 +185,25 @@ function searchManufacturerDatabase(){
                     io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});  
                 }
             }
+        }//END ELSE STATEMENT
+    }); //END QUERY
+} //END searchManufacturerDatabase();
+
+//search Database for manufacturer
+function ActionUpdateDatabase(rfid){
+    console.log("update ae set Action="+"'"+database_res+"'"+" where item_rfid="+"'"+rfid+"'");
+    var pre_query = new Date().getTime();
+    //-----this is a query function that gets rfid data from the online database and compares with reader values   
+    connection.query("update ae set Action="+"'"+database_res+"'"+" where item_rfid="+"'"+rfid+"'",function(err,rows){
+        if(err)throw err;
+        else{
+            var post_query = new Date().getTime();
+            var duration = (post_query-pre_query)/1000;
+            console.log('------------------------------');
+            console.log("database connection taken: "+duration);
+            console.log('Data receieved from database'); //display message that data has been acquired from the database
+            console.log('------------------------------');
+            searchManufacturerDatabase();
         }//END ELSE STATEMENT
     }); //END QUERY
 } //END searchManufacturerDatabase();
