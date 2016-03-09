@@ -44,8 +44,10 @@
             });
             
             socket.on('client response',function(data){
-                socket.removeListener();
             });
+            
+            socket.removeListener('client response',getItem());
+
             
             function subscribeToTopic(){
                 var textbox = document.getElementById("textbox");
