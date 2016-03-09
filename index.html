@@ -63,13 +63,13 @@
             }
             
             function sendResponse(){
-                socket.removeListener();
                 console.log("emitting get item");
                 socket.emit('client response',rowID);
             }
             
             function getItem(){
                 $('input[type=button]').click(function(){
+                    socket.removeListener();
                     rowID = $(this).closest('tr').attr('id');
                     confirm("Press a button!");
                     sendResponse();
