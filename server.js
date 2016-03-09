@@ -68,13 +68,11 @@ var server = mqtt.connect('mqtt://rfidproject.hjcelindro.co.uk:1883');
 //--------------------------------------------------
 
 io.sockets.on('connection',function(socket){
+    console.log('-----------------MQTT-------------');
     server.subscribe('response/manufacturer');
-    console.log("subscribed to server'");
+    console.log("subscribed to server");
     
-    
-    console.log('------------------------------');
-
-    
+    console.log('-----------------sockets-------------');
     socketConnections++;
     io.sockets.emit('users connected',socketConnections);
     
@@ -100,7 +98,9 @@ io.sockets.on('connection',function(socket){
     });
     
     socket.on('mqtt',function(data){});
-    socket.on('data_change',function(data){});
+    socket.on('data_change',function(data){
+        searchManufacturerDatabase();
+    });
     
     socket.on('register',function(name){
         socket.emit('update_clients',name);
@@ -121,7 +121,6 @@ io.sockets.on('connection',function(socket){
         var response = client_res;
         client.publish('response/manufacturer',response);
         io.emit('data_change',{'topic':String(topic), 'payload':data});
-        searchManufacturerDatabase();
     });
 });
  
@@ -137,7 +136,6 @@ client.on('message',function(topic,message){
     }
     if(mqtt_manu==manufacturer||mqtt_manu=='All'){
         io.emit('data_change',{'topic':String(topic), 'payload':data});
-        searchManufacturerDatabase();
     }
 });
 
@@ -160,8 +158,6 @@ server.on('message',function(topic,message){
     }
     ActionUpdateDatabase(id);
     io.emit('data_change',{'topic':String(topic), 'payload':data});
-    searchManufacturerDatabase();
-
 });
 
 //search Database for manufacturer
