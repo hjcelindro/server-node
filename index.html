@@ -62,14 +62,13 @@
                 $('div').show('table');
             }
             
-            function getItem(clickedID){
-                //$('input[type=button]').click(function(){
-                 //   rowID = $(this).closest('tr').attr('id');
-                    rowID=$(clickedID).closest('tr').attr('id');
+            //function getItem(clickedID){
+                $('input[type=button]').click(function(){
+                    rowID = $(this).closest('tr').attr('id');
                     window.alert("ID:"+ rowID);
                     socket.emit('client response',rowID);
-                //});
-            }
+                });
+            //}
             
             
     
