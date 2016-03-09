@@ -66,6 +66,7 @@
                 //$('input[type=button]').click(function(){
                  //   rowID = $(this).closest('tr').attr('id');
                     rowID=clickedID;
+                    window.alert("ID:"+ rowID);
                     socket.emit('client response',rowID);
                 //});
             }
