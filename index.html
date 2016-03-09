@@ -69,7 +69,7 @@
             
             function getItem(){
                 $('input[type=button]').click(function(){
-                    socket.removeListener();
+                    socket.removeAllListeners();
                     rowID = $(this).closest('tr').attr('id');
                     confirm("Press a button!");
                     sendResponse();
