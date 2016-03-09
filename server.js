@@ -94,7 +94,6 @@ io.sockets.on('connection',function(socket){
             manufacturer = split[1];
         }
         searchManufacturerDatabase();
-        socket.removeAllListeners();
         //message="";
     });
     
