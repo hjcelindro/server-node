@@ -19,9 +19,10 @@
             var socket = io.connect('http://rfidproject.hjcelindro.co.uk:3000');
 
             socket.on('connection',function(){
+
+                socket.on('subscribe',function(msg){
+                });
             });
-            //socket.on('subscribe',function(msg){
-            //});
 
             socket.on('mqtt',function(msg){
                 var id = msg.payload.id;
@@ -56,6 +57,7 @@
                 var subscribe = 'manufacturer/'+manufacturer;
                 socket.emit('subscribe',{topic: subscribe});
                 socket.emit('register',manufacturer);
+                socket.emit('data change'manufacturer);
                 
                 $('div').show('clients');
                 $('div').show('table');
