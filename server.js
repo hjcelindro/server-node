@@ -140,6 +140,16 @@ client.on('message',function(topic,message){
 
 server.on('message',function(topic,message){
     console.log("client responded with: "+ message);
+    var split = message.split('/');
+    var id = split[1];
+    var action = split[2];
+    
+    if(action==='collect'){
+        console.log('item '+id+' to be collected');
+    }
+    else{
+        console.log('take item to recycling area');
+    }
 });
 
 //search Database for manufacturer
