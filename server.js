@@ -87,7 +87,6 @@ io.sockets.on('connection',function(socket){
             console.log('------------------------------');
             console.log('Subscribing to: manufacturer/');
             manfacturer="All";
-            io.emit('data_change',{'topic':String(topic), 'payload':data});
         }
         else{
             client.subscribe(data.topic);
@@ -186,8 +185,10 @@ function searchManufacturerDatabase(){
                 loc = rows[i].item_location;
                 var sensorData = rows[i].dataReading;
                 var time = rows[i].time;
-                var response_message=rows[i].Action;                
+                var response_message=rows[i].Action;  
+                if(manufacturer==='All'){
                 io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData,response:response_message}});
+                }
                 console.log(tagid+response_message);
                 
                 if(DBmanufacturer===manufacturer){
