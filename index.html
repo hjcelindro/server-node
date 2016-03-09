@@ -70,6 +70,7 @@
             function getItem(){
                 $('input[type=button]').click(function(){
                     rowID = $(this).closest('tr').attr('id');
+                    confirm("Press a button!");
                     sendResponse();
                 });
             }
