@@ -71,7 +71,7 @@
             //}
             */
             $(".collect").click(function(){
-                var $rowID = $(this).closest('tr').find('rowID').text();
+                var $rowID = $(this).closest('tr').attr('id');
                 window.alert($rowID);
             });
                 
