@@ -43,9 +43,6 @@
                 $('#usersConnected').html('Users connected: ' + data)
             });
             
-            socket.on('client response',function(data){
-            });
-            
             function subscribeToTopic(){
                 var textbox = document.getElementById("textbox");
                 var output = document.getElementById("output");
@@ -56,16 +53,10 @@
                 var subscribe = 'manufacturer/'+manufacturer;
                 socket.emit('subscribe',{topic: subscribe});
                 socket.emit('register',manufacturer);
+                socket.emit('data change'manufacturer);
                 
                 $('div').show('clients');
                 $('div').show('table');
-            }
-            
-            function getItem(){
-                $('input[type=button]').click(function(){
-                    var rowID = $(this).closest('tr').attr('id');
-                    socket.emit('client response',rowID);
-                });
             }
     
         </script>
