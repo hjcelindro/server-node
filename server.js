@@ -184,7 +184,7 @@ function searchManufacturerDatabase(){
                 var sensorData = rows[i].dataReading;
                 var time = rows[i].time;
                 var response_message=rows[i].Action;                
-                io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData},response:response_message});
+                io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData,response:response_message});
                 console.log(tagid+response_message);
                 
                 if(DBmanufacturer===manufacturer){
