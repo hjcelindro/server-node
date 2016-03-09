@@ -26,7 +26,7 @@
 
             socket.on('mqtt',function(msg){
                 var id = msg.payload.id;
-                $('table').append('<tr id="'+id+'" class="rowID" ><td>'+id+'</td><br><td>'+String(msg.payload.location)+'</td><br><td>'+String(msg.payload.manufacturer)+'</td><br><td>'+String(msg.payload.message)+'</td><br><td align="center"><input value="collect" type="button" class="collect" onclick=getResponse($(this).closest("tr").attr("id");) /><input value="ignore" type="button" class="ignore" /></td></tr>');
+                $('table').append('<tr id="'+id+'" class="rowID" ><td>'+id+'</td><br><td>'+String(msg.payload.location)+'</td><br><td>'+String(msg.payload.manufacturer)+'</td><br><td>'+String(msg.payload.message)+'</td><br><td align="center"><input value="collect" type="button" class="collect" onclick=getResponse() /><input value="ignore" type="button" class="ignore" /></td></tr>');
                 socket.emit('time taken',new Date().getTime());
             });
             
@@ -70,12 +70,10 @@
                 });
             //}
             */
-            function getResponse(ID){
-                window.alert(ID);
-/*            $("input[class=collect]").click(function(){
-                var $rowID = $(this).closest('tr').attr('id');
-                window.alert($rowID);
-            });*/
+            function getResponse(){
+                var $row = $(this).closest("tr"),        // Finds the closest row <tr> 
+                $tds = $row.find("td:nth-child(1)"); // Finds the 2nd <td> element
+                window.alert($tds);
             }
                 
     
