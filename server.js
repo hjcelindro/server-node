@@ -93,8 +93,7 @@ io.sockets.on('connection',function(socket){
             var split = topic.split('/');
             manufacturer = split[1];
         }
-        searchManufacturerDatabase();
-        //message="";
+        io.emit('data_change',{'topic':String(topic), 'payload':data});
     });
     
     socket.on('mqtt',function(data){});
@@ -105,7 +104,6 @@ io.sockets.on('connection',function(socket){
     socket.on('register',function(name){
         socket.emit('update_clients',name);
         socket.join(name); //join room for the manufacturer
-        io.emit('data_change',{'topic':String(topic), 'payload':data});
     });
     socket.on('disconnect', function(){
         socketConnections--;
