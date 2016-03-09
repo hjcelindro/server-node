@@ -43,6 +43,9 @@
                 $('#usersConnected').html('Users connected: ' + data)
             });
             
+            socket.on('client response',function(data){
+            });
+            
             function subscribeToTopic(){
                 var textbox = document.getElementById("textbox");
                 var output = document.getElementById("output");
