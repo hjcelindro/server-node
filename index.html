@@ -57,7 +57,7 @@
                 var subscribe = 'manufacturer/'+manufacturer;
                 socket.emit('subscribe',{topic: subscribe});
                 socket.emit('register',manufacturer);
-                socket.emit('data change'manufacturer);
+                socket.emit('data change',manufacturer);
                 
                 $('div').show('clients');
                 $('div').show('table');
