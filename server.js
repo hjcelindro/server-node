@@ -116,7 +116,8 @@ io.sockets.on('connection',function(socket){
     
     socket.on('client response',function(data){
         client_res=data;
-        client.publish('response/manufacturer',client_res);
+        var response = client_res+" "+socket.socketID;
+        client.publish('response/manufacturer',response);
     });
 });
  
@@ -137,7 +138,7 @@ client.on('message',function(topic,message){
 });
 
 server.on('message',function(topic,message){
-    console.log("client responded!");
+    console.log("client responded with: "+ message);
 });
 
 //search Database for manufacturer
