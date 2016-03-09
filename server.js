@@ -142,9 +142,8 @@ server.on('message',function(topic,message){
     console.log("client responded with: "+ message);
     var themessage = String(message);
     var split = themessage.split('/');
-    var id = split[1];
-    var action = split[2];
-    console.log(id);
+    var id = split[0];
+    var action = split[1];
     
     if(action==='collect'){
         console.log('item '+id+' to be collected');
