@@ -73,6 +73,7 @@
             function getResponse(data){
                 //var row = $(this).closest('tr').attr('id');
                 window.alert(data);
+                socket.emit('client response',data);
             }
                 
     
