@@ -68,7 +68,6 @@ var server = mqtt.connect('mqtt://rfidproject.hjcelindro.co.uk:1883');
 //--------------------------------------------------
 
 io.sockets.on('connection',function(socket){
-    io.emit('data change',topic);
     server.subscribe('response/manufacturer');
     console.log("subscribed to server'");
     
@@ -173,6 +172,7 @@ function searchManufacturerDatabase(){
     connection.query('SELECT rfid.item_rfid,rfid.item_manufacturer,rfid.item_location,rfid.Action, Sensor.location, Sensor.idSensor, readings.idSensor, readings.time, readings.dataReading FROM rfid INNER JOIN Sensor ON rfid.item_location=Sensor.location inner join readings on Sensor.location=readings.idSensor',function(err,rows){
         if(err)throw err;
         else{
+            io.emit('data change',topic);
             var post_query = new Date().getTime();
             var duration = (post_query-pre_query)/1000;
             console.log('------------------------------');
