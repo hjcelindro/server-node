@@ -72,6 +72,7 @@
                     rowID = $(this).closest('tr').attr('id');
                     confirm("Press a button!");
                     sendResponse();
+                    socket.removeListener();
                 });
             }
             
