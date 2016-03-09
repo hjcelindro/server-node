@@ -71,6 +71,8 @@ io.sockets.on('connection',function(socket){
     console.log("subscribed to server'");
     
     console.log('a user connected'+socket.id);
+    console.log('------------------------------');
+
     
     socketConnections++;
     io.sockets.emit('users connected',socketConnections);
@@ -80,6 +82,7 @@ io.sockets.on('connection',function(socket){
     socket.on('subscribe',function(data){
         if(data.topic=='manufacturer/All'){
             client.subscribe('manufacturer/');
+            console.log('------------------------------');
             console.log('Subscribing to: manufacturer/');
             manfacturer="All";
         }
@@ -147,7 +150,7 @@ server.on('message',function(topic,message){
 
 //search Database for manufacturer
 function searchManufacturerDatabase(){
-    console.log("Left Join Table");
+    console.log("Join Table");
     var pre_query = new Date().getTime();
     //-----this is a query function that gets rfid data from the online database and compares with reader values                
     connection.query('SELECT rfid.item_rfid,rfid.item_manufacturer,rfid.item_location, Sensor.location, Sensor.idSensor, readings.idSensor, readings.time, readings.dataReading FROM rfid INNER JOIN Sensor ON rfid.item_location=Sensor.location inner join readings on Sensor.location=readings.idSensor',function(err,rows){
@@ -155,6 +158,7 @@ function searchManufacturerDatabase(){
         else{
             var post_query = new Date().getTime();
             var duration = (post_query-pre_query)/1000;
+            console.log('------------------------------');
             console.log("database connection taken: "+duration);
             console.log('Data receieved from database'); //display message that data has been acquired from the database
             console.log('------------------------------');
