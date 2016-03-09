@@ -46,7 +46,10 @@
             socket.on('client response',function(data){
             });
             
-            socket.removeListener('client response',getItem());
+            socket.on('get item',function (data) {
+                console.log("emitting client response");
+                socket.emit('client response',rowID);
+            });
 
             
             function subscribeToTopic(){
@@ -67,9 +70,12 @@
             function getItem(){
                 $('input[type=button]').click(function(){
                     var rowID = $(this).closest('tr').attr('id');
-                    socket.emit('client response',rowID);
+                    console.log("emitting get item");
+                    socket.emit('get item');
                 });
             }
+            
+            
     
         </script>
     </head>
