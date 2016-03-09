@@ -93,7 +93,9 @@ io.sockets.on('connection',function(socket){
             var split = topic.split('/');
             manufacturer = split[1];
         }
-        io.emit('data_change',{'topic':String(topic), 'payload':data});
+        io.emit('data change', manufacturer);
+        //searchManufacturerDatabase();
+        //message="";
     });
     
     socket.on('mqtt',function(data){});
