@@ -68,6 +68,7 @@ var server = mqtt.connect('mqtt://rfidproject.hjcelindro.co.uk:1883');
 //--------------------------------------------------
 
 io.sockets.on('connection',function(socket){
+    io.emit('data change',topic);
     server.subscribe('response/manufacturer');
     console.log("subscribed to server'");
     
@@ -95,7 +96,6 @@ io.sockets.on('connection',function(socket){
             var split = topic.split('/');
             manufacturer = split[1];
         }
-        io.emit('data change',topic);
         searchManufacturerDatabase();
         //message="";
     });
