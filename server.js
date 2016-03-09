@@ -70,7 +70,7 @@ io.sockets.on('connection',function(socket){
     server.subscribe('response/manufacturer');
     console.log("subscribed to server'");
     
-    console.log('a user connected'+socket.id);
+    
     console.log('------------------------------');
 
     
@@ -80,6 +80,7 @@ io.sockets.on('connection',function(socket){
     var addedClient = false;
     
     socket.on('subscribe',function(data){
+        console.log('a user connected'+socket.id);
         if(data.topic=='manufacturer/All'){
             client.subscribe('manufacturer/');
             console.log('------------------------------');
