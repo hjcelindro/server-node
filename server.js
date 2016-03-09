@@ -111,11 +111,16 @@ io.sockets.on('connection',function(socket){
         //console.log("Time from mqtt to client: "+mqtt_time);
     });
     
+    //socket.on('client response',function(data){
+    //    client_res=data;
+    //    client.publish('response/manufacturer',client_res);
+    //});
+});
+
+io.sockets.on('response',function(socket){
     socket.on('client response',function(data){
         client_res=data;
         client.publish('response/manufacturer',client_res);
-        //io.emit('data_change',{'topic':String(topic), 'payload':data});
-        //searchManufacturerDatabase();
     });
 });
  
