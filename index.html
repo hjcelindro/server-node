@@ -71,10 +71,9 @@
             //}
             */
             function getResponse(){
-                var $row = $(this).closest("tr"),        // Finds the closest row <tr> 
-                $tds = $row.find("td:nth-child(2)").text(); // Finds the 2nd <td> element
+                var $row = $(this).closest("tr").find('.collect').text(),        // Finds the closest row <tr> 
                 
-                window.alert($tds);
+                window.alert($row);
             }
                 
     
