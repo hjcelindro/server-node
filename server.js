@@ -116,7 +116,7 @@ io.sockets.on('connection',function(socket){
     
     socket.on('client response',function(data){
         client_res=data;
-        var response = client_res+" "+socket.socket.sessionid;
+        var response = client_res+" "+socket.id;
         client.publish('response/manufacturer',response);
     });
 });
