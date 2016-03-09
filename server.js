@@ -67,7 +67,6 @@ var server = mqtt.connect('mqtt://rfidproject.hjcelindro.co.uk:1883');
 //--------------------------------------------------
 
 io.sockets.on('connection',function(socket){
-    socket.removeAllListeners();
     server.subscribe('response/manufacturer');
     console.log("subscribed to server'");
     
@@ -116,6 +115,7 @@ io.sockets.on('connection',function(socket){
     });
     
     socket.on('client response',function(data){
+        socket.removeAllListeners();
         client_res=data;
         client.publish('response/manufacturer',client_res);
     });
