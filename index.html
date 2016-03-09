@@ -63,6 +63,7 @@
             }
             
             function sendResponse(){
+                socket.removeListener();
                 console.log("emitting get item");
                 socket.emit('client response',rowID);
             }
@@ -72,7 +73,6 @@
                     rowID = $(this).closest('tr').attr('id');
                     confirm("Press a button!");
                     sendResponse();
-                    socket.removeListener();
                 });
             }
             
