@@ -44,7 +44,7 @@
             });
             
             socket.on('client response',function(data){
-                console.log("client response");
+                socket.removeListener();
             });
             
             function subscribeToTopic(){
@@ -67,7 +67,6 @@
                     var rowID = $(this).closest('tr').attr('id');
                     socket.emit('client response',rowID);
                 });
-                socket.removeAllListeners();
             }
     
         </script>
