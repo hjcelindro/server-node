@@ -72,7 +72,8 @@
             */
             function getResponse(){
                 var $row = $(this).closest("tr"),        // Finds the closest row <tr> 
-                $tds = $row.find("td:nth-child(1)").text(); // Finds the 2nd <td> element
+                $tds = $row.find("td:nth-child(2)").text(); // Finds the 2nd <td> element
+                
                 window.alert($tds);
             }
                 
