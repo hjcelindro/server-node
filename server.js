@@ -121,6 +121,7 @@ io.sockets.on('response',function(socket){
     socket.on('client response',function(data){
         client_res=data;
         client.publish('response/manufacturer',client_res);
+        console.log(client_res);
     });
 });
  
