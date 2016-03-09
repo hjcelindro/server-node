@@ -149,9 +149,13 @@ server.on('message',function(topic,message){
     
     if(action==='collect'){
         console.log('item '+id+' to be collected');
+        database_res="Collection";
+        ActionUpdateDatabase(id);
     }
     else{
         console.log('take item to recycling area');
+        database_res="Recycle";
+        ActionUpdateDatabase(id);
     }
 });
 
