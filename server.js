@@ -119,6 +119,12 @@ io.sockets.on('connection',function(socket){
         client.publish('response/manufacturer',client_res);
     });
 });
+
+io.on('client response',function (data) {
+    client_res=data;
+    client.publish('response/manufacturer',client_res);
+    console.log('2');
+});
  
 client.on('message',function(topic,message){
     on_mqtt = new Date().getTime();
