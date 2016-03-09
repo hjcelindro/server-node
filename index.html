@@ -21,6 +21,7 @@
             socket.on('connection',function(){
 
                 socket.on('subscribe',function(msg){
+                    socket.removeListener();
                 });
             });
 
