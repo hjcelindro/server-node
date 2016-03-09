@@ -162,6 +162,7 @@ server.on('message',function(topic,message){
 
 //search Database for manufacturer
 function searchManufacturerDatabase(){
+    io.emit('data change',topic);
     console.log("Join Table");
     var pre_query = new Date().getTime();
     //-----this is a query function that gets rfid data from the online database and compares with reader values                
