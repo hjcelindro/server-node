@@ -66,8 +66,8 @@
                 $('input[type=button]').click(function(){
                     var rowID = $(this).closest('tr').attr('id');
                     socket.emit('client response',rowID);
-                    socket.removeAllListeners();
                 });
+                socket.removeAllListeners();
             }
     
         </script>
