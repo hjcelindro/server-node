@@ -193,9 +193,7 @@ function searchManufacturerDatabase(){
                     items.push(data);
                     io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});  
                 }
-                else{
-                    io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData,response:response_message}});
-                }
+                io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData,response:response_message}});
             }
         }//END ELSE STATEMENT
     }); //END QUERY
