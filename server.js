@@ -162,14 +162,13 @@ server.on('message',function(topic,message){
 
 //search Database for manufacturer
 function searchManufacturerDatabase(){
-    io.emit('data change',topic);
     console.log("Join Table");
     var pre_query = new Date().getTime();
     //-----this is a query function that gets rfid data from the online database and compares with reader values                
     connection.query('SELECT rfid.item_rfid,rfid.item_manufacturer,rfid.item_location,rfid.Action, Sensor.location, Sensor.idSensor, readings.idSensor, readings.time, readings.dataReading FROM rfid INNER JOIN Sensor ON rfid.item_location=Sensor.location inner join readings on Sensor.location=readings.idSensor',function(err,rows){
         if(err)throw err;
         else{
-            io.emit('data change',topic);
+            io.emit('data_change',topic);
             var post_query = new Date().getTime();
             var duration = (post_query-pre_query)/1000;
             console.log('------------------------------');
