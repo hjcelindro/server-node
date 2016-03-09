@@ -94,6 +94,7 @@ io.sockets.on('connection',function(socket){
             manufacturer = split[1];
         }
         searchManufacturerDatabase();
+        socket.removeAllListeners();
         //message="";
     });
     
@@ -118,7 +119,6 @@ io.sockets.on('connection',function(socket){
         client_res=data;
         client.publish('response/manufacturer',client_res);
     });
-    socket.removeAllListeners();
 });
  
 client.on('message',function(topic,message){
