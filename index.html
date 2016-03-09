@@ -71,8 +71,8 @@
             //}
             */
             function getResponse(data){
-                //var row = $(this).closest('tr').attr('id');
-                window.alert(data);
+                //window.alert(data);
+                confirm("Collect item with RFID: "+data);
                 socket.emit('client response',data);
             }
                 
