@@ -160,7 +160,7 @@ function searchManufacturerDatabase(){
     console.log("Join Table");
     var pre_query = new Date().getTime();
     //-----this is a query function that gets rfid data from the online database and compares with reader values                
-    connection.query('SELECT rfid.item_rfid,rfid.item_manufacturer,rfid.item_location,rfid.Action Sensor.location, Sensor.idSensor, readings.idSensor, readings.time, readings.dataReading FROM rfid INNER JOIN Sensor ON rfid.item_location=Sensor.location inner join readings on Sensor.location=readings.idSensor',function(err,rows){
+    connection.query('SELECT rfid.item_rfid,rfid.item_manufacturer,rfid.item_location,rfid.Action, Sensor.location, Sensor.idSensor, readings.idSensor, readings.time, readings.dataReading FROM rfid INNER JOIN Sensor ON rfid.item_location=Sensor.location inner join readings on Sensor.location=readings.idSensor',function(err,rows){
         if(err)throw err;
         else{
             var post_query = new Date().getTime();
@@ -191,7 +191,7 @@ function searchManufacturerDatabase(){
 
 //search Database for manufacturer
 function ActionUpdateDatabase(rfid){
-    console.log("update ae set Action="+"'"+database_res+"'"+" where item_rfid="+"'"+rfid+"'");
+    console.log("update rfid set Action="+"'"+database_res+"'"+" where item_rfid="+"'"+rfid+"'");
     var pre_query = new Date().getTime();
     //-----this is a query function that gets rfid data from the online database and compares with reader values   
     connection.query("update ae set Action="+"'"+database_res+"'"+" where item_rfid="+"'"+rfid+"'",function(err,rows){
