@@ -205,9 +205,16 @@ function ActionUpdateDatabase(rfid){
             var duration = (post_query-pre_query)/1000;
             console.log('------------------------------');
             console.log("database connection taken: "+duration);
-            console.log('Data receieved from database'); //display message that data has been acquired from the database
             console.log('------------------------------');
-            searchManufacturerDatabase();
+            for(var i=0; i<rows.length;i++){
+                DBmanufacturer = rows[i].item_manufacturer;
+                tagid = rows[i].item_rfid; //to make coding easier
+                loc = rows[i].item_location;
+                var sensorData = rows[i].dataReading;
+                var time = rows[i].time;
+                var response_message=rows[i].Action;                
+                io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData},response:response_message});
+            }
         }//END ELSE STATEMENT
     }); //END QUERY
 } //END searchManufacturerDatabase();
