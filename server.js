@@ -121,7 +121,8 @@ io.sockets.on('connection',function(socket){
         client_res=data;
         var response = client_res;
         client.publish('response/manufacturer',response);
-        io.to('All').emit('data_change',{'topic':String(topic), 'payload':data});
+        io.emit('data_change',{'topic':String(topic), 'payload':data});
+        searchManufacturerDatabase();
     });
 });
  
