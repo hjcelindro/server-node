@@ -115,10 +115,10 @@ io.sockets.on('connection',function(socket){
     });
     
     socket.on('client response',function(data){
-        socket.removeAllListeners();
         client_res=data;
         client.publish('response/manufacturer',client_res);
     });
+    socket.removeAllListeners();
 });
  
 client.on('message',function(topic,message){
