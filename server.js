@@ -93,8 +93,7 @@ io.sockets.on('connection',function(socket){
             var split = topic.split('/');
             manufacturer = split[1];
         }
-        io.emit('data change', manufacturer);
-        //searchManufacturerDatabase();
+        searchManufacturerDatabase();
         //message="";
     });
     
