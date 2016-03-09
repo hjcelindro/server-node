@@ -87,6 +87,7 @@ io.sockets.on('connection',function(socket){
             console.log('------------------------------');
             console.log('Subscribing to: manufacturer/');
             manfacturer="All";
+            io.emit('data_change',{'topic':String(topic), 'payload':data});
         }
         else{
             client.subscribe(data.topic);
