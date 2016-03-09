@@ -144,6 +144,7 @@ server.on('message',function(topic,message){
     var split = themessage.split('/');
     var id = split[1];
     var action = split[2];
+    console.log(action);
     
     if(action==='collect'){
         console.log('item '+id+' to be collected');
