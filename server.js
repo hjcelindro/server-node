@@ -145,6 +145,7 @@ server.on('message',function(topic,message){
     var id = split[0];
     var action = split[1];
     
+    
     if(action==='collect'){
         console.log('item '+id+' to be collected');
     }
@@ -158,7 +159,7 @@ function searchManufacturerDatabase(){
     console.log("Join Table");
     var pre_query = new Date().getTime();
     //-----this is a query function that gets rfid data from the online database and compares with reader values                
-    connection.query('SELECT rfid.item_rfid,rfid.item_manufacturer,rfid.item_location, Sensor.location, Sensor.idSensor, readings.idSensor, readings.time, readings.dataReading FROM rfid INNER JOIN Sensor ON rfid.item_location=Sensor.location inner join readings on Sensor.location=readings.idSensor',function(err,rows){
+    connection.query('SELECT rfid.item_rfid,rfid.item_manufacturer,rfid.item_location,rfid.Action Sensor.location, Sensor.idSensor, readings.idSensor, readings.time, readings.dataReading FROM rfid INNER JOIN Sensor ON rfid.item_location=Sensor.location inner join readings on Sensor.location=readings.idSensor',function(err,rows){
         if(err)throw err;
         else{
             var post_query = new Date().getTime();
@@ -174,7 +175,7 @@ function searchManufacturerDatabase(){
                 loc = rows[i].item_location;
                 var sensorData = rows[i].dataReading;
                 var time = rows[i].time;
-                var response_message=DBmanufacturer+" will collect item";                
+                var response_message=rows[i].Action;                
                 io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData},response:response_message});
                 
                 if(DBmanufacturer===manufacturer){
