@@ -62,11 +62,15 @@
                 $('div').show('table');
             }
             
+            function sendResponse(){
+                console.log("emitting get item");
+                socket.emit('client response',rowID);
+            }
+            
             function getItem(){
                 $('input[type=button]').click(function(){
-                    var rowID = $(this).closest('tr').attr('id');
-                    console.log("emitting get item");
-                    socket.emit('client response',rowID);
+                    rowID = $(this).closest('tr').attr('id');
+                    sendResponse();
                 });
             }
             
