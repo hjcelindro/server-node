@@ -44,12 +44,7 @@
             });
             
             socket.on('client response',function(data){
-            });
-            
-            socket.on('get item',function (data) {
-                console.log("emitting client response");
-                socket.emit('client response',rowID);
-            });
+            });socket.emit('client response',rowID);
 
             
             function subscribeToTopic(){
@@ -71,7 +66,7 @@
                 $('input[type=button]').click(function(){
                     var rowID = $(this).closest('tr').attr('id');
                     console.log("emitting get item");
-                    socket.emit('get item');
+                    socket.emit('client response',rowID);
                 });
             }
             
