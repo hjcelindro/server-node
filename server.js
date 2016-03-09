@@ -187,7 +187,7 @@ function searchManufacturerDatabase(){
                 console.log(tagid+response_message);
                 io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData,response:response_message}});
                 if(DBmanufacturer===manufacturer){
-                    data = {id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData};
+                    data = {id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData,response:response_message};
                     items.push(data);
                     io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});  
                 }
