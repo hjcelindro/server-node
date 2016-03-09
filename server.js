@@ -140,7 +140,8 @@ client.on('message',function(topic,message){
 
 server.on('message',function(topic,message){
     console.log("client responded with: "+ message);
-    var split = message.split('/');
+    var themessage = String(message);
+    var split = themessage.split('/');
     var id = split[1];
     var action = split[2];
     
