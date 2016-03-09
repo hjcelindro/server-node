@@ -43,6 +43,10 @@
                 $('#usersConnected').html('Users connected: ' + data)
             });
             
+            socket.on('client response',function(data){
+                console.log("client response");
+            });
+            
             function subscribeToTopic(){
                 var textbox = document.getElementById("textbox");
                 var output = document.getElementById("output");
