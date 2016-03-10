@@ -21,6 +21,7 @@ var tagid;
 
 var client_res;
 var database_res;
+var cli_start;
 
 var mysql = require('mysql');
 /*var connection = mysql.createConnection({
@@ -141,7 +142,7 @@ client.on('message',function(topic,message){
 });
 
 server.on('message',function(topic,message){
-    var cli_start = new Date().getTime();
+    cli_start = new Date().getTime();
     console.log("client responded with: "+ message);
     var themessage = String(message);
     var split = themessage.split('/');
