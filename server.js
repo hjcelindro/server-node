@@ -152,7 +152,7 @@ server.on('message',function(topic,message){
     }
     else{
         //console.log('take item to recycling area');
-        database_res="Recycle";
+        database_res="Rejected";
         
     }
     ActionUpdateDatabase(id);
