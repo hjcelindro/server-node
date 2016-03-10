@@ -113,7 +113,7 @@ io.sockets.on('connection',function(socket){
     });
     socket.on('time taken',function(data){
         var mqtt_time = (data - on_mqtt)/1000;
-        //console.log("Time from mqtt to client: "+mqtt_time);
+        console.log("Time from mqtt to client: "+mqtt_time);
     });
     
     socket.on('client response',function(data){
@@ -148,11 +148,11 @@ server.on('message',function(topic,message){
     
     
     if(action==='collect'){
-        console.log('item '+id+' to be collected');
+        //console.log('item '+id+' to be collected');
         database_res="Collection";
     }
     else{
-        console.log('take item to recycling area');
+        //console.log('take item to recycling area');
         database_res="Recycle";
         
     }
@@ -196,7 +196,7 @@ function searchManufacturerDatabase(){
     }); //END QUERY
 } //END searchManufacturerDatabase();
 
-//search Database for manufacturer
+//search Database for action update
 function ActionUpdateDatabase(rfid){
     console.log("update rfid set Action="+"'"+database_res+"'"+" where item_rfid="+"'"+rfid+"'");
     var pre_query = new Date().getTime();
