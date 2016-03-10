@@ -113,6 +113,7 @@ io.sockets.on('connection',function(socket){
     });
     socket.on('time taken',function(data){
         var mqtt_time = (data - on_mqtt)/1000;
+        console.log(data);
         console.log("Time from mqtt to client: "+mqtt_time);
     });
     
@@ -126,7 +127,6 @@ io.sockets.on('connection',function(socket){
  
 client.on('message',function(topic,message){
     on_mqtt = new Date().getTime();
-    console.log(on_mqtt);
     console.log("Client.on "+String(message)+ " "+String(topic));
     var split = topic.split('/');
     if(topic=='manufacturer/'){
@@ -137,7 +137,6 @@ client.on('message',function(topic,message){
     }
     if(mqtt_manu==manufacturer||mqtt_manu=='All'){
         searchManufacturerDatabase();
-        //io.emit('data_change',{'topic':String(topic), 'payload':data});
     }
 });
 
