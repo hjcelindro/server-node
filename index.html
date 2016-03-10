@@ -28,7 +28,7 @@
 
             socket.on('mqtt',function(msg){
                 var id = msg.payload.id;
-                $('table').append('<tr id="'+id+'" class="rowID" ><td>'+id+'</td><br><td>'+String(msg.payload.location)+'</td><br><td>'+String(msg.payload.manufacturer)+'</td><br><td>'+String(msg.payload.message)+'</td><br><td>'+String(msg.payload.response)+'</td><br><td align="center"><input value="collect" type="button" class="collect" onclick=getResponse($(this).closest("tr").attr("id")+"/"+this.value) /><input value="ignore" type="button" class="ignore" onclick=getResponse($(this).closest("tr").attr("id")+"/"+this.value) /</td></tr>');
+                $('table').append('<tr id="'+id+'" class="rowID" ><td>'+id+'</td><br><td>'+String(msg.payload.location)+'</td><br><td>'+String(msg.payload.manufacturer)+'</td><br><td>'+String(msg.payload.message)+'</td><br><td>'+String(msg.payload.response)+'</td><br><td align="center"><input value="Collect" type="button" class="collect" onclick=getResponse($(this).closest("tr").attr("id")+"/"+this.value) /><input value="Reject" type="button" class="ignore" onclick=getResponse($(this).closest("tr").attr("id")+"/"+this.value) /</td></tr>');
                 socket.emit('time taken',new Date().getTime());
             });
             
@@ -46,7 +46,9 @@
             });
             
             socket.on('client response',function(data){
-            });socket.emit('client response',rowID);
+            });
+            //socket.emit('client response',rowID);
+            
 
             
             function subscribeToTopic(){
@@ -64,16 +66,7 @@
                 $('div').show('table');
             }
             
-/*            //function getItem(clickedID){
-                $('input[type=button]').click(function(){
-                    rowID = $(this).closest('tr').attr('id');
-                    window.alert("ID:"+ rowID);
-                    socket.emit('client response',rowID);
-                });
-            //}
-            */
             function getResponse(data){
-                //window.alert(data);
                 confirm("Item with RFID: "+data);
                 socket.emit('client response',data);
             }
