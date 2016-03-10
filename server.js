@@ -114,7 +114,7 @@ io.sockets.on('connection',function(socket){
     socket.on('time taken',function(data){
         var mqtt_time = (data - on_mqtt)/1000;
         console.log("client: "+data);
-        console.log("on mqtt: "+mqtt_time);
+        console.log("on mqtt: "+on_mqtt);
         console.log("Time from mqtt to client: "+mqtt_time);
     });
     
