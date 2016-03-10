@@ -146,7 +146,7 @@ server.on('message',function(topic,message){
     var action = split[1];
     
     
-    if(action==='collect'){
+    if(action==='Collect'){
         //console.log('item '+id+' to be collected');
         database_res="Collection";
     }
