@@ -112,7 +112,7 @@ io.sockets.on('connection',function(socket){
         console.log('user disconnected');
     });
     socket.on('time taken',function(data){
-        var mqtt_time = (data - on_mqtt)/1000;
+        var mqtt_time = (on_mqtt-data)/1000;
         console.log("client: "+data);
         console.log("on mqtt: "+on_mqtt);
         console.log("Time from mqtt to client: "+mqtt_time);
