@@ -113,7 +113,7 @@ io.sockets.on('connection',function(socket){
         console.log('user disconnected');
     });
     socket.on('time taken',function(data){
-        var mqtt_time = (on_mqtt-data)/1000;
+        var mqtt_time = (on_mqtt-data);
         console.log("time for mqtt to client: "+mqtt_time);
     });
     
@@ -126,7 +126,7 @@ io.sockets.on('connection',function(socket){
 });
  
 client.on('message',function(topic,message){
-    on_mqtt = new Date().getTime();
+    on_mqtt = new Date();
     console.log("Client.on "+String(message)+ " "+String(topic));
     var split = topic.split('/');
     if(topic=='manufacturer/'){
