@@ -135,7 +135,8 @@ client.on('message',function(topic,message){
         mqtt_manu = split[1];
     }
     if(mqtt_manu==manufacturer||mqtt_manu=='All'){
-        io.emit('data_change',{'topic':String(topic), 'payload':data});
+        searchManufacturerDatabase();
+        //io.emit('data_change',{'topic':String(topic), 'payload':data});
     }
 });
 
