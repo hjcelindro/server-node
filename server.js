@@ -13,7 +13,6 @@ var all =[];
 var data;
 var topic;
 var on_mqtt;
-var on_client;
 var mqtt_manu;
 var message;
 
@@ -113,7 +112,8 @@ io.sockets.on('connection',function(socket){
         console.log('user disconnected');
     });
     socket.on('time taken',function(data){
-        var mqtt_time = (on_mqtt-data);
+        var on_client = new Date().getTime();
+        var mqtt_time = (on_mqtt-on_client);
         console.log("time for mqtt to client: "+mqtt_time);
     });
     
