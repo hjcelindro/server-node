@@ -197,9 +197,6 @@ function searchManufacturerDatabase(){
             }
         }//END ELSE STATEMENT
     }); //END QUERY
-    var ser_end = new Date().getTime();
-    var cli_ser = (ser_end-cli_start)/1000;
-    console.log("Time from client to server: "+cli_ser);
 } //END searchManufacturerDatabase();
 
 //search Database for action update
@@ -216,6 +213,9 @@ function ActionUpdateDatabase(rfid){
             console.log("database connection taken: "+duration);
             console.log('------------------------------');
             searchManufacturerDatabase();
+            var ser_end = new Date().getTime();
+            var cli_ser = (ser_end-cli_start)/1000;
+            console.log("Time from client to server: "+cli_ser);
         }//END ELSE STATEMENT
     }); //END QUERY
 } //END searchManufacturerDatabase();
