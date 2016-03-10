@@ -114,7 +114,7 @@ io.sockets.on('connection',function(socket){
     socket.on('time taken',function(data){
         var on_client = new Date().getTime();
         var mqtt_time = (on_client-on_mqtt)/1000;
-        console.log("time for mqtt to client: "+mqtt_time);
+        //console.log("time for mqtt to client: "+mqtt_time);
     });
     
     socket.on('client response',function(data){
@@ -189,7 +189,7 @@ function searchManufacturerDatabase(){
                 var sensorData = rows[i].dataReading;
                 var time = rows[i].time;
                 response_message=rows[i].Action;  
-                console.log(tagid+response_message);
+                //console.log(tagid+response_message);
                 io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData,response:response_message}});
                 if(DBmanufacturer===manufacturer){
                     data = {id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData,response:response_message};
