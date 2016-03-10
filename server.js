@@ -113,7 +113,8 @@ io.sockets.on('connection',function(socket){
         console.log('user disconnected');
     });
     socket.on('time taken',function(data){
-        on_client=data;
+        var mqtt_time = (on_mqtt-data)/1000;
+        console.log("time for mqtt to client: "+mqtt_time);
     });
     
     socket.on('client response',function(data){
@@ -161,8 +162,6 @@ server.on('message',function(topic,message){
 
 //search Database for manufacturer
 function searchManufacturerDatabase(){
-    var mqtt_time = (on_mqtt-on_client)/1000;
-    console.log("time for mqtt to client: "+mqtt_time);
     console.log("Join Table");
     var pre_query = new Date().getTime();
     //-----this is a query function that gets rfid data from the online database and compares with reader values                
