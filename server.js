@@ -126,6 +126,7 @@ io.sockets.on('connection',function(socket){
  
 client.on('message',function(topic,message){
     on_mqtt = new Date().getTime();
+    console.log(on_mqtt);
     console.log("Client.on "+String(message)+ " "+String(topic));
     var split = topic.split('/');
     if(topic=='manufacturer/'){
