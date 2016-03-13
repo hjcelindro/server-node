@@ -184,7 +184,7 @@ function searchManufacturerDatabase(){
                 tagid = rows[i].item_rfid; //to make coding easier
                 loc = rows[i].item_location;
                 var sensorData = rows[i].dataReading;
-                var rawtime = rows[i].time;
+                var rawtime = String(rows[i].time);
                 var response_message=rows[i].Action;  
                 //console.log(tagid+response_message);
                 
