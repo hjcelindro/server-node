@@ -184,12 +184,12 @@ function searchManufacturerDatabase(){
                 tagid = rows[i].item_rfid; //to make coding easier
                 loc = rows[i].item_location;
                 var sensorData = rows[i].dataReading;
-                var rawtime = String(rows[i].time);
+                var time = String(rows[i].time);
                 var response_message=rows[i].Action;  
                 //console.log(tagid+response_message);
                 
                 //split time
-                var time = rawtime.split('T');
+                //var time = rawtime.split('T');
                 
                 io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData,response:response_message}});
                 if(DBmanufacturer===manufacturer){
