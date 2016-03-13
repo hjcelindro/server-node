@@ -28,7 +28,7 @@
 
             socket.on('mqtt',function(msg){
                 var id = msg.payload.id;
-                $('table').append('<tr id="'+id+'" class="rowID" ><td>'+id+'</td><br><td>'+String(msg.payload.location)+'</td><br><td>'+String(msg.payload.manufacturer)+'</td><br><td>'+String(msg.payload.message)+'</td><br><td>'+String(msg.payload.response)+'</td><br><td align="center"><input value="Collect" type="button" class="collect" onclick=getResponse($(this).closest("tr").attr("id")+"/"+this.value) /><input value="Reject" type="button" class="ignore" onclick=getResponse($(this).closest("tr").attr("id")+"/"+this.value) /</td></tr>');
+                $('table').append('<tr id="'+id+'" class="rowID" ><td>'+id+'</td><br><td>'+String(msg.payload.location)+'</td><br><td>'+String(msg.payload.manufacturer)+'</td><br><td>'+String(msg.payload.message)+'</td><br><td>'+String(msg.payload.response)+'</td><br><td>'+String(msg.payload.time)+'</td><br><td align="center"><input value="Collect" type="button" class="collect" onclick=getResponse($(this).closest("tr").attr("id")+"/"+this.value) /><input value="Reject" type="button" class="ignore" onclick=getResponse($(this).closest("tr").attr("id")+"/"+this.value) /</td></tr>');
                 socket.emit('time taken',new Date());
             });
             
@@ -96,6 +96,7 @@
                     <th>Location</th>
                     <th>Manufacturer</th>
                     <th>Other Information</th>
+                    <th>Time</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
