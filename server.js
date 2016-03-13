@@ -172,7 +172,6 @@ function searchManufacturerDatabase(){
         if(err)throw err;
         else{
             io.emit('data_change',topic);
-            var response_message="N/A";
             var post_query = new Date().getTime();
             var duration = (post_query-pre_query)/1000;
             console.log('------------------------------');
@@ -186,11 +185,12 @@ function searchManufacturerDatabase(){
                 loc = rows[i].item_location;
                 var sensorData = rows[i].dataReading;
                 var time = rows[i].time;
-                response_message=rows[i].Action;  
+                var response_message=rows[i].Action;  
                 //console.log(tagid+response_message);
+                
                 io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData,response:response_message}});
                 if(DBmanufacturer===manufacturer){
-                    data = {id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData,response:response_message};
+                    data = {id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData,response:response_message,time:time};
                     items.push(data);
                     io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});  
                 }
