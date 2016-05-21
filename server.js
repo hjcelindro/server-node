@@ -196,6 +196,10 @@ function searchManufacturerDatabase(){
                     items.push(data);
                     io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});  
                 }
+                for(var i=0;i<clients.length;i++){
+                    var manuclient = String(clients[i]);
+                    io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data}); 
+                }
             }
         }//END ELSE STATEMENT
     }); //END QUERY
