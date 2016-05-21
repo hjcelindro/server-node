@@ -104,9 +104,6 @@ io.sockets.on('connection',function(socket){
     socket.on('register',function(name){
         socket.emit('update_clients',name);
         clients.push(name);
-        for (var i=0; i<client.length;i++){
-            console.log("name"+client[i]);
-        }
         socket.join(name); //join room for the manufacturer
     });
     socket.on('disconnect', function(){
@@ -167,6 +164,9 @@ server.on('message',function(topic,message){
 
 //search Database for manufacturer
 function searchManufacturerDatabase(){
+    for (var i=0; i<client.length;i++){
+        console.log("name"+client[i]);
+    }
     console.log("Join Table");
     var pre_query = new Date().getTime();
     //-----this is a query function that gets rfid data from the online database and compares with reader values                
