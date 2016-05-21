@@ -194,14 +194,7 @@ function searchManufacturerDatabase(){
                 if(DBmanufacturer===manufacturer){
                     data = {id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData,response:response_message,time:time};
                     //items.push(data);
-                    //io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});  
-                for(var x=0;x<clients.length;x++){
-                    var manuclient = String(clients[x]);
-                    console.log("manuclient "+manuclient);
-                    if(manuclient===DBmanufacturer){
-                        io.to(manuclient).emit('mqtt',{'topic':String(topic), 'payload':data}); 
-                    }
-                }
+                    io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});  
                 }
             }
         }//END ELSE STATEMENT
