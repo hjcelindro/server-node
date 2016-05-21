@@ -14,8 +14,17 @@
 		
 		<form class="form">
 			<input type="text" placeholder="Company Name">
-			<button type="button" id="login-button" onclick="location.href='/index.html'">Login</button>
+			<button type="button" id="login-button" onclick="getName()">Login</button>
 		</form>
+        
+        <script>
+            function getName(){
+                location.href='/index.html';
+                var textbox = document.getElementById("text");
+                var name = text.value;
+                localStorage.setItem('manufacturer',name);
+            }
+        </script>
 	</div>
 </div>    
   </body>
