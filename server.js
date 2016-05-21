@@ -51,10 +51,6 @@ connection.connect(function(err){
 //----------------------------------
 
 app.get('/', function(req, res){
-    res.sendFile(__dirname + '/login.html');
-});
-
-app.get('/index.html', function(req, res){
     res.sendFile(__dirname + '/index.html');
 });
 app.get('/All', function(req, res){
