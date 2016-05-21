@@ -39,7 +39,7 @@
             
             function subscribeToTopic(){
                 var textbox = document.getElementById("text");
-                var name = text.value;
+                var name = textbox.value;
                 var manufacturer = name.substr(0,1).toUpperCase() + name.substr(1);
                 
                 var subscribe = 'manufacturer/'+manufacturer;
