@@ -105,7 +105,7 @@ io.sockets.on('connection',function(socket){
     socket.on('register',function(name){
         socket.emit('update_clients',name);
         clients.push(name);
-        updateClients();
+        updateClientList();
         console.log("raw"+clients);
         console.log("unique"+uniqueClients);
         socket.join(name); //join room for the manufacturer
