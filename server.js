@@ -54,9 +54,9 @@ app.get('/', function(req, res){
     res.sendFile(__dirname + '/login.html');
 });
 
-//app.get('/', function(req, res){
-//    res.sendFile(__dirname + '/index.html');
-//});
+app.get('/', function(req, res){
+    res.sendFile(__dirname + '/index.html');
+});
 app.get('/All', function(req, res){
     res.sendFile(__dirname + '/indexAll.html');
 });
