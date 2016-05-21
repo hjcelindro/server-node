@@ -107,7 +107,7 @@ io.sockets.on('connection',function(socket){
         socket.emit('update_clients',name);
         clients.push(name);
         console.log("raw"+clients);
-        console.log("String"+JSON.strinify(clients));
+        console.log("String"+JSON.stringify(clients));
         socket.join(name); //join room for the manufacturer
     });
     socket.on('disconnect', function(){
