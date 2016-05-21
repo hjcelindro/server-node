@@ -76,9 +76,7 @@ io.sockets.on('connection',function(socket){
     console.log('-----------------sockets-------------');
     socketConnections++;
     io.sockets.emit('users connected',socketConnections);
-    
-    var addedClient = false;
-    
+        
     socket.on('subscribe',function(data){
         console.log('a user connected'+socket.id);
         if(data.topic=='manufacturer/All'){
@@ -105,6 +103,7 @@ io.sockets.on('connection',function(socket){
     
     socket.on('register',function(name){
         socket.emit('update_clients',name);
+        console.log("new Client:"+name);
         socket.join(name); //join room for the manufacturer
     });
     socket.on('disconnect', function(){
@@ -187,9 +186,6 @@ function searchManufacturerDatabase(){
                 var time = String(rows[i].time);
                 var response_message=rows[i].Action;  
                 //console.log(tagid+response_message);
-                
-                //split time
-                //var time = rawtime.split('T');
                 
                 io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData,response:response_message}});
                 if(DBmanufacturer===manufacturer){
