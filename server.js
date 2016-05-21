@@ -193,13 +193,13 @@ function searchManufacturerDatabase(){
                 io.to('All').emit('mqtt',{'topic':'manufacturer/All', 'payload':{id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData,response:response_message}});
                 if(DBmanufacturer===manufacturer){
                     data = {id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData,response:response_message,time:time};
-                    items.push(data);
-                    io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});  
-                }
-                for(var x=0;x<clients.length;x++){
+                    //items.push(data);
+                    //io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});  
+                    for(var x=0;x<clients.length;x++){
                     var manuclient = String(clients[x]);
                     console.log("manuclient "+manuclient);
                     io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data}); 
+                }
                 }
             }
         }//END ELSE STATEMENT
