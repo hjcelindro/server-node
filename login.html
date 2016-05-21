@@ -4,6 +4,19 @@
     <meta charset="UTF-8">
     <title>Recycling Centre Login</title>
         <link rel="stylesheet" href="style.css">
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+      
+        <script>
+            var socket = io.connect('http://rfidproject.hjcelindro.co.uk:3000');
+            
+            socket.on('connection',function(){
+
+                socket.on('subscribe',function(msg){
+                    socket.removeListener();
+                });
+            });
+        </script>
   </head>
 
   <body>
@@ -19,10 +32,22 @@
         
         <script>
             function getName(){
-                location.href='/index.html';
                 var textbox = document.getElementById("text");
                 var name = text.value;
                 localStorage.setItem('manufacturer',name);
+            }
+            
+            function subscribeToTopic(){
+                var textbox = document.getElementById("text");
+                var name = text.value;
+                var manufacturer = name.substr(0,1).toUpperCase() + name.substr(1);
+                
+                var subscribe = 'manufacturer/'+manufacturer;
+                socket.emit('subscribe',{topic: subscribe});
+                socket.emit('register',manufacturer);
+                
+                location.href='/index.html';
+
             }
         </script>
 	</div>
