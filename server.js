@@ -104,7 +104,8 @@ io.sockets.on('connection',function(socket){
     socket.on('register',function(name){
         socket.emit('update_clients',name);
         for (var i=0;i<clients.length;i++){
-            if(name===JSON.stringify(clients[i])){
+            var client=JSON.stringify(clients[i])
+            if(name===client){
                 console.log("name already exists");
             }       
             else{
