@@ -103,7 +103,7 @@ io.sockets.on('connection',function(socket){
     
     socket.on('register',function(name){
         socket.emit('update_clients',name);
-        clients.add(name);
+        clients.push(name);
         for (var i=0; i<client.length;i++){
             console.log(client[i]);
         }
