@@ -105,6 +105,9 @@ io.sockets.on('connection',function(socket){
         socket.emit('update_clients',name);
         clients.push(name);
         socket.join(name); //join room for the manufacturer
+        for (var i=0; i<client.length;i++){
+        console.log("name"+client[i]);
+    }
     });
     socket.on('disconnect', function(){
         socketConnections--;
