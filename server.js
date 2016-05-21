@@ -103,6 +103,15 @@ io.sockets.on('connection',function(socket){
     
     socket.on('register',function(name){
         socket.emit('update_clients',name);
+        for var i=0;i<clients.length;i++){
+            if(name===JSON.Stringify(clients[i])){
+                name="";
+                console.log("name already exists");
+            }       
+            else{
+               clients.push(name);
+            }
+        }
         clients.push(name);
         console.log(clients);
         socket.join(name); //join room for the manufacturer
