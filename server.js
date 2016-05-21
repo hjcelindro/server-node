@@ -8,6 +8,7 @@ var loc;
 var tagid;
 var socketConnections = [];
 var clients=[];
+var uniqueClients=[];
 var items = [];
 var all =[];
 var data;
@@ -105,9 +106,8 @@ io.sockets.on('connection',function(socket){
     socket.on('register',function(name){
         socket.emit('update_clients',name);
         clients.push(name);
-        updateClientList();
         console.log("raw"+clients);
-        console.log("unique"+uniqueClients);
+        console.log("String"+JSON.strinify(clients));
         socket.join(name); //join room for the manufacturer
     });
     socket.on('disconnect', function(){
@@ -223,9 +223,3 @@ function ActionUpdateDatabase(rfid){
     }); //END QUERY
 } //END ActionUpdateDatabase();
 
-function updateClientList(){
-    var uniqueClients = [];
-    $.each(clients, function(i, el){
-    if($.inArray(el, uniqueClients) === -1) uniqueClients.push(el);
-});
-}
