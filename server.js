@@ -51,8 +51,12 @@ connection.connect(function(err){
 //----------------------------------
 
 app.get('/', function(req, res){
-    res.sendFile(__dirname + '/index.html');
+    res.sendFile(__dirname + '/login.html');
 });
+
+//app.get('/', function(req, res){
+//    res.sendFile(__dirname + '/index.html');
+//});
 app.get('/All', function(req, res){
     res.sendFile(__dirname + '/indexAll.html');
 });
@@ -105,7 +109,6 @@ io.sockets.on('connection',function(socket){
         socket.emit('update_clients',name);
         clients.push(name);
         socket.join(name); //join room for the manufacturer
-        console.log(clients.length+clients[1]);
     });
     socket.on('disconnect', function(){
         socketConnections--;
