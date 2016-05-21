@@ -195,10 +195,10 @@ function searchManufacturerDatabase(){
                     data = {id:tagid,location:loc,manufacturer:DBmanufacturer,message:sensorData,response:response_message,time:time};
                     //items.push(data);
                     //io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data});  
-                    for(var x=0;x<clients.length;x++){
+                for(var x=0;x<clients.length;x++){
                     var manuclient = String(clients[x]);
                     console.log("manuclient "+manuclient);
-                    io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data}); 
+                    io.to(manuclient).emit('mqtt',{'topic':String(topic), 'payload':data}); 
                 }
                 }
             }
