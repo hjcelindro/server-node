@@ -26,19 +26,19 @@
 		<h1>Recycling Centre</h1>
 		
 		<form class="form">
-			<input type="text" placeholder="Company Name">
+			<input type="text" id='textbox' placeholder="Company Name">
 			<button type="button" id="login-button" onclick="subscribeToTopic">Login</button>
 		</form>
         
         <script>
             function getName(){
-                var textbox = document.getElementById("text");
+                var textbox = document.getElementById("textbox");
                 var name = text.value;
                 localStorage.setItem('manufacturer',name);
             }
             
             function subscribeToTopic(){
-                var textbox = document.getElementById("text");
+                var textbox = document.getElementById("");
                 var name = textbox.value;
                 var manufacturer = name.substr(0,1).toUpperCase() + name.substr(1);
                 
