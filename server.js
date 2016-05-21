@@ -198,6 +198,7 @@ function searchManufacturerDatabase(){
                 }
                 for(var i=0;i<clients.length;i++){
                     var manuclient = String(clients[i]);
+                    console.log("manuclient "+manuclient);
                     io.to(manufacturer).emit('mqtt',{'topic':String(topic), 'payload':data}); 
                 }
             }
