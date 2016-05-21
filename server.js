@@ -198,7 +198,9 @@ function searchManufacturerDatabase(){
                 for(var x=0;x<clients.length;x++){
                     var manuclient = String(clients[x]);
                     console.log("manuclient "+manuclient);
-                    io.to(manuclient).emit('mqtt',{'topic':String(topic), 'payload':data}); 
+                    if(manuclient===DBmanufacturer){
+                        io.to(manuclient).emit('mqtt',{'topic':String(topic), 'payload':data}); 
+                    }
                 }
                 }
             }
