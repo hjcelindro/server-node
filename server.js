@@ -66,6 +66,7 @@ http.listen(3000, function(){
 var client = mqtt.connect('mqtt://rfidproject.hjcelindro.co.uk:1883');
 var server = mqtt.connect('mqtt://rfidproject.hjcelindro.co.uk:1883');
 
+
 //--------------------------------------------------
 
 io.sockets.on('connection',function(socket){
@@ -104,7 +105,9 @@ io.sockets.on('connection',function(socket){
     socket.on('register',function(name){
         socket.emit('update_clients',name);
         clients.push(name);
-        console.log(clients);
+        updateClients();
+        console.log("raw"+clients);
+        console.log("unique"+uniqueClients);
         socket.join(name); //join room for the manufacturer
     });
     socket.on('disconnect', function(){
@@ -218,4 +221,11 @@ function ActionUpdateDatabase(rfid){
             console.log("Time from client to server: "+cli_ser);
         }//END ELSE STATEMENT
     }); //END QUERY
-} //END searchManufacturerDatabase();
+} //END ActionUpdateDatabase();
+
+function updateClientList(){
+    var uniqueClients = [];
+    $.each(clients, function(i, el){
+    if($.inArray(el, uniqueClients) === -1) uniqueClients.push(el);
+});
+}
