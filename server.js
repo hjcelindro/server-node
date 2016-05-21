@@ -103,7 +103,10 @@ io.sockets.on('connection',function(socket){
     
     socket.on('register',function(name){
         socket.emit('update_clients',name);
-        console.log("new Client:"+name);
+        clients.add(name);
+        for var i=0; i<client.length;i++){
+            console.log(client[i]);
+        });
         socket.join(name); //join room for the manufacturer
     });
     socket.on('disconnect', function(){
