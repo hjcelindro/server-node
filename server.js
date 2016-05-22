@@ -240,19 +240,19 @@ function searchDatabase(id){
                     if((DBtagid===string_id)){ //compares with the RFID scanned
                         DBdata = {number:DBid,id:DBtagid,location:DBlocation,manufacturer:DBitem_manufacturer,time:DBtime};
                         console.log(DBtagid + newManu);
-                        manufacturer = DBitem_manufacturer;
+                        //manufacturer = DBitem_manufacturer;
                         console.log("Manu: "+newManu);
                         console.log('To insert');
                         connection.query("INSERT INTO rfidtags.rfid (item_number, item_rfid, item_manufacturer,item_location) VALUES ('"+DBid+"', '"+DBtagid+"', '"+DBitem_manufacturer+"', '"+DBlocation+"')",function(err,rows){
             
-                            console.log("IM: "+DBitem_manufacturer);
+                            console.log("IM: "+newManu);
                             if(err)throw err;
                             else{
                                 var post_query = new Date().getTime();
                                 console.log('INSERTED DATA'); //display message that data has been acquired from the database
                                 var the_topic = "manufacturer/"+DBitem_manufacturer;
                                 console.log("topic: "+the_topic);
-                                updateTable(DBitem_manufacturer,the_topic);
+                                updateTable(newManu,the_topic);
                             }//END ELSE STATEMENT
                         }); //END QUERY
                     }//END IF
