@@ -198,7 +198,7 @@ function searchManufacturerDatabase(){
 //--------------Search from RFID MQTT Messge from Edison-------------------------
 function searchDatabase(id){
     var string_id = JSON.stringify(id).substr(1,10); //RFID data from arduino is an object, so to extract data, convert data to string
-    var ret;
+    var newManu;
     
     console.log("SRFID: "+string_id);
     //-----this is a query function that gets rfid data from the online database and compares with reader values
@@ -217,13 +217,13 @@ function searchDatabase(id){
 
                     if((DBtagid===string_id)){ //compares with the RFID scanned
                         console.log("Manufacturer of item "+tagid+" is "+DBitem_manufacturer+" in Location: location"); //output display on app side terminal
+                        newManu = DBitem_manufacturer;
                     }//END IF
                 } //END FOR LOOP
         }//END ELSE STATEMENT
     }); //END QUERY
     
     connection.query('SELECT * FROM cardID',function(err,rows){
-        var newManu = DBitem_manufacturer;
         if(err)throw err;
         else{
             var post_query = new Date().getTime();
