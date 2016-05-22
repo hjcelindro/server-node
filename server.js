@@ -243,14 +243,14 @@ function searchDatabase(id,topic){
                             else{
                                 var post_query = new Date().getTime();
                                 console.log('INSERTED DATA'); //display message that data has been acquired from the database
+                                console.log("topic: "+topic);
+                                updateTable(DBitem_manufacturer,topic);
                             }//END ELSE STATEMENT
                         }); //END QUERY
                     }//END IF
                 } //END FOR LOOP
         }//END ELSE STATEMENT
     }); //END QUERY
-    console.log("topic: "+topic);
-    updateTable(DBitem_manufacturer,topic);
 } //END searchDatabase();
 
 function updateTable(manufacturer,topic){
