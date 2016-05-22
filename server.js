@@ -72,7 +72,7 @@ var server = mqtt.connect('mqtt://rfidproject.hjcelindro.co.uk:1883');
 io.sockets.on('connection',function(socket){ //The connection between the client response socket to server
     console.log('-----------------MQTT-------------');
     server.subscribe('response/manufacturer');
-    server.subscribe('manufacturer/all');
+    edison.subscribe('manufacturer/all');
     console.log("subscribed to server");
     
     console.log('-----------------sockets-------------');
