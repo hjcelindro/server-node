@@ -239,9 +239,11 @@ function searchDatabase(id){
                     DBlocation = rows[i].inc_gate;
                     DBtime = rows[i].time;
                     DBitem_manufacturer = item_manufacturer;
-                    
-                    var DBdata = {id:DBtagid,location:DBlocation,manufacturer:DBitem_manufacturer,time:DBtime};
+
+                    if((DBtagid===string_id)){ //compares with the RFID scanned
+                        var DBdata = {id:DBtagid,location:DBlocation,manufacturer:DBitem_manufacturer,time:DBtime};
                         console.log("Data to add to DB: "+JSON.stringify(DBdata)); //output display on app side terminal
+                    }//END IF
                 } //END FOR LOOP
         }//END ELSE STATEMENT
     }); //END QUERY
