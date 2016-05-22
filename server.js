@@ -230,7 +230,7 @@ function searchDatabase(id){
         if(err)throw err;
         else{
             var post_query = new Date().getTime();
-            console.log('Data receieved from database'); //display message that data has been acquired from the database
+            console.log('Getting from CardID table'); //display message that data has been acquired from the database
             var duration = (post_query - pre_query)/1000;
             console.log("Connection Time: "+duration);
                 for(var i=0;i<rows.length;i++){
