@@ -239,7 +239,7 @@ function searchDatabase(id){
                     DBtagid = rows[i].cardID; //to make coding easier
                     DBlocation = rows[i].inc_gate;
                     DBtime = rows[i].time;
-                    DBitem_manufacturer = item_manufacturer;
+                    DBitem_manufacturer = DBitem_manufacturer;
 
                     if((DBtagid===string_id)){ //compares with the RFID scanned
                         var DBdata = {id:DBtagid,location:DBlocation,manufacturer:DBitem_manufacturer,time:DBtime};
