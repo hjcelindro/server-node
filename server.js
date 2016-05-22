@@ -233,6 +233,7 @@ function searchDatabase(id){
             console.log('Getting from CardID table'); //display message that data has been acquired from the database
             var duration = (post_query - pre_query)/1000;
             console.log("Connection Time: "+duration);
+            console.log("IM: "+item_manufacturer);
                 for(var i=0;i<rows.length;i++){
  
                     DBtagid = rows[i].cardID; //to make coding easier
