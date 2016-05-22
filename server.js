@@ -64,15 +64,15 @@ http.listen(3000, function(){
 
 //var client = mqtt.connect('mqtt://54.200.3.119:1883');
 var client = mqtt.connect('mqtt://rfidproject.hjcelindro.co.uk:1883');
-var server = mqtt.connect('mqtt://rfidproject.hjcelindro.co.uk:1883');
 var edison = mqtt.connect('mqtt://rfidproject.hjcelindro.co.uk:1883');
-
+var server = mqtt.connect('mqtt://rfidproject.hjcelindro.co.uk:1883');
 
 //--------------------------------------------------
 
 io.sockets.on('connection',function(socket){ //The connection between the client response socket to server
     console.log('-----------------MQTT-------------');
     server.subscribe('response/manufacturer');
+    server.subscribe('manufacturer/All');
     console.log("subscribed to server");
     
     console.log('-----------------sockets-------------');
@@ -254,7 +254,7 @@ function searchDatabase(id,topic){
 
 function updateTable(manufacturer,topic){
     var split = topic.split('/');
-    if(topic=='manufacturer/'){
+    if(topic=='manufacturer/'){     
         mqtt_manu="All";
     }
     else{
