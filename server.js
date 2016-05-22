@@ -253,13 +253,13 @@ function searchDatabase(id){
                             else{
                                 var post_query = new Date().getTime();
                                 console.log('INSERTED DATA'); //display message that data has been acquired from the database
-                                ret = DBitem_manufacturer;
         }//END ELSE STATEMENT
     }); //END QUERY
                     }//END IF
                 } //END FOR LOOP
         }//END ELSE STATEMENT
-    }); //END QUERY    
+    }); //END QUERY
+    return DBitem_manufacturer;
 } //END searchDatabase();
 
 
