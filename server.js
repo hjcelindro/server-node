@@ -129,17 +129,7 @@ client.on('message',function(topic,message){
     console.log("Client.on "+String(message)+ " "+String(topic));
     var split = topic.split('/');
     scanned_id = String(message); //new id from Edison
-    mqtt_manu=searchDatabase(scanned_id);
-    if(topic=='manufacturer/'){
-        mqtt_manu="All";
-    }
-    else{
-        //mqtt_manu = split[1];
-        console.log("test: "+mqtt_manu);
-    }
-    if(mqtt_manu==manufacturer||mqtt_manu=='All'){
-        searchManufacturerDatabase();
-    }
+    searchDatabase(scanned_id,topic);
 });//------------------END OF MQTT----------------------------------------
 
 
@@ -202,7 +192,7 @@ function searchManufacturerDatabase(){
 } //------------------------------------END searchManufacturerDatabase()-------------------------------;
 
 //--------------Search from RFID MQTT Messge from Edison-------------------------
-function searchDatabase(id){
+function searchDatabase(id,topic){
     var string_id = JSON.stringify(id).substr(1,10); //RFID data from arduino is an object, so to extract data, convert data to string
     var ret;
     
@@ -253,14 +243,28 @@ function searchDatabase(id){
                             else{
                                 var post_query = new Date().getTime();
                                 console.log('INSERTED DATA'); //display message that data has been acquired from the database
-        }//END ELSE STATEMENT
-    }); //END QUERY
+                            }//END ELSE STATEMENT
+                        }); //END QUERY
                     }//END IF
                 } //END FOR LOOP
         }//END ELSE STATEMENT
     }); //END QUERY
-    mqtt_manu=DBitem_manufacturer;
+    console.log("topic: "+topic);
+    updateTable(DBitem_manufacturer,topic);
 } //END searchDatabase();
+
+function updateTable(manufacturer,topic){
+    if(topic=='manufacturer/'){
+        mqtt_manu="All";
+    }
+    else{
+        //mqtt_manu = split[1];
+        console.log("test: "+mqtt_manu);
+    }
+    if(mqtt_manu==manufacturer||mqtt_manu=='All'){
+        searchManufacturerDatabase();
+    }
+}
 
 
 //-------------------search Database for action UPDATE-------------------
