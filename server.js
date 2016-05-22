@@ -200,7 +200,8 @@ function searchManufacturerDatabase(){
 function searchDatabase(id){
     var string_id = JSON.stringify(id).substr(1,10); //RFID data from arduino is an object, so to extract data, convert data to string
     
-    var DBtagid,
+    var DBid,
+        DBtagid,
         DBitem_manufacturer,
         DBlocation,
         DBtime;
@@ -235,19 +236,29 @@ function searchDatabase(id){
             console.log("Connection Time: "+duration);
             console.log("IM: "+DBitem_manufacturer);
                 for(var i=0;i<rows.length;i++){
- 
+                    
+                    DBid = rows[i].ID;
                     DBtagid = rows[i].cardID; //to make coding easier
                     DBlocation = rows[i].inc_gate;
                     DBtime = rows[i].time;
                     DBitem_manufacturer = DBitem_manufacturer;
 
                     if((DBtagid===string_id)){ //compares with the RFID scanned
-                        var DBdata = {id:DBtagid,location:DBlocation,manufacturer:DBitem_manufacturer,time:DBtime};
+                        var DBdata = {number:DBid,id:DBtagid,location:DBlocation,manufacturer:DBitem_manufacturer,time:DBtime};
                         console.log("Data to add to DB: "+JSON.stringify(DBdata)); //output display on app side terminal
                     }//END IF
                 } //END FOR LOOP
         }//END ELSE STATEMENT
     }); //END QUERY
+    
+        connection.query('INSERT INTO rfid ('+DBid+','+DBtagid+','+DBitem_manufacturer+','+DBtime+','+DBlocation+')',function(err,rows){
+        if(err)throw err;
+        else{
+            var post_query = new Date().getTime();
+            console.log('INSERTED DATA'); //display message that data has been acquired from the database
+        }//END ELSE STATEMENT
+    }); //END QUERY
+    
     
 } //END searchDatabase();
 
