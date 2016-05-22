@@ -72,7 +72,6 @@ var server = mqtt.connect('mqtt://rfidproject.hjcelindro.co.uk:1883');
 io.sockets.on('connection',function(socket){ //The connection between the client response socket to server
     console.log('-----------------MQTT-------------');
     server.subscribe('response/manufacturer');
-    edison.subscribe('manufacturer/all');
     console.log("subscribed to server");
     
     console.log('-----------------sockets-------------');
@@ -131,12 +130,6 @@ client.on('message',function(topic,message){
     searchDatabase(scanned_id);
 });//------------------END OF MQTT----------------------------------------
 
-edison.on('message',function(topic,message){
-    console.log("Edison Sent: "+String(message) + " " + String(topic));
-    scanned_id = String(message);
-    searchDatabase(scanned_id);
-    
-});
 
 //---------------------MQTT when client responds to server---------------------
 server.on('message',function(topic,message){
@@ -248,8 +241,9 @@ function searchDatabase(id){
                             else{
                                 var post_query = new Date().getTime();
                                 console.log('INSERTED DATA'); //display message that data has been acquired from the database
+                                
                                 console.log("topic: "+topic);
-                                updateTable(DBitem_manufacturer);
+                                updateTable(DBitem_manufacturer,topic);
                             }//END ELSE STATEMENT
                         }); //END QUERY
                     }//END IF
@@ -258,8 +252,8 @@ function searchDatabase(id){
     }); //END QUERY
 } //END searchDatabase();
 
-function updateTable(DBmanufacturer){
-/*    var split = topic.split('/');
+function updateTable(DBmanufacturer,topic){
+    var split = topic.split('/');
     if(topic=='manufacturer/'){     
         mqtt_manu="All";
     }
@@ -269,9 +263,7 @@ function updateTable(DBmanufacturer){
     }
     if(mqtt_manu==manufacturer||mqtt_manu=='All'){
         searchManufacturerDatabase();
-    }*/
-    manufacturer = DBitem_manufacturer;
-    searchManufacturerDatabase();
+    }
 }
 
 
