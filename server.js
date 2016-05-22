@@ -251,9 +251,10 @@ function searchDatabase(id){
     }); //END QUERY
     
     connection.query("INSERT INTO rfidtags.rfid (item_number, item_rfid, item_manufacturer,item_location) VALUES ('"+DBid+"', '"+DBtagid+"', '"+DBitem_manufacturer+"', '"+DBlocation+"')",function(err,rows){
-            console.log("ITEMDATA: "+DBid+' '+DBtagid+' ' +DBitem_manufacturer+' '+DBlocation);
+            
         if(err)throw err;
         else{
+            console.log("ITEMDATA: "+DBid+' '+DBtagid+' ' +DBitem_manufacturer+' '+DBlocation);
             var post_query = new Date().getTime();
             console.log('INSERTED DATA'); //display message that data has been acquired from the database
             
