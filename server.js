@@ -241,7 +241,7 @@ function searchDatabase(id){
                     DBitem_manufacturer = item_manufacturer;
                     
                     var DBdata = {id:DBtagid,location:DBlocation,manufacturer:DBitem_manufacturer,time:DBtime};
-                        console.log("Data to add to DB: "+String(DBdata)); //output display on app side terminal
+                        console.log("Data to add to DB: "+JSON.stringify(DBdata); //output display on app side terminal
                 } //END FOR LOOP
         }//END ELSE STATEMENT
     }); //END QUERY
