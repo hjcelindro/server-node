@@ -130,6 +130,7 @@ client.on('message',function(topic,message){
     else{
         //mqtt_manu = split[1];
         mqtt_manu = item_manufacturer;
+        console.log(item_manufacturer);
     }
     if(mqtt_manu==manufacturer||mqtt_manu=='All'){
         searchManufacturerDatabase();
