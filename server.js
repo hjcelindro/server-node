@@ -250,7 +250,7 @@ function searchDatabase(id){
         }//END ELSE STATEMENT
     }); //END QUERY
     
-        connection.query('INSERT INTO rfid VALUES ('+DBid+','+DBtagid+','+DBitem_manufacturer+','+DBtime+','+DBlocation+', null)',function(err,rows){
+        connection.query('INSERT INTO rfid (item_number,item_rfid, item_manufacturer, item_time, item_location) VALUES ('+DBid+','+DBtagid+','+DBitem_manufacturer+','+DBtime+','+DBlocation+',)',function(err,rows){
         if(err)throw err;
         else{
             var post_query = new Date().getTime();
