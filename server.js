@@ -72,6 +72,7 @@ var server = mqtt.connect('mqtt://rfidproject.hjcelindro.co.uk:1883');
 io.sockets.on('connection',function(socket){ //The connection between the client response socket to server
     console.log('-----------------MQTT-------------');
     server.subscribe('response/manufacturer');
+    edison.subscribe('manufacturer/all');
     console.log("subscribed to server");
     
     console.log('-----------------sockets-------------');
@@ -121,6 +122,11 @@ io.sockets.on('connection',function(socket){ //The connection between the client
         io.emit('data_change',{'topic':String(topic), 'payload':data});
     });
 });
+edison.on('message',function(topic,message){
+    console.log("Edison MSG: "+String(message)+ " "+String(topic));
+    scanned_id = String(message); 
+    searchDatabase(scanned_id);
+}
 
 //-------------------------------------------------------
 client.on('message',function(topic,message){
@@ -241,9 +247,9 @@ function searchDatabase(id){
                             else{
                                 var post_query = new Date().getTime();
                                 console.log('INSERTED DATA'); //display message that data has been acquired from the database
-                                
-                                console.log("topic: "+topic);
-                                updateTable(DBitem_manufacturer,topic);
+                                var the_topic = "manufacturer/"+DBitem_manufacturer;
+                                console.log("topic: "+the_topic);
+                                updateTable(DBitem_manufacturer,the_topic);
                             }//END ELSE STATEMENT
                         }); //END QUERY
                     }//END IF
