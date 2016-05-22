@@ -254,9 +254,9 @@ function searchDatabase(id){
             
         if(err)throw err;
         else{
-            console.log("ITEMDATA: "+DBid+' '+DBtagid+' ' +DBitem_manufacturer+' '+DBlocation);
             var post_query = new Date().getTime();
             console.log('INSERTED DATA'); //display message that data has been acquired from the database
+            console.log("ITEMDATA: "+DBid+' '+DBtagid+' ' +DBitem_manufacturer+' '+DBlocation);
             
         }//END ELSE STATEMENT
     }); //END QUERY
