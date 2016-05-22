@@ -260,11 +260,7 @@ function searchDatabase(id){
                     }//END IF
                 } //END FOR LOOP
         }//END ELSE STATEMENT
-    }); //END QUERY
-    
-    
-    callback(err,ret);
-    
+    }); //END QUERY    
 } //END searchDatabase();
 
 
