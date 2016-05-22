@@ -258,7 +258,7 @@ function searchDatabase(id){
         else{
             var post_query = new Date().getTime();
             console.log('INSERTED DATA'); //display message that data has been acquired from the database
-            console.log("ITEMDATA: "+DBid+' '+DBtagid+' ' +DBitem_manufacturer+' '+DBlocation);
+            console.log("ITEMDATA: "+DBdata.number+' '+DBdata.id+' ' +DBdata.manufacturer+' '+DBdata.location);
             
         }//END ELSE STATEMENT
     }); //END QUERY
