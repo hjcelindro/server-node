@@ -20,6 +20,12 @@ var message;
 
 var DBmanufacturer;
 var tagid;
+    var DBid;
+    var DBtagid;
+    var DBitem_manufacturer;
+    var DBlocation;
+    var DBtime;
+    var DBdata;
 
 var client_res;
 var database_res;
@@ -200,12 +206,6 @@ function searchManufacturerDatabase(){
 function searchDatabase(id){
     var string_id = JSON.stringify(id).substr(1,10); //RFID data from arduino is an object, so to extract data, convert data to string
     
-    var DBid;
-    var DBtagid;
-    var DBitem_manufacturer;
-    var DBlocation;
-    var DBtime;
-    var DBdata;
     
     console.log("SRFID: "+string_id);
     //-----this is a query function that gets rfid data from the online database and compares with reader values
