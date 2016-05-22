@@ -135,7 +135,7 @@ client.on('message',function(topic,message){
     }
     else{
         //mqtt_manu = split[1];
-        mqtt_manu = searchDatabase();
+        mqtt_manu = searchDatabase(scanned_id);
         console.log("test: "+item_manufacturer);
     }
     if(mqtt_manu==manufacturer||mqtt_manu=='All'){
