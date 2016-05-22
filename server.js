@@ -127,7 +127,6 @@ io.sockets.on('connection',function(socket){ //The connection between the client
 client.on('message',function(topic,message){
     on_mqtt = new Date();
     console.log("Client.on "+String(message)+ " "+String(topic));
-    var split = topic.split('/');
     scanned_id = String(message); //new id from Edison
     searchDatabase(scanned_id,topic);
 });//------------------END OF MQTT----------------------------------------
@@ -254,11 +253,12 @@ function searchDatabase(id,topic){
 } //END searchDatabase();
 
 function updateTable(manufacturer,topic){
+    var split = topic.split('/');
     if(topic=='manufacturer/'){
         mqtt_manu="All";
     }
     else{
-        //mqtt_manu = split[1];
+        mqtt_manu = split[1];
         console.log("test: "+mqtt_manu);
     }
     if(mqtt_manu==manufacturer||mqtt_manu=='All'){
