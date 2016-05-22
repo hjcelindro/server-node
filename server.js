@@ -252,13 +252,14 @@ function searchDatabase(id){
         }//END ELSE STATEMENT
     }); //END QUERY
     
+    console.log("ITEMDATA: "+DBdata.number+' '+DBdata.id+' ' +DBdata.manufacturer+' '+DBdata.location);
+    
     connection.query("INSERT INTO rfidtags.rfid (item_number, item_rfid, item_manufacturer,item_location) VALUES ('"+DBdata.number+"', '"+DBdata.id+"', '"+DBdata.manufacturer+"', '"+DBdata.location+"')",function(err,rows){
             
         if(err)throw err;
         else{
             var post_query = new Date().getTime();
             console.log('INSERTED DATA'); //display message that data has been acquired from the database
-            console.log("ITEMDATA: "+DBdata.number+' '+DBdata.id+' ' +DBdata.manufacturer+' '+DBdata.location);
             
         }//END ELSE STATEMENT
     }); //END QUERY
