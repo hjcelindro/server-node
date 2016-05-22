@@ -245,14 +245,14 @@ function searchDatabase(id){
 
                     if((DBtagid===string_id)){ //compares with the RFID scanned
                         DBdata = {number:DBid,id:DBtagid,location:DBlocation,manufacturer:DBitem_manufacturer,time:DBtime};
-                        console.log("Data to add to DB: "+JSON.stringify(DBdata)); //output display on app side terminal
+                        console.log("Data to add to DB: "); //output display on app side terminal
                     }//END IF
                 } //END FOR LOOP
         }//END ELSE STATEMENT
     }); //END QUERY
     
-    connection.query("INSERT INTO rfidtags.rfid (item_number, item_rfid, item_manufacturer,item_location) VALUES ('"+DBid+"', '"+DBtagid+"', '"+DBitem_manufacturer+"', '"+DBlocation+"')",function(err,rows){
-            console.log("ITEMDATA:"+DBtagid+DBitem_manufacturer+DBlocation);
+    connection.query("INSERT INTO rfidtags.rfid (item_number, item_rfid, item_manufacturer,item_location) VALUES ('"+DBdata.number+"', '"+DBdata.id+"', '"+DBdata.manufacturer+"', '"+DBdata.manufacturer+"')",function(err,rows){
+            console.log("ITEMDATA:"+Strin(DBdata.number)+"', '"+String(DBdata.id)+"', '"+String(DBdata.manufacturer)+"', '"+String(DBdata.manufacturer));
         if(err)throw err;
         else{
             var post_query = new Date().getTime();
