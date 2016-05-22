@@ -200,7 +200,7 @@ function searchManufacturerDatabase(){
 function searchDatabase(id){
     var string_id = JSON.stringify(id).substr(1,10); //RFID data from arduino is an object, so to extract data, convert data to string
     
-    var DBid,
+    var DBid;
     var DBtagid;
     var DBitem_manufacturer;
     var DBlocation;
