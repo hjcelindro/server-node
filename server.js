@@ -128,11 +128,14 @@ client.on('message',function(topic,message){
     on_mqtt = new Date();
     console.log("Client.on "+String(message)+ " "+String(topic));
     scanned_id = String(message); //new id from Edison
-    searchDatabase(scanned_id,topic);
+    searchDatabase(scanned_id);
 });//------------------END OF MQTT----------------------------------------
 
 edison.on('message',function(topic,message){
     console.log("Edison Sent: "+String(message) + " " + String(topic));
+    scanned_id = String(message);
+    searchDatabase(scanned_id);
+    
 });
 
 //---------------------MQTT when client responds to server---------------------
@@ -194,7 +197,7 @@ function searchManufacturerDatabase(){
 } //------------------------------------END searchManufacturerDatabase()-------------------------------;
 
 //--------------Search from RFID MQTT Messge from Edison-------------------------
-function searchDatabase(id,topic){
+function searchDatabase(id){
     var string_id = JSON.stringify(id).substr(1,10); //RFID data from arduino is an object, so to extract data, convert data to string
     var ret;
     
@@ -246,7 +249,7 @@ function searchDatabase(id,topic){
                                 var post_query = new Date().getTime();
                                 console.log('INSERTED DATA'); //display message that data has been acquired from the database
                                 console.log("topic: "+topic);
-                                updateTable(DBitem_manufacturer,topic);
+                                updateTable(DBitem_manufacturer);
                             }//END ELSE STATEMENT
                         }); //END QUERY
                     }//END IF
@@ -255,8 +258,8 @@ function searchDatabase(id,topic){
     }); //END QUERY
 } //END searchDatabase();
 
-function updateTable(manufacturer,topic){
-    var split = topic.split('/');
+function updateTable(DBmanufacturer){
+/*    var split = topic.split('/');
     if(topic=='manufacturer/'){     
         mqtt_manu="All";
     }
@@ -266,7 +269,9 @@ function updateTable(manufacturer,topic){
     }
     if(mqtt_manu==manufacturer||mqtt_manu=='All'){
         searchManufacturerDatabase();
-    }
+    }*/
+    manufacturer = DBitem_manufacturer;
+    searchManufacturerDatabase();
 }
 
 
