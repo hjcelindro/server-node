@@ -241,6 +241,7 @@ function searchDatabase(id){
                         DBdata = {number:DBid,id:DBtagid,location:DBlocation,manufacturer:DBitem_manufacturer,time:DBtime};
                         console.log(DBtagid);
                         manufacturer= DBitem_manufacturer;
+                        console.log('To insert');
                         connection.query("INSERT INTO rfidtags.rfid (item_number, item_rfid, item_manufacturer,item_location) VALUES ('"+DBid+"', '"+DBtagid+"', '"+DBitem_manufacturer+"', '"+DBlocation+"')",function(err,rows){
             
                             if(err)throw err;
