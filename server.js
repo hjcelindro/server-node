@@ -204,7 +204,8 @@ function searchDatabase(id){
         DBtagid,
         DBitem_manufacturer,
         DBlocation,
-        DBtime;
+        DBtime,
+        DBdata;
     console.log("SRFID: "+string_id);
     //-----this is a query function that gets rfid data from the online database and compares with reader values
     var pre_query = new Date().getTime();
@@ -243,7 +244,7 @@ function searchDatabase(id){
                     DBtime = String(rows[i].time);
 
                     if((DBtagid===string_id)){ //compares with the RFID scanned
-                        var DBdata = {number:DBid,id:DBtagid,location:DBlocation,manufacturer:DBitem_manufacturer,time:DBtime};
+                        DBdata = {number:DBid,id:DBtagid,location:DBlocation,manufacturer:DBitem_manufacturer,time:DBtime};
                         console.log("Data to add to DB: "+JSON.stringify(DBdata)); //output display on app side terminal
                     }//END IF
                 } //END FOR LOOP
@@ -251,6 +252,7 @@ function searchDatabase(id){
     }); //END QUERY
     
         connection.query('INSERT INTO `rfidtags`.`rfid` (item_number, item_rfid, item_manufacturer,item_location) VALUES ('+DBid+', '+DBtagid+', '+DBitem_manufacturer+', '+DBlocation+')',function(err,rows){
+            console.log(DBdata);
         if(err)throw err;
         else{
             var post_query = new Date().getTime();
