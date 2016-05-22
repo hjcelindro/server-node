@@ -247,22 +247,22 @@ function searchDatabase(id){
                     if((DBtagid===string_id)){ //compares with the RFID scanned
                         DBdata = {number:DBid,id:DBtagid,location:DBlocation,manufacturer:DBitem_manufacturer,time:DBtime};
                         console.log(DBdata);
+                    
+                        connection.query("INSERT INTO rfidtags.rfid (item_number, item_rfid, item_manufacturer,item_location) VALUES ('"+DBid+"', '"+DBtagid+"', '"+DBitem_manufacturer+"', '"+DBlocation+"')",function(err,rows){
+            
+                            if(err)throw err;
+                            else{
+                                var post_query = new Date().getTime();
+                                console.log('INSERTED DATA'); //display message that data has been acquired from the database
+            
+        }//END ELSE STATEMENT
+    }); //END QUERY
                     }//END IF
                 } //END FOR LOOP
         }//END ELSE STATEMENT
     }); //END QUERY
     
-    console.log("ITEMDATA: "+String(DBdata.number)+' '+String(DBdata.id)+' ' +String(DBdata.manufacturer)+' '+String(DBdata.location));
     
-    connection.query("INSERT INTO rfidtags.rfid (item_number, item_rfid, item_manufacturer,item_location) VALUES ('"+DBid+"', '"+DBtagid+"', '"+DBitem_manufacturer+"', '"+DBlocation+"')",function(err,rows){
-            
-        if(err)throw err;
-        else{
-            var post_query = new Date().getTime();
-            console.log('INSERTED DATA'); //display message that data has been acquired from the database
-            
-        }//END ELSE STATEMENT
-    }); //END QUERY
     
     
 } //END searchDatabase();
