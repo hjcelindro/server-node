@@ -251,8 +251,8 @@ function searchDatabase(id){
         }//END ELSE STATEMENT
     }); //END QUERY
     
-    connection.query("INSERT INTO rfidtags.rfid (item_number, item_rfid, item_manufacturer,item_location) VALUES ('"+DBdata.number+"', '"+DBdata.id+"', '"+DBdata.manufacturer+"', '"+DBdata.manufacturer+"')",function(err,rows){
-            console.log("ITEMDATA:"+Strin(DBdata.number)+"', '"+String(DBdata.id)+"', '"+String(DBdata.manufacturer)+"', '"+String(DBdata.manufacturer));
+    connection.query("INSERT INTO rfidtags.rfid (item_number, item_rfid, item_manufacturer,item_location) VALUES ('"+DBid+"', '"+DBdata.id+"', '"+DBitem_manufacturer+"', '"+DBlocation+"')",function(err,rows){
+            console.log("ITEMDATA:"+String(DBdata.number)+"', '"+String(DBdata.id)+"', '"+String(DBdata.manufacturer)+"', '"+String(DBdata.manufacturer));
         if(err)throw err;
         else{
             var post_query = new Date().getTime();
