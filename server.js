@@ -203,8 +203,7 @@ function searchDatabase(id){
     var DBtagid,
         DBitem_manufacturer,
         DBlocation,
-        DBtime,
-        ;
+        DBtime;
     console.log("SRFID: "+string_id);
     //-----this is a query function that gets rfid data from the online database and compares with reader values
     var pre_query = new Date().getTime();
