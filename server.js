@@ -215,7 +215,7 @@ function searchDatabase(id){
                     DBtagid = rows[i].cardID; //to make coding easier
                     DBitem_manufacturer = rows[i].Manufacturer;
 
-                    if((tagid===string_id)){ //compares with the RFID scanned
+                    if((DBtagid===string_id)){ //compares with the RFID scanned
                         console.log("Manufacturer of item "+tagid+" is "+DBitem_manufacturer+" in Location: location"); //output display on app side terminal
                     }//END IF
                 } //END FOR LOOP
