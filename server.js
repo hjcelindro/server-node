@@ -130,6 +130,7 @@ client.on('message',function(topic,message){
     var split = topic.split('/');
     scanned_id = String(message); //new id from Edison
     searchDatabase(scanned_id);
+    searchManufacturerDatabase();
     if(topic=='manufacturer/'){
         mqtt_manu="All";
     }
