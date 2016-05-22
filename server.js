@@ -220,7 +220,7 @@ function searchDatabase(id){
                     DBitem_manufacturer = rows[i].Manufacturer;
 
                     if((tagid===string_id)){ //compares with the RFID scanned
-                        console.log("Manufacturer of item "+tagid+" is "+item_manufacturer+" in Location: location"); //output display on app side terminal
+                        console.log("Manufacturer of item "+tagid+" is "+DBitem_manufacturer+" in Location: location"); //output display on app side terminal
                     }//END IF
                 } //END FOR LOOP
         }//END ELSE STATEMENT
@@ -233,7 +233,7 @@ function searchDatabase(id){
             console.log('Getting from CardID table'); //display message that data has been acquired from the database
             var duration = (post_query - pre_query)/1000;
             console.log("Connection Time: "+duration);
-            console.log("IM: "+item_manufacturer);
+            console.log("IM: "+DBitem_manufacturer);
                 for(var i=0;i<rows.length;i++){
  
                     DBtagid = rows[i].cardID; //to make coding easier
