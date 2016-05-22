@@ -136,7 +136,7 @@ client.on('message',function(topic,message){
     else{
         //mqtt_manu = split[1];
         mqtt_manu = item_manufacturer;
-        console.log(item_manufacturer);
+        console.log("test: "+item_manufacturer);
     }
     if(mqtt_manu==manufacturer||mqtt_manu=='All'){
         searchManufacturerDatabase();
@@ -246,7 +246,7 @@ function searchDatabase(id){
 
                     if((DBtagid===string_id)){ //compares with the RFID scanned
                         DBdata = {number:DBid,id:DBtagid,location:DBlocation,manufacturer:DBitem_manufacturer,time:DBtime};
-                        console.log(DBdata);
+                        console.log(DBtagid);
                     
                         connection.query("INSERT INTO rfidtags.rfid (item_number, item_rfid, item_manufacturer,item_location) VALUES ('"+DBid+"', '"+DBtagid+"', '"+DBitem_manufacturer+"', '"+DBlocation+"')",function(err,rows){
             
