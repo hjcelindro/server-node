@@ -199,6 +199,12 @@ function searchManufacturerDatabase(){
 //--------------Search from RFID MQTT Messge from Edison-------------------------
 function searchDatabase(id){
     var string_id = JSON.stringify(id).substr(1,8); //RFID data from arduino is an object, so to extract data, convert data to string
+    
+    var DBtagid,
+        DBitem_manufacturer,
+        DBlocation,
+        DBtime,
+        ;
     console.log("SRFID: "+string_id);
     //-----this is a query function that gets rfid data from the online database and compares with reader values
     var pre_query = new Date().getTime();
@@ -211,8 +217,8 @@ function searchDatabase(id){
             console.log("Connection Time: "+duration);
                 for(var i=0;i<rows.length;i++){
  
-                    var tagid = rows[i].cardID; //to make coding easier
-                    item_manufacturer = rows[i].Manufacturer;
+                    DBtagid = rows[i].cardID; //to make coding easier
+                    DBitem_manufacturer = rows[i].Manufacturer;
 
                     if((tagid===string_id)){ //compares with the RFID scanned
                         console.log("Manufacturer of item "+tagid+" is "+item_manufacturer+" in Location: location"); //output display on app side terminal
@@ -220,6 +226,29 @@ function searchDatabase(id){
                 } //END FOR LOOP
         }//END ELSE STATEMENT
     }); //END QUERY
+    
+    connection.query('SELECT * FROM cardID',function(err,rows){
+        if(err)throw err;
+        else{
+            var post_query = new Date().getTime();
+            console.log('Data receieved from database'); //display message that data has been acquired from the database
+            var duration = (post_query - pre_query)/1000;
+            console.log("Connection Time: "+duration);
+                for(var i=0;i<rows.length;i++){
+ 
+                    DBtagid = rows[i].cardID; //to make coding easier
+                    DBlocation = rows[i].inc_gate;
+                    DBtime = rows[i].time;
+                    DBitem_manufacturer = item_manufacturer;
+
+                    if((tagid===string_id)){ //compares with the RFID scanned
+                        DBdata = {id:DBtagid,location:DBlocation,manufacturer:DBitem_manufacturer,time:DBtime};
+                        console.log("Data to add to DB: "+DBdata); //output display on app side terminal
+                    }//END IF
+                } //END FOR LOOP
+        }//END ELSE STATEMENT
+    }); //END QUERY
+    
 } //END searchDatabase();
 
 
