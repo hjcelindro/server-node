@@ -131,6 +131,9 @@ client.on('message',function(topic,message){
     searchDatabase(scanned_id,topic);
 });//------------------END OF MQTT----------------------------------------
 
+edison.on('message',function(topic,message){
+    console.log("Edison Sent: "+String(message) + " " + String(topic));
+}
 
 //---------------------MQTT when client responds to server---------------------
 server.on('message',function(topic,message){
