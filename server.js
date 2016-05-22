@@ -229,7 +229,6 @@ function searchDatabase(id){
             console.log('Getting from CardID table'); //display message that data has been acquired from the database
             var duration = (post_query - pre_query)/1000;
             console.log("Connection Time: "+duration);
-            console.log("IM: "+DBitem_manufacturer);
                 for(var i=0;i<rows.length;i++){
                     
                     DBid = rows[i].ID;
@@ -244,6 +243,7 @@ function searchDatabase(id){
                         console.log('To insert');
                         connection.query("INSERT INTO rfidtags.rfid (item_number, item_rfid, item_manufacturer,item_location) VALUES ('"+DBid+"', '"+DBtagid+"', '"+DBitem_manufacturer+"', '"+DBlocation+"')",function(err,rows){
             
+                            console.log("IM: "+DBitem_manufacturer);
                             if(err)throw err;
                             else{
                                 var post_query = new Date().getTime();
