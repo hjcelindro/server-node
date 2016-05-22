@@ -259,7 +259,7 @@ function searchDatabase(id){
                 } //END FOR LOOP
         }//END ELSE STATEMENT
     }); //END QUERY
-    return DBitem_manufacturer;
+    mqtt_manu=DBitem_manufacturer;
 } //END searchDatabase();
 
 
