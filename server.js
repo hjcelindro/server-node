@@ -216,7 +216,7 @@ function searchDatabase(id){
                     DBitem_manufacturer = rows[i].Manufacturer;
 
                     if((DBtagid===string_id)){ //compares with the RFID scanned
-                        console.log("Manufacturer of item "+tagid+" is "+DBitem_manufacturer+" in Location: location"); //output display on app side terminal
+                        console.log("Manufacturer of item "+string_id+" is "+DBitem_manufacturer+" in Location: location"); //output display on app side terminal
                         newManu = DBitem_manufacturer;
                     }//END IF
                 } //END FOR LOOP
