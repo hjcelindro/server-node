@@ -126,7 +126,7 @@ edison.on('message',function(topic,message){
     console.log("Edison MSG: "+String(message)+ " "+String(topic));
     scanned_id = String(message); 
     searchDatabase(scanned_id);
-}
+});
 
 //-------------------------------------------------------
 client.on('message',function(topic,message){
