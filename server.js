@@ -135,7 +135,7 @@ client.on('message',function(topic,message){
     }
     else{
         //mqtt_manu = split[1];
-        mqtt_manu = item_manufacturer;
+        mqtt_manu = searchDatabase();
         console.log("test: "+item_manufacturer);
     }
     if(mqtt_manu==manufacturer||mqtt_manu=='All'){
@@ -205,7 +205,7 @@ function searchManufacturerDatabase(){
 //--------------Search from RFID MQTT Messge from Edison-------------------------
 function searchDatabase(id){
     var string_id = JSON.stringify(id).substr(1,10); //RFID data from arduino is an object, so to extract data, convert data to string
-    
+    var ret;
     
     console.log("SRFID: "+string_id);
     //-----this is a query function that gets rfid data from the online database and compares with reader values
@@ -254,7 +254,7 @@ function searchDatabase(id){
                             else{
                                 var post_query = new Date().getTime();
                                 console.log('INSERTED DATA'); //display message that data has been acquired from the database
-            
+                                ret = DBitem_manufacturer;
         }//END ELSE STATEMENT
     }); //END QUERY
                     }//END IF
@@ -263,7 +263,7 @@ function searchDatabase(id){
     }); //END QUERY
     
     
-    
+    callback(err,ret);
     
 } //END searchDatabase();
 
@@ -290,5 +290,6 @@ function ActionUpdateDatabase(rfid){
         }//END ELSE STATEMENT
     }); //END QUERY
 } 
-//-----------------END ActionUpdateDatabase();----------------------------------
+//-----------------END ActionUpdateDatabase();----------------------------------\
+
 
