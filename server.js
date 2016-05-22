@@ -223,6 +223,7 @@ function searchDatabase(id){
     }); //END QUERY
     
     connection.query('SELECT * FROM cardID',function(err,rows){
+        var newManu = DBitem_manufacturer;
         if(err)throw err;
         else{
             var post_query = new Date().getTime();
@@ -238,9 +239,9 @@ function searchDatabase(id){
 
                     if((DBtagid===string_id)){ //compares with the RFID scanned
                         DBdata = {number:DBid,id:DBtagid,location:DBlocation,manufacturer:DBitem_manufacturer,time:DBtime};
-                        console.log(DBtagid + DBitem_manufacturer);
+                        console.log(DBtagid + newManu);
                         manufacturer = DBitem_manufacturer;
-                        console.log("Manu: "+manufacturer);
+                        console.log("Manu: "+newManu);
                         console.log('To insert');
                         connection.query("INSERT INTO rfidtags.rfid (item_number, item_rfid, item_manufacturer,item_location) VALUES ('"+DBid+"', '"+DBtagid+"', '"+DBitem_manufacturer+"', '"+DBlocation+"')",function(err,rows){
             
