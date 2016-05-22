@@ -198,7 +198,7 @@ function searchManufacturerDatabase(){
 
 //--------------Search from RFID MQTT Messge from Edison-------------------------
 function searchDatabase(id){
-    var string_id = JSON.stringify(id).substr(1,8); //RFID data from arduino is an object, so to extract data, convert data to string
+    var string_id = JSON.stringify(id).substr(1,10); //RFID data from arduino is an object, so to extract data, convert data to string
     
     var DBtagid,
         DBitem_manufacturer,
