@@ -201,11 +201,12 @@ function searchDatabase(id){
     var string_id = JSON.stringify(id).substr(1,10); //RFID data from arduino is an object, so to extract data, convert data to string
     
     var DBid,
-        DBtagid,
-        DBitem_manufacturer,
-        DBlocation,
-        DBtime,
-        DBdata;
+    var DBtagid;
+    var DBitem_manufacturer;
+    var DBlocation;
+    var DBtime;
+    var DBdata;
+    
     console.log("SRFID: "+string_id);
     //-----this is a query function that gets rfid data from the online database and compares with reader values
     var pre_query = new Date().getTime();
@@ -245,6 +246,7 @@ function searchDatabase(id){
 
                     if((DBtagid===string_id)){ //compares with the RFID scanned
                         DBdata = {number:DBid,id:DBtagid,location:DBlocation,manufacturer:DBitem_manufacturer,time:DBtime};
+                        console.log(DBdata);
                     }//END IF
                 } //END FOR LOOP
         }//END ELSE STATEMENT
